@@ -6,7 +6,7 @@ TODO
 
 ## Installation and execution via Docker
 
-The whole architecture is wrapped into a series of dockerized ROS2 packages. Please check the [Docker](https://docs.docker.com/get-started/) and [ROS2]https://docs.ros.org/en/humble/index.html) guides for further details.
+The whole architecture is wrapped into a series of dockerized ROS2 packages. Please check the [Docker](https://docs.docker.com/get-started/) and [ROS2](https://docs.ros.org/en/humble/index.html) guides for further details.
 
 ### Prerequisites (Docker installation)
 

@@ -1,0 +1,252 @@
+#####     #####     SEED version 8.0    #####     #####
+
+1- SOFT and HARD SEQUENCES have been redefined:
+	- softSequence behavior added: this implements the SOFT sequence as specified in
+		SEED 7.2. The old "seq" behavior has been removed!
+	- hardSequence behavior added: this implements the HARD sequence by exploiting
+		forgetting and remembering mechanisms. In particular, accomplished nodes of
+		the sequence are forgotten while new ones are remembered, in so producing a
+		classic AI -like sequencing
+
+	TODO: both sequential mechanisms have to be tested!
+
+2- state variables type changed from DOUBLE to BOOL:
+	now state variables (i.e., variables from releasers and goals) are bool by
+	default.
+	
+	WARNING: This is an important change as double state variables are not 
+	working anymore.
+
+#####     #####     SEED version 7.2    #####     #####
+
+1- SOFT SEQUENCE introduced through the "seq" schema:
+	the soft sequence is based on the emphasis rather then boolean variables (as in
+	hard sequence from SEED 3.0). The seq node passes the contribution bonus to the
+	current node of the sequence. The bonus is never passed back!
+
+2- Functions of WM that manage contributions have been adjusted. Now there are mainly
+	2 funtions:
+		- setContribution: adds/updates contribution to a single node (automatically 
+			inherited to sub nodes through the father-son relation).
+		- getContribution: retrieve the value of the specific contribution.
+
+	REMIND: further testing is needed!
+
+3- timer behavior added to allow setting of variable after a period (used in ros2 
+	semaphore demo).
+
+4- simplified wm_* functions added to Behavior class to facilitate WM access.
+
+
+#####     #####     SEED version 7.1    #####     #####
+
+1- RATE introduced:
+	now behavior frequency is regulated through the rate variable, the old
+	rtm is not used anymore.
+	
+	NOTE: frequency may still be adaptive, just use setRate() to change it.
+
+	NOTE2: rtm-related functions and attributes are still present, they should be
+	       purged as soon as possible (TODO)
+
+
+#####     #####     SEED version 7.0     #####     #####
+
+1- this version is designed to be used with Docker!
+
+2- now behaviors are called Behaviors (US style) instead of Behaviours (UK style).
+
+3- General redesign of code: 
+	3.1 BehaviorBasedSystem (BBS) has been introduced:
+		BBS is a class that manages all aspects of behaviors.
+		
+	3.2 BBS directory has been introduced:
+		the BBS dir. contains all behaviors of the system. Notice that
+		behaviors can be now designed in .h/.cpp files (as standard)
+		
+	3.3 CPP Detector has been introduced at compile time:
+		now .cpp files into the seed directory shoudl be automatically
+		recognized and added to the source files. Sub-directories are also possbile!
+		
+		WARNING: CPP DETECTOR MAY NOT FIND FILES, if it happens, just clean/build the code  
+
+4- Self-registering behaviors are implemented:
+	Now there is no need anymore to add behaviors into the wakeUp function, behaviors are self registered
+	into the BBS by means of the "registered" static variable. 
+	
+	
+
+#####     #####     SEED version 6.0     #####     #####
+
+1- this version now works with ROS2! 
+
+2- Competition updated:
+	2.1 the select function does not reset the competition anymore
+	
+	2.2 the new wmv_withdraw and wmv_solve_once functions are added to allow ONE-SHOT COMPETITION
+	
+	2.2 new ONE-SHOT COMPETITION procedure is designed: ONE-SHOT COMPETITION allows single nodes to 
+		participate to the competition by performing "wmv_compete" only once. The participation holds
+		until a "wmv_solve" is called or when a "wmv_withdraw" is called by the competitor.
+		
+		NOTE: this process also allow single nodes to compete-and-solve directly (there is no need for
+		competitors+solver nodes). Nodes performing this direct compete-and-solve procedure must:
+			a. compete to a variable (wmv_compete function) in perceptual schema,
+			b. solve the competition (wmv_solve_once function) checking if it is winning, in such
+				case the node is allowed to use the resource
+			c. remove itself from competition (wmv_withdraw function) when exiting.
+			
+		NOTE2: in case of ex-aequo no node wins the competition (wmv_solve_once returns false for all
+			competitors) hence noone is allowed to use the resource
+		
+3- There is an ERROR of the GUI which causes a CRASH when a forget(...) is called (TODO)
+
+4- Header files have been reorganized. Now standard behaviors are countained by the following headers:
+	- std_behaviors.h
+	- ltm_behaviors.h
+	- wmv_behaviors.h
+	- ros_behaviors.h
+	
+	
+
+#####     #####     SEED version 5.0     #####     #####
+
+1- ROS interface "rosStream" updated to catch ros::ok() and to provide the following servicies:
+	1.1 add_node -> add new node in WM
+	1.2 del_node -> delete a node from WM
+	1.3 set_reg -> set a new contribution for a node
+	1.4 set_wmv -> set the value for a WMV
+	
+2- WMV behaviors updated:
+	2.1 compete behavior -> compete for a specific variable
+	2.2 solve behavior -> solve the competition on a specific value and publishes the winning value on specific topic
+	
+3- SEED_NAME added to differentiate multiple ROSnodes of SEED
+
+4- Different LTMs ar now available in the folder "LTM/" with names "seed_[SEED_NAME]_LTM.prolog"
+	NOTE: if no name is specified the default LTM is loaded named "seed_LTM.prolog"
+
+5- rtm/behaviorRtm/emph ambiguity SOLVED
+	NOTE: now rtm is ONLY the period of time between 2 activations of a behavior (1/frequency)
+	      while the emph is ONLY the representative of all contributions (top-down and bottom-up)
+	6.1 updateRtm is now the function that updates the rtm w.r.t the emph and possibly one affordance
+	6.2 setRtm sets whatever rtm value independently from the emphasis
+	 
+6- QT-GUI updated to resize the sub-windows and to show the frequency of behaviors
+
+7- LTM contribution modified, now starts from 0 instead of 1
+
+8- Function ston from "utils" updated in order to use std::locale::classic()
+
+WARNING: the "." operator into a schema name DOES NOT WORK!!
+
+9- Regulations lists added as the 4th element of the schema in LTM
+	NOTE: the seed_LTM.prolog file has been modified but not tested (TODO)
+
+10- Comments are added in the wmv_stream.h node to discuss the "sneaking in" problem, i.e., when
+	a loosing behavior wins (sneaks in) the competition due to the slowness of the winning one.
+	NOTE: this proble is mainly discussed, and a procedure to avoid it is proposed but it
+		  is not yet solved [TODO]
+
+
+#####     #####     SEED version 4.0     #####     #####
+
+1- competition for variables resturcuted (under_development)
+
+2- sequential behaviors should be now faster, due to the new competition!
+
+3- NeuralNetwork api added to design simple neural networks (unstable)
+
+4- Random class added to utils (seed_geometry.h for now)
+
+5- Operator \ added to LTM, now tasks an variables can be represented as
+   natural language sentences using spaces between words. 
+
+6- Kinesthetic Teaching behaviors added (kinesthetic_teaching.h)
+
+
+
+
+#####     #####     SEED version 3.2     #####     #####
+
+1- vocalStream and say behaviors are added again, now are more stable
+
+
+
+
+#####     #####     SEED version 3.1     #####     #####
+
+1- behaviors are now correctly deallocated when removed from WM
+
+2- GUI updated (unstable)
+
+
+
+
+#####     #####     SEED version 3.0     #####     #####
+
+1- added a SWI-Prolog interface for the LTM (TOBEtested):
+	1.1 LTM_swipl.h is now the header for the LTM-like functions
+	1.2 LTM_swipl.cpp added for implementations
+
+   NOTE: differently from eclipseclp SWI can be downloaded from repository
+   	 at https://www.swi-prolog.org/build/PPA.html, the linkage should be
+   	 automatic (TOBEtested).
+
+2- added ltm_stream behavior
+
+3- now each WM node have a unique id.
+   
+   NOTE: the id is just a sequential number, it can be overfloting for very
+	 long executions, this have to be avoided (TODO). 
+
+4- threads are now detached (except for Alive that is still joined by the 
+	main process)
+
+5- sequential behaviors added
+
+
+
+
+#####     #####     SEED version 2.1     #####     #####
+
+1- reorganized LTM as an object:
+	1.1 LTM_eclipseclp.h is now the header for the LTM-like functions
+	1.2 LTM_eclipseclp.cpp added for implementations
+
+2- "map" changed to "unordered_map" to save computations
+
+3- added history for WMVs (unstable) (TOBEtested)
+
+4- seed_time fixed: the "elapsed" function was always negative
+
+5- GUI added, it is based on qt5. WARNING: now qt5 is a new dependacy of SEED
+
+
+
+
+#####     #####     SEED version 2.0     #####     #####
+
+1- learning enabled
+
+2- seed_utils added:
+	2.1- seed_debug
+	2.2- seed_geometry
+	2.3- seed_time
+	2.4- seed_cv (unstable)
+
+3- reorganized core functions in cpp/h files:
+	3.1- seed.h is now the core header instead of seed_header.h
+			NOTE: seed_header.h is still available for backward-compatibility
+	3.2- created cpp files:
+			3.2.1- seed.cpp
+			3.2.2- WM.cpp
+			3.2.3- behavior.cpp
+
+4- seed namespace added
+
+5- changelog added
+
+ 
+		
+	

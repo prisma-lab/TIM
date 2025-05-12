@@ -1,0 +1,6 @@
+Invoking command in '/home/hargalaten/ros2_ws/src/seed_pdt/build/seed_pdt': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/hargalaten/ros2_ws/src/seed_pdt -DCMAKE_INSTALL_PREFIX=/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt
+Invoked command in '/home/hargalaten/ros2_ws/src/seed_pdt/build/seed_pdt' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/hargalaten/ros2_ws/src/seed_pdt -DCMAKE_INSTALL_PREFIX=/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt
+Invoking command in '/home/hargalaten/ros2_ws/src/seed_pdt/build/seed_pdt': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/hargalaten/ros2_ws/src/seed_pdt/build/seed_pdt -- -j4 -l4
+Invoked command in '/home/hargalaten/ros2_ws/src/seed_pdt/build/seed_pdt' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/hargalaten/ros2_ws/src/seed_pdt/build/seed_pdt -- -j4 -l4
+Invoking command in '/home/hargalaten/ros2_ws/src/seed_pdt/build/seed_pdt': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/hargalaten/ros2_ws/src/seed_pdt/build/seed_pdt
+Invoked command in '/home/hargalaten/ros2_ws/src/seed_pdt/build/seed_pdt' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/hargalaten/ros2_ws/src/seed_pdt/build/seed_pdt

@@ -1,0 +1,34 @@
+0.3 > zdiff(map,base_link) -> landed
+1.0 < zdiff(map,base_link) -> flying
+#
+1 / xydist(base_link,exp00) ~> exp00.distance
+1 / xydist(base_link,exp10) ~> exp10.distance
+1 / xydist(base_link,exp01) ~> exp01.distance
+1 / xydist(base_link,exp11) ~> exp11.distance
+1 / xydist(base_link,exp12) ~> exp12.distance
+1 / xydist(base_link,exp21) ~> exp21.distance
+1 / xydist(base_link,exp32) ~> exp32.distance
+1 / xydist(base_link,exp30) ~> exp30.distance
+1 / xydist(base_link,exp41) ~> exp41.distance
+1 / xydist(base_link,exp51) ~> exp51.distance
+1 / xydist(base_link,exp60) ~> exp60.distance
+#
+0.3 > xydist(base_link,exp00) -> exp00.reached
+0.3 > xydist(base_link,exp10) -> exp10.reached
+0.3 > xydist(base_link,exp01) -> exp01.reached
+0.3 > xydist(base_link,exp11) -> exp11.reached
+0.3 > xydist(base_link,exp12) -> exp12.reached
+0.3 > xydist(base_link,exp21) -> exp21.reached
+0.3 > xydist(base_link,exp32) -> exp32.reached
+0.3 > xydist(base_link,exp30) -> exp30.reached
+0.3 > xydist(base_link,exp41) -> exp41.reached
+0.3 > xydist(base_link,exp51) -> exp51.reached
+0.3 > xydist(base_link,exp60) -> exp60.reached
+#
+1 / xydist(base_link,appr/marker_id1) ~> marker_id1.distance
+1 / xydist(base_link,appr/marker_id2) ~> marker_id2.distance
+1 / xydist(base_link,appr/marker_id3) ~> marker_id3.distance
+#
+0.3 > xydist(base_link,appr/marker_id1) -> marker_id1.reached
+0.3 > xydist(base_link,appr/marker_id2) -> marker_id2.reached
+0.3 > xydist(base_link,appr/marker_id3) -> marker_id3.reached

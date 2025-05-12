@@ -1,0 +1,9 @@
+<launch version="0.1.1">
+  <node pkg="aruco_opencv" name="aruco_tracker_4x4" exec="aruco_tracker_autostart">
+    <!-- <param from="$(find-pkg-share seed)/aruco_config/aruco_tracker.yaml" />
+    <param name="board_descriptions_path"
+      value="$(find-pkg-share seed)/aruco_config/aruco_descriptions.yaml" /> -->
+     <param from="$(find-pkg-share seed)/launch/aruco_config/aruco_tracker_4x4.yaml" />
+     <!-- <param name="board_descriptions_path" value="$(find-pkg-share seed)/launch/aruco_config/aruco_descriptions.yaml" /> -->
+  </node>
+</launch> 

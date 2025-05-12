@@ -1,0 +1,1080 @@
+In file included from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:36[m[K,
+                 from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed_wakeUp.cpp:8[m[K:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/utils/seed_geometry.h:[m[K In member function ‘[01m[KPose3d Pose3d::operator=(Pose3d)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/utils/seed_geometry.h:92:16:[m[K [01;35m[Kwarning: [m[Kimplicitly-declared ‘[01m[Kconstexpr Pose3d::Pose3d(const Pose3d&)[m[K’ is deprecated [[01;35m[K-Wdeprecated-copy[m[K]
+   92 |         return [01;35m[Ka[m[K;
+      |                [01;35m[K^[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/utils/seed_geometry.h:87:12:[m[K [01;36m[Knote: [m[Kbecause ‘[01m[KPose3d[m[K’ has user-provided ‘[01m[KPose3d Pose3d::operator=(Pose3d)[m[K’
+   87 |     Pose3d [01;36m[Koperator[m[K=(Pose3d a)
+      |            [01;36m[K^~~~~~~~[m[K
+In file included from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:36[m[K,
+                 from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/behavior.cpp:8[m[K:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/utils/seed_geometry.h:[m[K In member function ‘[01m[KPose3d Pose3d::operator=(Pose3d)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/utils/seed_geometry.h:92:16:[m[K [01;35m[Kwarning: [m[Kimplicitly-declared ‘[01m[Kconstexpr Pose3d::Pose3d(const Pose3d&)[m[K’ is deprecated [[01;35m[K-Wdeprecated-copy[m[K]
+   92 |         return [01;35m[Ka[m[K;
+      |                [01;35m[K^[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/utils/seed_geometry.h:87:12:[m[K [01;36m[Knote: [m[Kbecause ‘[01m[KPose3d[m[K’ has user-provided ‘[01m[KPose3d Pose3d::operator=(Pose3d)[m[K’
+   87 |     Pose3d [01;36m[Koperator[m[K=(Pose3d a)
+      |            [01;36m[K^~~~~~~~[m[K
+In file included from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed_wakeUp.cpp:8[m[K:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:[m[K In member function ‘[01m[Kseed::WM_variable seed::WM_varmap::variable(std::string)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:293:13:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Ki[m[K’ [[01;35m[K-Wunused-variable[m[K]
+  293 |         int [01;35m[Ki[m[K = 0;
+      |             [01;35m[K^[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:[m[K In member function ‘[01m[Kseed::WM_variable seed::WM_varmap::history(std::string, int)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:307:17:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::__cxx11::list<seed::WM_variable>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  307 |         if([01;35m[Kindex<h[id].size()[m[K){
+      |            [01;35m[K~~~~~^~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:[m[K In member function ‘[01m[Kseed::WM_value seed::WM_varmap::get_candidate_value(std::string, std::string)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:466:28:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  466 |             for(auto i=0; [01;35m[Ki<v[id].candidate_value.size()[m[K; i++)
+      |                           [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed_wakeUp.cpp:11[m[K:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/std_behaviors.h:[m[K In member function ‘[01m[Kvirtual void ForgetBehavior::motorSchema()[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/std_behaviors.h:107:22:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  107 |         for(int i=0;[01;35m[Ki<remNode.size()[m[K;i++)
+      |                     [01;35m[K~^~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/std_behaviors.h:[m[K In member function ‘[01m[Kvirtual bool InputStreamBehavior::perceptualSchema()[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/std_behaviors.h:180:14:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Knew_input[m[K’ [[01;35m[K-Wunused-variable[m[K]
+  180 |         bool [01;35m[Knew_input[m[K = false;
+      |              [01;35m[K^~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/std_behaviors.h:[m[K In member function ‘[01m[Kvirtual void InputStreamBehavior::motorSchema()[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/std_behaviors.h:193:18:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kson[m[K’ set but not used [[01;35m[K-Wunused-but-set-variable[m[K]
+  193 |         WM_node *[01;35m[Kson[m[K;
+      |                  [01;35m[K^~~[m[K
+In file included from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/behavior.cpp:8[m[K:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:[m[K In member function ‘[01m[Kseed::WM_variable seed::WM_varmap::variable(std::string)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:293:13:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Ki[m[K’ [[01;35m[K-Wunused-variable[m[K]
+  293 |         int [01;35m[Ki[m[K = 0;
+      |             [01;35m[K^[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:[m[K In member function ‘[01m[Kseed::WM_variable seed::WM_varmap::history(std::string, int)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:307:17:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::__cxx11::list<seed::WM_variable>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  307 |         if([01;35m[Kindex<h[id].size()[m[K){
+      |            [01;35m[K~~~~~^~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:[m[K In member function ‘[01m[Kseed::WM_value seed::WM_varmap::get_candidate_value(std::string, std::string)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:466:28:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  466 |             for(auto i=0; [01;35m[Ki<v[id].candidate_value.size()[m[K; i++)
+      |                           [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/behavior.cpp:[m[K In member function ‘[01m[Kvoid seed::Behavior::updateRtm(double, double, double)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/behavior.cpp:63:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+   63 |     for (int i = 0; [01;35m[Ki < app.size()[m[K; i++)
+      |                     [01;35m[K~~^~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/behavior.cpp:[m[K In member function ‘[01m[Kvoid seed::Behavior::updateRtm()[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/behavior.cpp:98:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+   98 |     for (int i = 0; [01;35m[Ki < app.size()[m[K; i++)
+      |                     [01;35m[K~~^~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/behavior.cpp:[m[K In member function ‘[01m[Kvoid seed::Behavior::setSelfContribution(double)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/behavior.cpp:187:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  187 |     for (int i = 0; [01;35m[Ki < nodes.size()[m[K; i++) {
+      |                     [01;35m[K~~^~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/behavior.cpp:[m[K In member function ‘[01m[Kvoid seed::Behavior::setContribution(std::string, std::string, double)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/behavior.cpp:198:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  198 |     for (int i = 0; [01;35m[Ki < nodes.size()[m[K; i++) {
+      |                     [01;35m[K~~^~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/behavior.cpp:[m[K In member function ‘[01m[Kvoid seed::Behavior::delContribution(std::string, std::string)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/behavior.cpp:208:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  208 |     for (int i = 0; [01;35m[Ki < nodes.size()[m[K; i++) {
+      |                     [01;35m[K~~^~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/behavior.cpp:[m[K In member function ‘[01m[Kdouble seed::Behavior::addContribution(std::string, std::string, double)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/behavior.cpp:220:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  220 |     for (int i = 0; [01;35m[Ki < nodes.size()[m[K; i++) {
+      |                     [01;35m[K~~^~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/behavior.cpp:[m[K In member function ‘[01m[Kvoid seed::Behavior::setRtm(double)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/behavior.cpp:248:27:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  248 |         for (int i = 0; [01;35m[Ki < app.size()[m[K; i++)
+      |                         [01;35m[K~~^~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/behavior.cpp:[m[K In member function ‘[01m[Kdouble seed::Behavior::setStimulus(double)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/behavior.cpp:292:1:[m[K [01;35m[Kwarning: [m[Kno return statement in function returning non-void [[01;35m[K-Wreturn-type[m[K]
+  292 | [01;35m[K}[m[K
+      | [01;35m[K^[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/behavior.cpp:[m[K In member function ‘[01m[Kvoid seed::Behavior::amplifyAllInstances(std::string, std::vector<seed::WM_node*>)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/behavior.cpp:317:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  317 |     for (int i = 0; [01;35m[Ki < instances.size()[m[K; i++)
+      |                     [01;35m[K~~^~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/behavior.cpp:[m[K In member function ‘[01m[Kbool seed::Behavior::isFreezed()[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/behavior.cpp:341:18:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  341 |         while ([01;35m[Ki < WM->getNodesByInstance(this->getInstance()).size()[m[K && WM->getNodesByInstance(this->getInstance())[i]->freezed)
+      |                [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/behavior.cpp:345:15:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  345 |         if ([01;35m[Ki == WM->getNodesByInstance(this->getInstance()).size()[m[K)
+      |             [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/behavior.cpp:331:10:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kresult[m[K’ set but not used [[01;35m[K-Wunused-but-set-variable[m[K]
+  331 |     bool [01;35m[Kresult[m[K = false;
+      |          [01;35m[K^~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/behavior.cpp:[m[K In member function ‘[01m[Kvoid seed::Behavior::setNodeInternalReleaser(bool)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/behavior.cpp:362:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  362 |     for (int i = 0; [01;35m[Ki < myNodeList.size()[m[K; i++) {
+      |                     [01;35m[K~~^~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/behavior.cpp:[m[K In member function ‘[01m[Kbool seed::Behavior::perceptWM()[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/behavior.cpp:419:12:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  419 |     while([01;35m[Ki<me.size()[m[K && me[i]->background)
+      |           [01;35m[K~^~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/behavior.cpp:422:10:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  422 |     if([01;35m[Ki == me.size()[m[K)
+      |        [01;35m[K~~^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed_wakeUp.cpp:14[m[K:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/ros_behaviors.h:[m[K In member function ‘[01m[Kvirtual void RosStreamBehavior::motorSchema()[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/ros_behaviors.h:81:18:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kson[m[K’ set but not used [[01;35m[K-Wunused-but-set-variable[m[K]
+   81 |         WM_node *[01;35m[Kson[m[K;
+      |                  [01;35m[K^~~[m[K
+In file included from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed_wakeUp.cpp:19[m[K:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/pdt_behaviors.h:[m[K In member function ‘[01m[Kvoid ExploreBehavior::update_weights()[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/pdt_behaviors.h:81:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<std::__cxx11::basic_string<char> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+   81 |         for(auto i=0; [01;35m[Ki<explorables.size()[m[K; i++){
+      |                       [01;35m[K~^~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/pdt_behaviors.h:[m[K In member function ‘[01m[Kint ExploreBehavior::sample_element()[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/pdt_behaviors.h:104:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<double, std::allocator<double> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  104 |         for(auto i=0; [01;35m[Ki<weights.size()[m[K; i++){
+      |                       [01;35m[K~^~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/behavior.cpp:8[m[K:
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kvoid seed::WM_varmap::set(std::string, std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1203:9:[m[K   required from ‘[01m[Kvoid seed::Behavior::wmv_set(std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1355:64:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:237:26:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kstd::__cxx11::list<seed::WM_variable>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K-Wsign-compare[m[K]
+  237 |         if( [01;35m[Kh[id].size() == values_to_remember[m[K ){
+      |             [01;35m[K~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:36[m[K,
+                 from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed.cpp:10[m[K:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/utils/seed_geometry.h:[m[K In member function ‘[01m[KPose3d Pose3d::operator=(Pose3d)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/utils/seed_geometry.h:92:16:[m[K [01;35m[Kwarning: [m[Kimplicitly-declared ‘[01m[Kconstexpr Pose3d::Pose3d(const Pose3d&)[m[K’ is deprecated [[01;35m[K-Wdeprecated-copy[m[K]
+   92 |         return [01;35m[Ka[m[K;
+      |                [01;35m[K^[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/utils/seed_geometry.h:87:12:[m[K [01;36m[Knote: [m[Kbecause ‘[01m[KPose3d[m[K’ has user-provided ‘[01m[KPose3d Pose3d::operator=(Pose3d)[m[K’
+   87 |     Pose3d [01;36m[Koperator[m[K=(Pose3d a)
+      |            [01;36m[K^~~~~~~~[m[K
+In file included from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:36[m[K,
+                 from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/LTM_swipl.h:11[m[K,
+                 from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/LTM_swipl.cpp:8[m[K:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/utils/seed_geometry.h:[m[K In member function ‘[01m[KPose3d Pose3d::operator=(Pose3d)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/utils/seed_geometry.h:92:16:[m[K [01;35m[Kwarning: [m[Kimplicitly-declared ‘[01m[Kconstexpr Pose3d::Pose3d(const Pose3d&)[m[K’ is deprecated [[01;35m[K-Wdeprecated-copy[m[K]
+   92 |         return [01;35m[Ka[m[K;
+      |                [01;35m[K^[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/utils/seed_geometry.h:87:12:[m[K [01;36m[Knote: [m[Kbecause ‘[01m[KPose3d[m[K’ has user-provided ‘[01m[KPose3d Pose3d::operator=(Pose3d)[m[K’
+   87 |     Pose3d [01;36m[Koperator[m[K=(Pose3d a)
+      |            [01;36m[K^~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kvoid seed::WM_variable::clear() [with T = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:239:13:[m[K   required from ‘[01m[Kvoid seed::WM_varmap::set(std::string, std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1203:9:[m[K   required from ‘[01m[Kvoid seed::Behavior::wmv_set(std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1355:64:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:195:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  195 |         for(auto i=0; [01;35m[Ki<candidate_value.size()[m[K; i++)
+      |                       [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed.cpp:10[m[K:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:[m[K In member function ‘[01m[Kseed::WM_variable seed::WM_varmap::variable(std::string)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:293:13:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Ki[m[K’ [[01;35m[K-Wunused-variable[m[K]
+  293 |         int [01;35m[Ki[m[K = 0;
+      |             [01;35m[K^[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:[m[K In member function ‘[01m[Kseed::WM_variable seed::WM_varmap::history(std::string, int)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:307:17:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::__cxx11::list<seed::WM_variable>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  307 |         if([01;35m[Kindex<h[id].size()[m[K){
+      |            [01;35m[K~~~~~^~~~~~~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kseed::WM_variable seed::WM_variable::copy() [with T = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:244:9:[m[K   required from ‘[01m[Kvoid seed::WM_varmap::set(std::string, std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1203:9:[m[K   required from ‘[01m[Kvoid seed::Behavior::wmv_set(std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1355:64:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:183:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  183 |         for(auto i=0; [01;35m[Ki< candidate_value.size()[m[K; i++)
+      |                       [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:[m[K In member function ‘[01m[Kseed::WM_value seed::WM_varmap::get_candidate_value(std::string, std::string)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:466:28:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  466 |             for(auto i=0; [01;35m[Ki<v[id].candidate_value.size()[m[K; i++)
+      |                           [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed_wakeUp.cpp:19[m[K:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/pdt_behaviors.h:[m[K In constructor ‘[01m[KTfObserverBehavior::TfObserverBehavior(std::string)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/pdt_behaviors.h:582:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<std::__cxx11::basic_string<char> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  582 |         for(auto i=0; [01;35m[Ki<str_rules.size()[m[K; i++){
+      |                       [01;35m[K~^~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/pdt_behaviors.h:[m[K In member function ‘[01m[Kvirtual bool TfObserverBehavior::perceptualSchema()[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/pdt_behaviors.h:594:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<TfObserverBehavior::ParsedRule>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  594 |         for(auto i=0; [01;35m[Ki<rules.size()[m[K; i++){
+      |                       [01;35m[K~^~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/pdt_behaviors.h:629:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<TfObserverBehavior::ParsedRule>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  629 |         for(auto i=0; [01;35m[Ki<rules.size()[m[K; i++){
+      |                       [01;35m[K~^~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/LTM_swipl.h:11[m[K,
+                 from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/LTM_swipl.cpp:8[m[K:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:[m[K In member function ‘[01m[Kseed::WM_variable seed::WM_varmap::variable(std::string)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:293:13:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Ki[m[K’ [[01;35m[K-Wunused-variable[m[K]
+  293 |         int [01;35m[Ki[m[K = 0;
+      |             [01;35m[K^[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:[m[K In member function ‘[01m[Kseed::WM_variable seed::WM_varmap::history(std::string, int)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:307:17:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::__cxx11::list<seed::WM_variable>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  307 |         if([01;35m[Kindex<h[id].size()[m[K){
+      |            [01;35m[K~~~~~^~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:[m[K In member function ‘[01m[Kseed::WM_value seed::WM_varmap::get_candidate_value(std::string, std::string)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:466:28:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  466 |             for(auto i=0; [01;35m[Ki<v[id].candidate_value.size()[m[K; i++)
+      |                           [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:14[m[K,
+                 from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed_wakeUp.cpp:24[m[K:
+[01m[K/opt/ros/foxy/include/image_transport/image_transport.h:[m[K At global scope:
+[01m[K/opt/ros/foxy/include/image_transport/image_transport.h:41:89:[m[K [01;36m[Knote: [m[K#pragma message: Warning: This header is deprecated. Use 'image_transport.hpp' instead
+   41 | #pragma message ("Warning: This header is deprecated. Use 'image_transport.hpp' instead"[01;36m[K)[m[K
+      |                                                                                         [01;36m[K^[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed.cpp:[m[K In function ‘[01m[Kvoid seed::faultHandler(int)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed.cpp:61:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+   61 |     for (int i = 1; [01;35m[Ki < size[m[K; ++i) {
+      |                     [01;35m[K~~^~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed.cpp:[m[K In function ‘[01m[Kvoid seed::printWM(seed::WM_node*)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed.cpp:121:18:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  121 |     for(int i=0;[01;35m[Ki<node->son.size()[m[K;i++)
+      |                 [01;35m[K~^~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed.cpp:134:18:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<std::__cxx11::basic_string<char> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  134 |         while ([01;35m[Kj < node->son[i]->releaser.size()[m[K && isTrue) {
+      |                [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed.cpp:[m[K In function ‘[01m[Kvoid seed::remove(seed::WM_node*)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed.cpp:401:18:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  401 |         for(i=0;[01;35m[Ki<node->father->son.size()[m[K;i++)
+      |                 [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed.cpp:[m[K In function ‘[01m[Kstd::vector<seed::WM_node*> seed::sortNodes(std::vector<seed::WM_node*>)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed.cpp:432:19:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  432 |     for(int i=0; [01;35m[Ki<vec.size()[m[K; i++){
+      |                  [01;35m[K~^~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed.cpp:434:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  434 |         for(int j=0; [01;35m[Kj<sorted.size()[m[K; j++)
+      |                      [01;35m[K~^~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed.cpp:443:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  443 |     for (int i = 0; [01;35m[Ki < sorted.size()[m[K; i++) {
+      |                     [01;35m[K~~^~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/LTM_swipl.cpp:[m[K In constructor ‘[01m[Kseed::LongTermMemory_swipl::LongTermMemory_swipl(int&, char**)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/LTM_swipl.cpp:14:49:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kargc[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+   14 | LongTermMemory_swipl::LongTermMemory_swipl([01;35m[Kint &argc[m[K, char **argv){
+      |                                            [01;35m[K~~~~~^~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed.cpp:[m[K In function ‘[01m[Kvoid* seed::execution(void*)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed.cpp:524:12:[m[K [01;35m[Kwarning: [m[Kdeleting object of abstract class type ‘[01m[Kseed::Behavior[m[K’ which has non-virtual destructor will cause undefined behavior [[01;35m[K-Wdelete-non-virtual-dtor[m[K]
+  524 |     delete [01;35m[Kbehavior[m[K;
+      |            [01;35m[K^~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed.cpp:[m[K In function ‘[01m[Kvoid* seed::ros2_th(void*)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed.cpp:534:1:[m[K [01;35m[Kwarning: [m[Kno return statement in function returning non-void [[01;35m[K-Wreturn-type[m[K]
+  534 | [01;35m[K}[m[K
+      | [01;35m[K^[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed.cpp:530:21:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Karg[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+  530 | void *ros2_th([01;35m[Kvoid *arg[m[K){
+      |               [01;35m[K~~~~~~^~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed.cpp:599:20:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<long unsigned int>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  599 |     for(auto i=0; [01;35m[Ki<seed::seed_thread_list.size()[m[K; i++)
+      |                   [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed.cpp:605:18:[m[K [01;35m[Kwarning: [m[Kdeleting object of abstract class type ‘[01m[Kseed::LongTermMemory[m[K’ which has non-virtual destructor will cause undefined behavior [[01;35m[K-Wdelete-non-virtual-dtor[m[K]
+  605 |     delete seed::[01;35m[KLTM[m[K;
+      |                  [01;35m[K^~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/LTM_swipl.cpp:[m[K In member function ‘[01m[Kvirtual bool seed::LongTermMemory_swipl::loadNodeSemantics(seed::WM_node*)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/LTM_swipl.cpp:119:28:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<std::__cxx11::basic_string<char> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  119 |             for(auto i=0; [01;35m[Ki<goal_vec.size()[m[K; i++ ){
+      |                           [01;35m[K~^~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed.cpp:589:9:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[KmemoryStream[m[K’ [[01;35m[K-Wunused-variable[m[K]
+  589 |     int [01;35m[KmemoryStream[m[K = pthread_create(&thread_alive, NULL,seed::execution, (void *)Alive);
+      |         [01;35m[K^~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/LTM_swipl.cpp:136:28:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<std::__cxx11::basic_string<char> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  136 |             for(auto i=0; [01;35m[Ki<reg_vec.size()[m[K; i++ ){
+      |                           [01;35m[K~^~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/LTM_swipl.cpp:[m[K In member function ‘[01m[Kvoid seed::LongTermMemory_swipl::loadSemantics(std::string, seed::WM_node*)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/LTM_swipl.cpp:190:20:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<std::__cxx11::basic_string<char> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  190 |     for(auto i=0; [01;35m[Ki<sv.size()[m[K; i++){
+      |                   [01;35m[K~^~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/LTM_swipl.cpp:222:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<std::__cxx11::basic_string<char> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  222 |         for(auto j=0; [01;35m[Kj<rv.size()[m[K; j++){
+      |                       [01;35m[K~^~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/LTM_swipl.cpp:184:12:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kd[m[K’ [[01;35m[K-Wunused-variable[m[K]
+  184 |     double [01;35m[Kd[m[K;
+      |            [01;35m[K^[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/LTM_swipl.cpp:[m[K In member function ‘[01m[KPlTerm seed::LongTermMemory_swipl::string2term(std::string, std::unordered_map<std::__cxx11::basic_string<char>, PlTerm>&)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/LTM_swipl.cpp:275:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<std::__cxx11::basic_string<char> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  275 |         for(auto i=1; [01;35m[Ki<strv.size()[m[K; i++){
+      |                       [01;35m[K~^~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/LTM_swipl.cpp:[m[K In member function ‘[01m[Kvirtual std::string seed::LongTermMemory_swipl::query(std::string)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/LTM_swipl.cpp:314:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<std::__cxx11::basic_string<char> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  314 |         for(auto i=1; [01;35m[Ki<rv.size()[m[K; i++){
+      |                       [01;35m[K~^~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/LTM_swipl.cpp:329:28:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<std::__cxx11::basic_string<char> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  329 |             for(auto i=0; [01;35m[Ki<rv.size()-1[m[K; i++){
+      |                           [01;35m[K~^~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/behavior.cpp:[m[K In member function ‘[01m[Kbool seed::Behavior::isFreezed()[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/behavior.cpp:351:1:[m[K [01;35m[Kwarning: [m[Kcontrol reaches end of non-void function [[01;35m[K-Wreturn-type[m[K]
+  351 | [01;35m[K}[m[K
+      | [01;35m[K^[m[K
+In file included from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed.cpp:10[m[K:
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kvoid seed::WM_varmap::set(std::string, std::string, T) [with T = double; std::string = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed.cpp:580:43:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:237:26:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kstd::__cxx11::list<seed::WM_variable>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K-Wsign-compare[m[K]
+  237 |         if( [01;35m[Kh[id].size() == values_to_remember[m[K ){
+      |             [01;35m[K~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kvoid seed::WM_varmap::set(std::string, std::string, T) [with T = bool; std::string = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed.cpp:583:50:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:237:26:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kstd::__cxx11::list<seed::WM_variable>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K-Wsign-compare[m[K]
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kvoid seed::WM_varmap::set(std::string, std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1203:9:[m[K   required from ‘[01m[Kvoid seed::Behavior::wmv_set(std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1355:64:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:237:26:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kstd::__cxx11::list<seed::WM_variable>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K-Wsign-compare[m[K]
+In file included from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed_wakeUp.cpp:24[m[K:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:[m[K In constructor ‘[01m[KShowBehavior::ShowBehavior(std::string)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:40:13:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+   40 |             [01;35m[K"dot"[m[K,
+      |             [01;35m[K^~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:41:13:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+   41 |             [01;35m[K"-Tpng"[m[K, /*gif output*/
+      |             [01;35m[K^~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:42:13:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+   42 |             [01;35m[K"-Oabc1.png"[m[K /*output to file abc.gif*/
+      |             [01;35m[K^~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:[m[K In member function ‘[01m[Kvirtual void ShowBehavior::motorSchema()[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:75:24:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+   75 |         graph = agopen([01;35m[K"g"[m[K, Agdirected,0);
+      |                        [01;35m[K^~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:101:27:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  101 |         for (int i = 0; [01;35m[Ki < targetNodes.size()[m[K; i++) {
+      |                         [01;35m[K~~^~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:109:29:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+  109 |                 agsafeset(e,[01;35m[K"style"[m[K,"dashed","");
+      |                             [01;35m[K^~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:109:37:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+  109 |                 agsafeset(e,"style",[01;35m[K"dashed"[m[K,"");
+      |                                     [01;35m[K^~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:109:46:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+  109 |                 agsafeset(e,"style","dashed",[01;35m[K""[m[K);
+      |                                              [01;35m[K^~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:87:18:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kme[m[K’ [[01;35m[K-Wunused-variable[m[K]
+   87 |         WM_node* [01;35m[Kme[m[K = meVec[0];
+      |                  [01;35m[K^~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:[m[K In member function ‘[01m[Kvoid ShowBehavior::wm2graph(seed::WM_node*, Agnode_t*)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:154:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  154 |         for(int i=0; [01;35m[Ki<node->son.size()[m[K; i++){
+      |                      [01;35m[K~^~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:[m[K In member function ‘[01m[KAgnode_t* ShowBehavior::wmNode2agNode(seed::WM_node*)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:199:22:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+  199 |         agsafeset(n, [01;35m[K"penwidth"[m[K, "2.0", "");
+      |                      [01;35m[K^~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:199:34:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+  199 |         agsafeset(n, "penwidth", [01;35m[K"2.0"[m[K, "");
+      |                                  [01;35m[K^~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:199:41:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+  199 |         agsafeset(n, "penwidth", "2.0", [01;35m[K""[m[K);
+      |                                         [01;35m[K^~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:201:26:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+  201 |             agsafeset(n, [01;35m[K"style"[m[K, "dashed", "");
+      |                          [01;35m[K^~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:201:35:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+  201 |             agsafeset(n, "style", [01;35m[K"dashed"[m[K, "");
+      |                                   [01;35m[K^~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:201:45:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+  201 |             agsafeset(n, "style", "dashed", [01;35m[K""[m[K);
+      |                                             [01;35m[K^~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:206:26:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+  206 |             agsafeset(n, [01;35m[K"color"[m[K, "blue", "");
+      |                          [01;35m[K^~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:206:35:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+  206 |             agsafeset(n, "color", [01;35m[K"blue"[m[K, "");
+      |                                   [01;35m[K^~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:206:43:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+  206 |             agsafeset(n, "color", "blue", [01;35m[K""[m[K);
+      |                                           [01;35m[K^~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:210:26:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+  210 |             agsafeset(n, [01;35m[K"color"[m[K, "green", "");
+      |                          [01;35m[K^~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:210:35:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+  210 |             agsafeset(n, "color", [01;35m[K"green"[m[K, "");
+      |                                   [01;35m[K^~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:210:44:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+  210 |             agsafeset(n, "color", "green", [01;35m[K""[m[K);
+      |                                            [01;35m[K^~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:215:26:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+  215 |             if (agget(n, [01;35m[K"color"[m[K) != "green")
+      |                          [01;35m[K^~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:215:38:[m[K [01;35m[Kwarning: [m[Kcomparison with string literal results in unspecified behavior [[01;35m[K-Waddress[m[K]
+  215 |             if (agget(n, "color") != [01;35m[K"green"[m[K)
+      |                                      [01;35m[K^~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:217:30:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+  217 |                 agsafeset(n, [01;35m[K"color"[m[K, "red", "");
+      |                              [01;35m[K^~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:217:39:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+  217 |                 agsafeset(n, "color", [01;35m[K"red"[m[K, "");
+      |                                       [01;35m[K^~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:217:46:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+  217 |                 agsafeset(n, "color", "red", [01;35m[K""[m[K);
+      |                                              [01;35m[K^~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:[m[K In member function ‘[01m[Kvoid ShowBehavior::showContributions(Agnode_t*, seed::WM_node*)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:265:31:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+  265 |             agsafeset(n_cont, [01;35m[K"shape"[m[K, "box", "");
+      |                               [01;35m[K^~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:265:40:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+  265 |             agsafeset(n_cont, "shape", [01;35m[K"box"[m[K, "");
+      |                                        [01;35m[K^~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:265:47:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+  265 |             agsafeset(n_cont, "shape", "box", [01;35m[K""[m[K);
+      |                                               [01;35m[K^~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:266:31:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+  266 |             agsafeset(n_cont, [01;35m[K"fontsize"[m[K, "10", "");
+      |                               [01;35m[K^~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:266:43:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+  266 |             agsafeset(n_cont, "fontsize", [01;35m[K"10"[m[K, "");
+      |                                           [01;35m[K^~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:266:49:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+  266 |             agsafeset(n_cont, "fontsize", "10", [01;35m[K""[m[K);
+      |                                                 [01;35m[K^~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:267:31:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+  267 |             agsafeset(n_cont, [01;35m[K"height"[m[K, "0.25", "");
+      |                               [01;35m[K^~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:267:41:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+  267 |             agsafeset(n_cont, "height", [01;35m[K"0.25"[m[K, "");
+      |                                         [01;35m[K^~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:267:49:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+  267 |             agsafeset(n_cont, "height", "0.25", [01;35m[K""[m[K);
+      |                                                 [01;35m[K^~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:270:23:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Ke[m[K’ [[01;35m[K-Wunused-variable[m[K]
+  270 |             Agedge_t *[01;35m[Ke[m[K = agedge(graph, n_cont, n, 0, 1);
+      |                       [01;35m[K^[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:[m[K In member function ‘[01m[Kvoid ShowBehavior::showReleaserOnEdge(Agedge_t*, seed::WM_node*)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:282:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<std::__cxx11::basic_string<char> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  282 |         for(int i=0; [01;35m[Ki<node->releaser.size()[m[K; i++){
+      |                      [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:295:18:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<std::__cxx11::basic_string<char> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  295 |             if([01;35m[Ki != node->releaser.size()-1[m[K)
+      |                [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:315:21:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+  315 |         agsafeset(e,[01;35m[K"label"[m[K,lab,"");
+      |                     [01;35m[K^~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:315:33:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+  315 |         agsafeset(e,"label",lab,[01;35m[K""[m[K);
+      |                                 [01;35m[K^~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:322:25:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+  322 |             agsafeset(e,[01;35m[K"color"[m[K,"green",""); //agsafeset(e,"fontcolor","green","");
+      |                         [01;35m[K^~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:322:33:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+  322 |             agsafeset(e,"color",[01;35m[K"green"[m[K,""); //agsafeset(e,"fontcolor","green","");
+      |                                 [01;35m[K^~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:322:41:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+  322 |             agsafeset(e,"color","green",[01;35m[K""[m[K); //agsafeset(e,"fontcolor","green","");
+      |                                         [01;35m[K^~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:324:25:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+  324 |             agsafeset(e,[01;35m[K"color"[m[K,"red",""); //agsafeset(e,"fontcolor","red","");
+      |                         [01;35m[K^~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:324:33:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+  324 |             agsafeset(e,"color",[01;35m[K"red"[m[K,""); //agsafeset(e,"fontcolor","red","");
+      |                                 [01;35m[K^~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:324:39:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K-Wwrite-strings[m[K]
+  324 |             agsafeset(e,"color","red",[01;35m[K""[m[K); //agsafeset(e,"fontcolor","red","");
+      |                                       [01;35m[K^~[m[K
+In file included from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed_wakeUp.cpp:30[m[K:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/vocal_stream.h:[m[K In function ‘[01m[Kint espeak_SynthCallback(short int*, int, espeak_EVENT*)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/vocal_stream.h:21:33:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kwav[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+   21 | int espeak_SynthCallback([01;35m[Kshort *wav[m[K, int numsamples, espeak_EVENT *events) {
+      |                          [01;35m[K~~~~~~~^~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/vocal_stream.h:21:42:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Knumsamples[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+   21 | int espeak_SynthCallback(short *wav, [01;35m[Kint numsamples[m[K, espeak_EVENT *events) {
+      |                                      [01;35m[K~~~~^~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/vocal_stream.h:21:68:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kevents[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+   21 | int espeak_SynthCallback(short *wav, int numsamples, [01;35m[Kespeak_EVENT *events[m[K) {
+      |                                                      [01;35m[K~~~~~~~~~~~~~~^~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kvoid seed::WM_variable::clear() [with T = double][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:239:13:[m[K   required from ‘[01m[Kvoid seed::WM_varmap::set(std::string, std::string, T) [with T = double; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed.cpp:580:43:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:195:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  195 |         for(auto i=0; [01;35m[Ki<candidate_value.size()[m[K; i++)
+      |                       [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kseed::WM_variable seed::WM_variable::copy() [with T = double][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:244:9:[m[K   required from ‘[01m[Kvoid seed::WM_varmap::set(std::string, std::string, T) [with T = double; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed.cpp:580:43:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:183:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  183 |         for(auto i=0; [01;35m[Ki< candidate_value.size()[m[K; i++)
+      |                       [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kvoid seed::WM_variable::clear() [with T = bool][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:239:13:[m[K   required from ‘[01m[Kvoid seed::WM_varmap::set(std::string, std::string, T) [with T = bool; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed.cpp:583:50:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:195:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  195 |         for(auto i=0; [01;35m[Ki<candidate_value.size()[m[K; i++)
+      |                       [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kseed::WM_variable seed::WM_variable::copy() [with T = bool][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:244:9:[m[K   required from ‘[01m[Kvoid seed::WM_varmap::set(std::string, std::string, T) [with T = bool; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed.cpp:583:50:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:183:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  183 |         for(auto i=0; [01;35m[Ki< candidate_value.size()[m[K; i++)
+      |                       [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/LTM_swipl.h:11[m[K,
+                 from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/LTM_swipl.cpp:8[m[K:
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kvoid seed::WM_varmap::set(std::string, std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1203:9:[m[K   required from ‘[01m[Kvoid seed::Behavior::wmv_set(std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1355:64:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:237:26:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kstd::__cxx11::list<seed::WM_variable>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K-Wsign-compare[m[K]
+  237 |         if( [01;35m[Kh[id].size() == values_to_remember[m[K ){
+      |             [01;35m[K~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kvoid seed::WM_variable::clear() [with T = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:239:13:[m[K   required from ‘[01m[Kvoid seed::WM_varmap::set(std::string, std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1203:9:[m[K   required from ‘[01m[Kvoid seed::Behavior::wmv_set(std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1355:64:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:195:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  195 |         for(auto i=0; [01;35m[Ki<candidate_value.size()[m[K; i++)
+      |                       [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kseed::WM_variable seed::WM_variable::copy() [with T = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:244:9:[m[K   required from ‘[01m[Kvoid seed::WM_varmap::set(std::string, std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1203:9:[m[K   required from ‘[01m[Kvoid seed::Behavior::wmv_set(std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1355:64:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:183:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  183 |         for(auto i=0; [01;35m[Ki< candidate_value.size()[m[K; i++)
+      |                       [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kvoid seed::WM_variable::clear() [with T = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:239:13:[m[K   required from ‘[01m[Kvoid seed::WM_varmap::set(std::string, std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1203:9:[m[K   required from ‘[01m[Kvoid seed::Behavior::wmv_set(std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1355:64:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:195:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  195 |         for(auto i=0; [01;35m[Ki<candidate_value.size()[m[K; i++)
+      |                       [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kseed::WM_variable seed::WM_variable::copy() [with T = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:244:9:[m[K   required from ‘[01m[Kvoid seed::WM_varmap::set(std::string, std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1203:9:[m[K   required from ‘[01m[Kvoid seed::Behavior::wmv_set(std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1355:64:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:183:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  183 |         for(auto i=0; [01;35m[Ki< candidate_value.size()[m[K; i++)
+      |                       [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed_wakeUp.cpp:37[m[K:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/gui.h:[m[K In member function ‘[01m[Kvoid SeedWindow::treeSelectionChanged(const QItemSelection&, const QItemSelection&)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/gui.h:143:54:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[KnewSelection[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+  143 |     void treeSelectionChanged([01;35m[Kconst QItemSelection & newSelection[m[K, const QItemSelection & oldSelection)
+      |                               [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/gui.h:143:91:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[KoldSelection[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+  143 |     void treeSelectionChanged(const QItemSelection & newSelection, [01;35m[Kconst QItemSelection & oldSelection[m[K)
+      |                                                                    [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/gui.h:[m[K In member function ‘[01m[Kvoid SeedWindow::openBehaviorTab()[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/gui.h:214:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<std::__cxx11::basic_string<char> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  214 |         for(auto i=0; [01;35m[Ki<selected_node->releaser.size()[m[K; i++){
+      |                       [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/gui.h:229:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<std::__cxx11::basic_string<char> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  229 |         for(auto i=0; [01;35m[Ki<selected_node->goal.size()[m[K; i++){
+      |                       [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed_wakeUp.cpp:37[m[K:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/gui.h:[m[K In member function ‘[01m[Kvoid SeedWindow::updateEg()[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/gui.h:403:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<std::__cxx11::basic_string<char> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  403 |         for(int i=0; [01;35m[Ki<eg_behaviors.size()[m[K; i++){
+      |                      [01;35m[K~^~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/gui.h:[m[K In member function ‘[01m[Kvoid SeedWindow::wm2qtTree(seed::WM_node*, QTreeWidgetItem*)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/gui.h:518:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  518 |         for(int i=0; [01;35m[Ki<node->son.size()[m[K; i++){
+      |                      [01;35m[K~^~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/gui.h:[m[K In member function ‘[01m[Kvoid SeedWindow::wm2qtTree(seed::WM_node*)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/gui.h:538:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  538 |         for(int i=0; [01;35m[Ki<node->son.size()[m[K; i++){
+      |                      [01;35m[K~^~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/gui.h:[m[K In member function ‘[01m[Kbool SeedWindow::releaser2qstring(seed::WM_node*, QString*)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/gui.h:570:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<std::__cxx11::basic_string<char> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  570 |         for(int i=0; [01;35m[Ki<node->releaser.size()[m[K; i++){
+      |                      [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/gui.h:584:18:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<std::__cxx11::basic_string<char> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  584 |             if([01;35m[Ki != node->releaser.size()-1[m[K)
+      |                [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/gui.h:[m[K In member function ‘[01m[Kbool SeedWindow::goal2qstring(seed::WM_node*, QString*)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/gui.h:612:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<std::__cxx11::basic_string<char> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  612 |         for(int i=0; [01;35m[Ki<node->goal.size()[m[K; i++){
+      |                      [01;35m[K~^~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/gui.h:637:18:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<std::__cxx11::basic_string<char> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  637 |             if([01;35m[Ki != node->goal.size()-1[m[K)
+      |                [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/gui.h:[m[K In member function ‘[01m[Kvoid SeedWindow::updateTree(seed::WM_node*, QTreeWidgetItem*)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/gui.h:730:27:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  730 |         for (int i = 0; [01;35m[Ki < wm_node->son.size()[m[K; i++) {
+      |                         [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed_wakeUp.cpp:8[m[K:
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kint seed::Behavior::wmv_compete(std::string, std::string, T) [with T = double; std::string = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/wmv_behaviors.h:272:66:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:976:33:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kreceiver[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+  976 |     int wmv_compete([01;35m[Kstd::string receiver[m[K, std::string var, T value) {
+      |                     [01;35m[K~~~~~~~~~~~~^~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kint seed::Behavior::wmv_compete(std::string, std::string, T) [with T = bool; std::string = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/wmv_behaviors.h:280:83:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:976:33:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kreceiver[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kint seed::Behavior::wmv_compete(std::string, std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/wmv_behaviors.h:284:65:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:976:33:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kreceiver[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[KT seed::Behavior::wmv_solve(std::string, bool) [with T = double; std::string = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/wmv_behaviors.h:367:93:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1052:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+ 1052 |         for(auto i=0; [01;35m[Ki<cand.size()[m[K; i++){
+      |                       [01;35m[K~^~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1080:32:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+ 1080 |                 for(auto i=0; [01;35m[Ki<winVec.size()[m[K; i++){
+      |                               [01;35m[K~^~~~~~~~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[KT seed::Behavior::wmv_solve(std::string, bool) [with T = bool; std::string = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/wmv_behaviors.h:375:91:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1052:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+ 1052 |         for(auto i=0; [01;35m[Ki<cand.size()[m[K; i++){
+      |                       [01;35m[K~^~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1080:32:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+ 1080 |                 for(auto i=0; [01;35m[Ki<winVec.size()[m[K; i++){
+      |                               [01;35m[K~^~~~~~~~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[KT seed::Behavior::wmv_solve(std::string, bool) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/wmv_behaviors.h:379:98:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1052:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+ 1052 |         for(auto i=0; [01;35m[Ki<cand.size()[m[K; i++){
+      |                       [01;35m[K~^~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1080:32:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+ 1080 |                 for(auto i=0; [01;35m[Ki<winVec.size()[m[K; i++){
+      |                               [01;35m[K~^~~~~~~~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[KT seed::Behavior::wmv_solve_once(std::string) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/ros_behaviors.h:485:47:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1143:16:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+ 1143 |         while([01;35m[Ki<cand.size()[m[K) {
+      |               [01;35m[K~^~~~~~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kvoid seed::WM_varmap::set(std::string, std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1203:9:[m[K   required from ‘[01m[Kvoid seed::Behavior::wmv_set(std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1355:64:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:237:26:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kstd::__cxx11::list<seed::WM_variable>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K-Wsign-compare[m[K]
+  237 |         if( [01;35m[Kh[id].size() == values_to_remember[m[K ){
+      |             [01;35m[K~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kvoid seed::WM_varmap::set(std::string, std::string, T) [with T = double; std::string = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1203:9:[m[K   required from ‘[01m[Kvoid seed::Behavior::wmv_set(std::string, T) [with T = double; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/std_behaviors.h:61:86:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:237:26:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kstd::__cxx11::list<seed::WM_variable>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K-Wsign-compare[m[K]
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kvoid seed::WM_varmap::set(std::string, std::string, T) [with T = bool; std::string = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1203:9:[m[K   required from ‘[01m[Kvoid seed::Behavior::wmv_set(std::string, T) [with T = bool; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/wmv_behaviors.h:107:69:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:237:26:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kstd::__cxx11::list<seed::WM_variable>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K-Wsign-compare[m[K]
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[KT seed::WM_varmap::get(std::string, std::string) [with T = double; std::string = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1215:51:[m[K   required from ‘[01m[KT seed::Behavior::wmv_get(std::string) [with T = double; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/wmv_behaviors.h:186:57:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:251:23:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kinstance_of_getter[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+  251 |     T get([01;35m[Kstd::string instance_of_getter[m[K, std::string id) {
+      |           [01;35m[K~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[KT seed::WM_varmap::get(std::string, std::string) [with T = bool; std::string = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1215:51:[m[K   required from ‘[01m[KT seed::Behavior::wmv_get(std::string) [with T = bool; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/wmv_behaviors.h:200:89:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:251:23:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kinstance_of_getter[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[KT seed::WM_varmap::get(std::string, std::string) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1215:51:[m[K   required from ‘[01m[KT seed::Behavior::wmv_get(std::string) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/wmv_behaviors.h:204:96:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:251:23:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kinstance_of_getter[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kvoid seed::WM_varmap::compete(std::string, std::string, T) [with T = double; std::string = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:993:9:[m[K   required from ‘[01m[Kint seed::Behavior::wmv_compete(std::string, std::string, T) [with T = double; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/wmv_behaviors.h:272:66:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:389:28:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  389 |             for(auto i=0; [01;35m[Ki<v[id].candidate_value.size()[m[K; i++){
+      |                           [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kvoid seed::WM_varmap::compete(std::string, std::string, T) [with T = bool; std::string = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:993:9:[m[K   required from ‘[01m[Kint seed::Behavior::wmv_compete(std::string, std::string, T) [with T = bool; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/wmv_behaviors.h:280:83:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:389:28:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kvoid seed::WM_varmap::compete(std::string, std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:993:9:[m[K   required from ‘[01m[Kint seed::Behavior::wmv_compete(std::string, std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/wmv_behaviors.h:284:65:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:389:28:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kvoid seed::WM_varmap::select(std::string, int) [with T = double; std::string = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1095:13:[m[K   required from ‘[01m[KT seed::Behavior::wmv_solve(std::string, bool) [with T = double; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/wmv_behaviors.h:367:93:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:331:26:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kstd::__cxx11::list<seed::WM_variable>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K-Wsign-compare[m[K]
+  331 |         if( [01;35m[Kh[id].size() == values_to_remember[m[K ){
+      |             [01;35m[K~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kvoid seed::WM_varmap::reset(std::string) [with T = double; std::string = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1096:13:[m[K   required from ‘[01m[KT seed::Behavior::wmv_solve(std::string, bool) [with T = double; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/wmv_behaviors.h:367:93:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:361:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  361 |         for(auto i=0; [01;35m[Ki<v[id].candidate_value.size()[m[K; i++)
+      |                       [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kvoid seed::WM_varmap::select(std::string, int) [with T = bool; std::string = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1095:13:[m[K   required from ‘[01m[KT seed::Behavior::wmv_solve(std::string, bool) [with T = bool; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/wmv_behaviors.h:375:91:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:331:26:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kstd::__cxx11::list<seed::WM_variable>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K-Wsign-compare[m[K]
+  331 |         if( [01;35m[Kh[id].size() == values_to_remember[m[K ){
+      |             [01;35m[K~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kvoid seed::WM_varmap::reset(std::string) [with T = bool; std::string = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1096:13:[m[K   required from ‘[01m[KT seed::Behavior::wmv_solve(std::string, bool) [with T = bool; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/wmv_behaviors.h:375:91:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:361:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  361 |         for(auto i=0; [01;35m[Ki<v[id].candidate_value.size()[m[K; i++)
+      |                       [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kvoid seed::WM_varmap::select(std::string, int) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1095:13:[m[K   required from ‘[01m[KT seed::Behavior::wmv_solve(std::string, bool) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/wmv_behaviors.h:379:98:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:331:26:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kstd::__cxx11::list<seed::WM_variable>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K-Wsign-compare[m[K]
+  331 |         if( [01;35m[Kh[id].size() == values_to_remember[m[K ){
+      |             [01;35m[K~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kvoid seed::WM_varmap::reset(std::string) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1096:13:[m[K   required from ‘[01m[KT seed::Behavior::wmv_solve(std::string, bool) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/wmv_behaviors.h:379:98:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:361:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  361 |         for(auto i=0; [01;35m[Ki<v[id].candidate_value.size()[m[K; i++)
+      |                       [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kvoid seed::WM_varmap::remove(std::string, std::string) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1147:17:[m[K   required from ‘[01m[KT seed::Behavior::wmv_solve_once(std::string) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/ros_behaviors.h:485:47:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:370:18:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  370 |         while ([01;35m[Ki < v[id].candidate_value.size()[m[K){
+      |                [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[KT seed::WM_varmap::get(std::string, std::string) [with T = std::unordered_map<std::__cxx11::basic_string<char>, double*>; std::string = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1215:51:[m[K   required from ‘[01m[KT seed::Behavior::wmv_get(std::string) [with T = std::unordered_map<std::__cxx11::basic_string<char>, double*>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/show.h:238:100:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:251:23:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kinstance_of_getter[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+  251 |     T get([01;35m[Kstd::string instance_of_getter[m[K, std::string id) {
+      |           [01;35m[K~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kvoid seed::WM_variable::clear() [with T = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:239:13:[m[K   required from ‘[01m[Kvoid seed::WM_varmap::set(std::string, std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1203:9:[m[K   required from ‘[01m[Kvoid seed::Behavior::wmv_set(std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1355:64:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:195:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  195 |         for(auto i=0; [01;35m[Ki<candidate_value.size()[m[K; i++)
+      |                       [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kseed::WM_variable seed::WM_variable::copy() [with T = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:244:9:[m[K   required from ‘[01m[Kvoid seed::WM_varmap::set(std::string, std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1203:9:[m[K   required from ‘[01m[Kvoid seed::Behavior::wmv_set(std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1355:64:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:183:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  183 |         for(auto i=0; [01;35m[Ki< candidate_value.size()[m[K; i++)
+      |                       [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kvoid seed::WM_variable::clear() [with T = double][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:239:13:[m[K   required from ‘[01m[Kvoid seed::WM_varmap::set(std::string, std::string, T) [with T = double; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1203:9:[m[K   required from ‘[01m[Kvoid seed::Behavior::wmv_set(std::string, T) [with T = double; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/std_behaviors.h:61:86:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:195:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  195 |         for(auto i=0; [01;35m[Ki<candidate_value.size()[m[K; i++)
+      |                       [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kseed::WM_variable seed::WM_variable::copy() [with T = double][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:244:9:[m[K   required from ‘[01m[Kvoid seed::WM_varmap::set(std::string, std::string, T) [with T = double; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1203:9:[m[K   required from ‘[01m[Kvoid seed::Behavior::wmv_set(std::string, T) [with T = double; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/std_behaviors.h:61:86:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:183:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  183 |         for(auto i=0; [01;35m[Ki< candidate_value.size()[m[K; i++)
+      |                       [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kvoid seed::WM_variable::clear() [with T = bool][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:239:13:[m[K   required from ‘[01m[Kvoid seed::WM_varmap::set(std::string, std::string, T) [with T = bool; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1203:9:[m[K   required from ‘[01m[Kvoid seed::Behavior::wmv_set(std::string, T) [with T = bool; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/wmv_behaviors.h:107:69:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:195:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  195 |         for(auto i=0; [01;35m[Ki<candidate_value.size()[m[K; i++)
+      |                       [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kseed::WM_variable seed::WM_variable::copy() [with T = bool][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:244:9:[m[K   required from ‘[01m[Kvoid seed::WM_varmap::set(std::string, std::string, T) [with T = bool; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1203:9:[m[K   required from ‘[01m[Kvoid seed::Behavior::wmv_set(std::string, T) [with T = bool; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/behavior/wmv_behaviors.h:107:69:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:183:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  183 |         for(auto i=0; [01;35m[Ki< candidate_value.size()[m[K; i++)
+      |                       [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:36[m[K,
+                 from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:8[m[K:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/utils/seed_geometry.h:[m[K In member function ‘[01m[KPose3d Pose3d::operator=(Pose3d)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/utils/seed_geometry.h:92:16:[m[K [01;35m[Kwarning: [m[Kimplicitly-declared ‘[01m[Kconstexpr Pose3d::Pose3d(const Pose3d&)[m[K’ is deprecated [[01;35m[K-Wdeprecated-copy[m[K]
+   92 |         return [01;35m[Ka[m[K;
+      |                [01;35m[K^[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/utils/seed_geometry.h:87:12:[m[K [01;36m[Knote: [m[Kbecause ‘[01m[KPose3d[m[K’ has user-provided ‘[01m[KPose3d Pose3d::operator=(Pose3d)[m[K’
+   87 |     Pose3d [01;36m[Koperator[m[K=(Pose3d a)
+      |            [01;36m[K^~~~~~~~[m[K
+In file included from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:8[m[K:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:[m[K In member function ‘[01m[Kseed::WM_variable seed::WM_varmap::variable(std::string)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:293:13:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Ki[m[K’ [[01;35m[K-Wunused-variable[m[K]
+  293 |         int [01;35m[Ki[m[K = 0;
+      |             [01;35m[K^[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:[m[K In member function ‘[01m[Kseed::WM_variable seed::WM_varmap::history(std::string, int)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:307:17:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::__cxx11::list<seed::WM_variable>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  307 |         if([01;35m[Kindex<h[id].size()[m[K){
+      |            [01;35m[K~~~~~^~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:[m[K In member function ‘[01m[Kseed::WM_value seed::WM_varmap::get_candidate_value(std::string, std::string)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:466:28:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  466 |             for(auto i=0; [01;35m[Ki<v[id].candidate_value.size()[m[K; i++)
+      |                           [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:[m[K In member function ‘[01m[Kvoid seed::WM_node::loadWeights()[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:53:35:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<std::__cxx11::basic_string<char> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+   53 |                 for (int i = 2; [01;35m[Ki < linevec.size()[m[K; i++) {
+      |                                 [01;35m[K~~^~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:[m[K In member function ‘[01m[Kvoid seed::WM_node::setBackground(bool)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:152:26:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  152 |         for (int i = 0; [01;35m[Ki<this->son.size()[m[K; i++) {
+      |                         [01;35m[K~^~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:[m[K In member function ‘[01m[Kstd::vector<seed::WM_node*> seed::WM_node::tree2list()[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:165:22:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  165 |     for (int i = 0; [01;35m[Ki<this->son.size()[m[K; i++) {
+      |                     [01;35m[K~^~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:[m[K In member function ‘[01m[Kstd::vector<seed::WM_node*> seed::WM_node::tree2list_concrete()[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:187:22:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  187 |     for (int i = 0; [01;35m[Ki<this->son.size()[m[K; i++) {
+      |                     [01;35m[K~^~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:[m[K In member function ‘[01m[Kstd::vector<seed::WM_node*> seed::WM_node::activetree2list()[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:209:22:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  209 |     for (int i = 0; [01;35m[Ki<this->son.size()[m[K; i++) {
+      |                     [01;35m[K~^~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:[m[K In member function ‘[01m[Kdouble seed::WM_node::getInstanceEmphasis(std::string)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:236:27:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  236 |         for (int i = 0; [01;35m[Ki < son.size()[m[K; i++)
+      |                         [01;35m[K~~^~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:[m[K In member function ‘[01m[Kbool seed::WM_node::goalStatus()[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:315:14:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<std::__cxx11::basic_string<char> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  315 |     while ([01;35m[Ki < goal.size()[m[K && isTrue) {
+      |            [01;35m[K~~^~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:[m[K At global scope:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:338:2:[m[K [01;35m[Kwarning: [m[Kextra ‘[01m[K;[m[K’ [[01;35m[K-Wpedantic[m[K]
+  338 | }[01;35m[K;[m[K
+      |  [01;35m[K^[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:[m[K In member function ‘[01m[Kbool seed::WM_node::releaserStatus()[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:358:14:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<std::__cxx11::basic_string<char> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  358 |     while ([01;35m[Ki < releaser.size()[m[K && isTrue) {
+      |            [01;35m[K~~^~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:[m[K At global scope:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:378:2:[m[K [01;35m[Kwarning: [m[Kextra ‘[01m[K;[m[K’ [[01;35m[K-Wpedantic[m[K]
+  378 | }[01;35m[K;[m[K
+      |  [01;35m[K^[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:395:2:[m[K [01;35m[Kwarning: [m[Kextra ‘[01m[K;[m[K’ [[01;35m[K-Wpedantic[m[K]
+  395 | }[01;35m[K;[m[K
+      |  [01;35m[K^[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:[m[K In member function ‘[01m[Kbool seed::WM_node::isReleased(std::string)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:408:28:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  408 |     else for (int i = 0; [01;35m[Ki < son.size()[m[K; i++)
+      |                          [01;35m[K~~^~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:[m[K In member function ‘[01m[Kvoid seed::WM_node::updateContribution(std::string, double)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:427:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  427 |     for (int i = 0; [01;35m[Ki < (this->son).size()[m[K; i++)
+      |                     [01;35m[K~~^~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:[m[K In member function ‘[01m[Kvoid seed::WM_node::amplify(std::string, double)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:444:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  444 |     for (int i = 0; [01;35m[Ki < (this->son).size()[m[K; i++)
+      |                     [01;35m[K~~^~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:[m[K In member function ‘[01m[Kvoid seed::WM_node::amplifyNodes()[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:471:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  471 |     for (int i = 0; [01;35m[Ki < son.size()[m[K; i++) {
+      |                     [01;35m[K~~^~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:[m[K In member function ‘[01m[Kvoid seed::WM_node::updateSequentialNodes()[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:520:27:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  520 |         for (int i = 0; [01;35m[Ki < son.size()-1[m[K; i++) {
+      |                         [01;35m[K~~^~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:534:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  534 |     for (int i = 0; [01;35m[Ki < son.size()[m[K; i++) {
+      |                     [01;35m[K~~^~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:[m[K In member function ‘[01m[Kvoid seed::WM_node::forgetNodes()[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:547:27:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  547 |         for (int i = 0; [01;35m[Ki < son.size()[m[K; i++) {
+      |                         [01;35m[K~~^~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:[m[K In member function ‘[01m[Kseed::WM_node* seed::WM_node::getExpandableNode()[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:566:18:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  566 |         while ([01;35m[Ki < son.size()[m[K && (expNode = son[i]->getExpandableNode()) == NULL) i++;
+      |                [01;35m[K~~^~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:556:10:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Krel[m[K’ set but not used [[01;35m[K-Wunused-but-set-variable[m[K]
+  556 |     bool [01;35m[Krel[m[K;
+      |          [01;35m[K^~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:[m[K At global scope:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:569:2:[m[K [01;35m[Kwarning: [m[Kextra ‘[01m[K;[m[K’ [[01;35m[K-Wpedantic[m[K]
+  569 | }[01;35m[K;[m[K
+      |  [01;35m[K^[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:576:2:[m[K [01;35m[Kwarning: [m[Kextra ‘[01m[K;[m[K’ [[01;35m[K-Wpedantic[m[K]
+  576 | }[01;35m[K;[m[K
+      |  [01;35m[K^[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:[m[K In member function ‘[01m[Kstd::vector<seed::WM_node*> seed::WM_node::getNodesByName(std::string)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:584:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  584 |     for (int i = 0; [01;35m[Ki < son.size()[m[K; i++) {
+      |                     [01;35m[K~~^~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:587:31:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  587 |             for (int j = 0; [01;35m[Kj < sonResult.size()[m[K; j++)
+      |                             [01;35m[K~~^~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:[m[K At global scope:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:592:2:[m[K [01;35m[Kwarning: [m[Kextra ‘[01m[K;[m[K’ [[01;35m[K-Wpedantic[m[K]
+  592 | }[01;35m[K;[m[K
+      |  [01;35m[K^[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:[m[K In member function ‘[01m[Kstd::vector<seed::WM_node*> seed::WM_node::getNodesByInstance(std::string)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:604:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  604 |     for (int i = 0; [01;35m[Ki < son.size()[m[K; i++) {
+      |                     [01;35m[K~~^~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:607:31:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  607 |             for (int j = 0; [01;35m[Kj < sonResult.size()[m[K; j++)
+      |                             [01;35m[K~~^~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:[m[K At global scope:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:612:2:[m[K [01;35m[Kwarning: [m[Kextra ‘[01m[K;[m[K’ [[01;35m[K-Wpedantic[m[K]
+  612 | }[01;35m[K;[m[K
+      |  [01;35m[K^[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:[m[K In member function ‘[01m[Kseed::WM_node* seed::WM_node::getNodeById(int)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:625:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  625 |     for (int i = 0; [01;35m[Ki < son.size()[m[K; i++) {
+      |                     [01;35m[K~~^~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:[m[K In member function ‘[01m[Kseed::WM_node* seed::WM_node::getNodeByPath(std::vector<std::__cxx11::basic_string<char> >)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:644:12:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  644 |     while([01;35m[Kj<this->son.size()[m[K && this->son[j]->instance != current)
+      |           [01;35m[K~^~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:648:10:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  648 |     if([01;35m[Kj == this->son.size()[m[K){
+      |        [01;35m[K~~^~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:[m[K At global scope:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:657:2:[m[K [01;35m[Kwarning: [m[Kextra ‘[01m[K;[m[K’ [[01;35m[K-Wpedantic[m[K]
+  657 | }[01;35m[K;[m[K
+      |  [01;35m[K^[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:680:2:[m[K [01;35m[Kwarning: [m[Kextra ‘[01m[K;[m[K’ [[01;35m[K-Wpedantic[m[K]
+  680 | }[01;35m[K;[m[K
+      |  [01;35m[K^[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:[m[K In member function ‘[01m[Kbool seed::WM_node::isAwake(std::string)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:693:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  693 |     for (int i = 0; [01;35m[Ki < son.size()[m[K; i++)
+      |                     [01;35m[K~~^~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:[m[K At global scope:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:697:2:[m[K [01;35m[Kwarning: [m[Kextra ‘[01m[K;[m[K’ [[01;35m[K-Wpedantic[m[K]
+  697 | }[01;35m[K;[m[K
+      |  [01;35m[K^[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:[m[K In member function ‘[01m[Kvoid seed::WM_node::updateMagnitude()[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:708:22:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  708 |     for (int j = 0; [01;35m[Kj<this->son.size()[m[K; j++)
+      |                     [01;35m[K~^~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:702:12:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Ksons[m[K’ [[01;35m[K-Wunused-variable[m[K]
+  702 |     double [01;35m[Ksons[m[K = 0;
+      |            [01;35m[K^~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:[m[K In member function ‘[01m[Kbool seed::WM_node::isWorking()[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:747:27:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  747 |         for (int i = 0; [01;35m[Ki < this->son.size()[m[K; i++) {
+      |                         [01;35m[K~~^~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:8[m[K:
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kvoid seed::WM_varmap::set(std::string, std::string, T) [with T = std::unordered_map<std::__cxx11::basic_string<char>, double*>; std::string = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:61:109:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:237:26:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kstd::__cxx11::list<seed::WM_variable>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K-Wsign-compare[m[K]
+  237 |         if( [01;35m[Kh[id].size() == values_to_remember[m[K ){
+      |             [01;35m[K~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kvoid seed::WM_varmap::set(std::string, std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1203:9:[m[K   required from ‘[01m[Kvoid seed::Behavior::wmv_set(std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1355:64:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:237:26:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kstd::__cxx11::list<seed::WM_variable>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K-Wsign-compare[m[K]
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kvoid seed::WM_variable::clear() [with T = std::unordered_map<std::__cxx11::basic_string<char>, double*>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:239:13:[m[K   required from ‘[01m[Kvoid seed::WM_varmap::set(std::string, std::string, T) [with T = std::unordered_map<std::__cxx11::basic_string<char>, double*>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:61:109:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:195:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  195 |         for(auto i=0; [01;35m[Ki<candidate_value.size()[m[K; i++)
+      |                       [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kseed::WM_variable seed::WM_variable::copy() [with T = std::unordered_map<std::__cxx11::basic_string<char>, double*>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:244:9:[m[K   required from ‘[01m[Kvoid seed::WM_varmap::set(std::string, std::string, T) [with T = std::unordered_map<std::__cxx11::basic_string<char>, double*>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/WM.cpp:61:109:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:183:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  183 |         for(auto i=0; [01;35m[Ki< candidate_value.size()[m[K; i++)
+      |                       [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kvoid seed::WM_variable::clear() [with T = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:239:13:[m[K   required from ‘[01m[Kvoid seed::WM_varmap::set(std::string, std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1203:9:[m[K   required from ‘[01m[Kvoid seed::Behavior::wmv_set(std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1355:64:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:195:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  195 |         for(auto i=0; [01;35m[Ki<candidate_value.size()[m[K; i++)
+      |                       [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h: In instantiation of ‘[01m[Kseed::WM_variable seed::WM_variable::copy() [with T = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:244:9:[m[K   required from ‘[01m[Kvoid seed::WM_varmap::set(std::string, std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1203:9:[m[K   required from ‘[01m[Kvoid seed::Behavior::wmv_set(std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:1355:64:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/seed.h:183:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  183 |         for(auto i=0; [01;35m[Ki< candidate_value.size()[m[K; i++)
+      |                       [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/../seed.h:36[m[K,
+                 from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/gui_tree.h:11[m[K,
+                 from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:11[m[K:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/../utils/seed_geometry.h:[m[K In member function ‘[01m[KPose3d Pose3d::operator=(Pose3d)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/../utils/seed_geometry.h:92:16:[m[K [01;35m[Kwarning: [m[Kimplicitly-declared ‘[01m[Kconstexpr Pose3d::Pose3d(const Pose3d&)[m[K’ is deprecated [[01;35m[K-Wdeprecated-copy[m[K]
+   92 |         return [01;35m[Ka[m[K;
+      |                [01;35m[K^[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/../utils/seed_geometry.h:87:12:[m[K [01;36m[Knote: [m[Kbecause ‘[01m[KPose3d[m[K’ has user-provided ‘[01m[KPose3d Pose3d::operator=(Pose3d)[m[K’
+   87 |     Pose3d [01;36m[Koperator[m[K=(Pose3d a)
+      |            [01;36m[K^~~~~~~~[m[K
+In file included from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/gui_tree.h:11[m[K,
+                 from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:11[m[K:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/../seed.h:[m[K In member function ‘[01m[Kseed::WM_variable seed::WM_varmap::variable(std::string)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/../seed.h:293:13:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Ki[m[K’ [[01;35m[K-Wunused-variable[m[K]
+  293 |         int [01;35m[Ki[m[K = 0;
+      |             [01;35m[K^[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/../seed.h:[m[K In member function ‘[01m[Kseed::WM_variable seed::WM_varmap::history(std::string, int)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/../seed.h:307:17:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::__cxx11::list<seed::WM_variable>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  307 |         if([01;35m[Kindex<h[id].size()[m[K){
+      |            [01;35m[K~~~~~^~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/../seed.h:[m[K In member function ‘[01m[Kseed::WM_value seed::WM_varmap::get_candidate_value(std::string, std::string)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/../seed.h:466:28:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  466 |             for(auto i=0; [01;35m[Ki<v[id].candidate_value.size()[m[K; i++)
+      |                           [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/seed_wakeUp.cpp:37[m[K:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/gui.h:[m[K In member function ‘[01m[Kvirtual void GuiBehavior::motorSchema()[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/gui.h:1099:57:[m[K [01;35m[Kwarning: [m[K‘[01m[Kargv[m[K’ may be used uninitialized in this function [[01;35m[K-Wmaybe-uninitialized[m[K]
+ 1099 |         qt_gui_application = new QApplication(argc, argv[01;35m[K)[m[K;
+      |                                                         [01;35m[K^[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:[m[K In member function ‘[01m[KQString Node::search_node(QString)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:26:1:[m[K [01;35m[Kwarning: [m[Kno return statement in function returning non-void [[01;35m[K-Wreturn-type[m[K]
+   26 | [01;35m[K}[m[K
+      | [01;35m[K^[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:24:35:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[KtoFind[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+   24 | QString Node::search_node([01;35m[KQString toFind[m[K){
+      |                           [01;35m[K~~~~~~~~^~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:[m[K In member function ‘[01m[Kbool Node::releaser2qstring(seed::WM_node*, QString*)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:32:19:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<std::__cxx11::basic_string<char> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+   32 |     for(int i=0; [01;35m[Ki<node->releaser.size()[m[K; i++){
+      |                  [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:58:14:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<std::__cxx11::basic_string<char> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+   58 |         if([01;35m[Ki != node->releaser.size()-1[m[K){
+      |            [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:[m[K In member function ‘[01m[Kbool Node::goal2qstring(seed::WM_node*, QString*)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:81:19:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<std::__cxx11::basic_string<char> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+   81 |     for(int i=0; [01;35m[Ki<node->goal.size()[m[K; i++){
+      |                  [01;35m[K~^~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:117:14:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<std::__cxx11::basic_string<char> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  117 |         if([01;35m[Ki != node->goal.size()-1[m[K){
+      |            [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:[m[K In member function ‘[01m[Kvoid Node::removeSon(QGraphicsScene*, Node*)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:220:20:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  220 |     for(auto i=0; [01;35m[Ki<son.size()[m[K; i++){
+      |                   [01;35m[K~^~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:[m[K In member function ‘[01m[Kvirtual void Node::paint(QPainter*, const QStyleOptionGraphicsItem*, QWidget*)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:326:11:[m[K [01;35m[Kwarning: [m[Kenumeration value ‘[01m[KGUI_NODE_BEH[m[K’ not handled in switch [[01;35m[K-Wswitch[m[K]
+  326 |     switch[01;35m[K([m[Knode_type)
+      |           [01;35m[K^[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:326:11:[m[K [01;35m[Kwarning: [m[Kenumeration value ‘[01m[KGUI_NODE_VAR[m[K’ not handled in switch [[01;35m[K-Wswitch[m[K]
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:[m[K In member function ‘[01m[Kvoid Node::paint_WMN(QPainter*, const QStyleOptionGraphicsItem*, QWidget*)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:335:73:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Koption[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+  335 | void Node::paint_WMN(QPainter *painter, [01;35m[Kconst QStyleOptionGraphicsItem *option[m[K, QWidget *)
+      |                                         [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:[m[K In member function ‘[01m[Kvoid Node::paint_CON(QPainter*, const QStyleOptionGraphicsItem*, QWidget*)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:419:9:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Ktxt_y_px[m[K’ [[01;35m[K-Wunused-variable[m[K]
+  419 |     int [01;35m[Ktxt_y_px[m[K = fm.height() + 2;
+      |         [01;35m[K^~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:416:73:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Koption[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+  416 | void Node::paint_CON(QPainter *painter, [01;35m[Kconst QStyleOptionGraphicsItem *option[m[K, QWidget *)
+      |                                         [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:[m[K In member function ‘[01m[Kvirtual void Edge::paint(QPainter*, const QStyleOptionGraphicsItem*, QWidget*)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:541:11:[m[K [01;35m[Kwarning: [m[Kenumeration value ‘[01m[KGUI_NODE_BEH[m[K’ not handled in switch [[01;35m[K-Wswitch[m[K]
+  541 |     switch[01;35m[K([m[Ksource->node_type)
+      |           [01;35m[K^[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:541:11:[m[K [01;35m[Kwarning: [m[Kenumeration value ‘[01m[KGUI_NODE_VAR[m[K’ not handled in switch [[01;35m[K-Wswitch[m[K]
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:[m[K In member function ‘[01m[Kvoid GraphWidget::loadFromWM(QGraphicsScene*, seed::WM_node*, Node*)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:690:19:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  690 |     for(int i=0; [01;35m[Ki<node->son.size()[m[K; i++){
+      |                  [01;35m[K~^~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:[m[K In member function ‘[01m[Kvoid GraphWidget::showContributions(Node*, seed::WM_node*)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:758:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  758 |     for (auto j = 0; [01;35m[Kj < contNodes.size()[m[K; j++) {
+      |                      [01;35m[K~~^~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:755:9:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kcont_i[m[K’ [[01;35m[K-Wunused-variable[m[K]
+  755 |     int [01;35m[Kcont_i[m[K = 0;
+      |         [01;35m[K^~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:[m[K In member function ‘[01m[Kvoid GraphWidget::removeContributions(QGraphicsScene*, Node*)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:832:12:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  832 |     while([01;35m[Ki<contNodes.size()[m[K){
+      |           [01;35m[K~^~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:[m[K In member function ‘[01m[Kvoid GraphWidget::setPositionWMN(Node*, int, int)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:963:20:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  963 |     for(auto i=0; [01;35m[Ki<root_qt->son.size()[m[K; i++){
+      |                   [01;35m[K~^~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:[m[K In member function ‘[01m[Kvoid GraphWidget::setPositionCON()[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:984:20:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  984 |     for(auto i=0; [01;35m[Ki<contNodes.size()[m[K; i++){
+      |                   [01;35m[K~^~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:[m[K In member function ‘[01m[Kvoid GraphWidget::updateFromWM(QGraphicsScene*, seed::WM_node*, Node*)[m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:1009:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+ 1009 |     for (int i = 0; [01;35m[Ki < wm_node->son.size()[m[K; i++) {
+      |                     [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:1011:15:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+ 1011 |         if( [01;35m[Ki >= qt_node->son.size()[m[K ){
+      |             [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:1053:13:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+ 1053 |     while ([01;35m[Ki<qt_node->son.size()[m[K){
+      |            [01;35m[K~^~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:1055:25:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_node*>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+ 1055 |         for(auto j=0; [01;35m[Kj < wm_node->son.size()[m[K; j++) {
+      |                       [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/gui_tree.h:11[m[K,
+                 from [01m[K/home/hargalaten/ros2_ws/src/seed_pdt/src/GUI/gui_tree.cpp:11[m[K:
+/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/../seed.h: In instantiation of ‘[01m[Kvoid seed::WM_varmap::set(std::string, std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/../seed.h:1203:9:[m[K   required from ‘[01m[Kvoid seed::Behavior::wmv_set(std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/../seed.h:1355:64:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/../seed.h:237:26:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kstd::__cxx11::list<seed::WM_variable>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K-Wsign-compare[m[K]
+  237 |         if( [01;35m[Kh[id].size() == values_to_remember[m[K ){
+      |             [01;35m[K~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/../seed.h: In instantiation of ‘[01m[Kvoid seed::WM_variable::clear() [with T = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/../seed.h:239:13:[m[K   required from ‘[01m[Kvoid seed::WM_varmap::set(std::string, std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/../seed.h:1203:9:[m[K   required from ‘[01m[Kvoid seed::Behavior::wmv_set(std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/../seed.h:1355:64:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/../seed.h:195:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  195 |         for(auto i=0; [01;35m[Ki<candidate_value.size()[m[K; i++)
+      |                       [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~[m[K
+/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/../seed.h: In instantiation of ‘[01m[Kseed::WM_variable seed::WM_variable::copy() [with T = std::__cxx11::basic_string<char>][m[K’:
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/../seed.h:244:9:[m[K   required from ‘[01m[Kvoid seed::WM_varmap::set(std::string, std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/../seed.h:1203:9:[m[K   required from ‘[01m[Kvoid seed::Behavior::wmv_set(std::string, T) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>][m[K’
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/../seed.h:1355:64:[m[K   required from here
+[01m[K/home/hargalaten/ros2_ws/src/seed_pdt/include/GUI/../seed.h:183:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<seed::WM_value>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  183 |         for(auto i=0; [01;35m[Ki< candidate_value.size()[m[K; i++)
+      |                       [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~[m[K

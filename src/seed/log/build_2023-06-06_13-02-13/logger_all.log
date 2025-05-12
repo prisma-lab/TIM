@@ -1,0 +1,105 @@
+[0.450s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build', '--packages-select', 'seed_pdt']
+[0.451s] DEBUG:colcon:Parsed command line arguments: Namespace(allow_overriding=[], ament_cmake_args=None, base_paths=['.'], build_base='build', catkin_cmake_args=None, catkin_skip_building_tests=False, cmake_args=None, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, cmake_target=None, cmake_target_skip_unavailable=False, continue_on_error=False, event_handlers=None, executor='parallel', ignore_user_meta=False, install_base='install', log_base=None, log_level=None, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7fedd7c46e20>>, merge_install=False, metas=['./colcon.meta'], packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_end=None, packages_ignore=None, packages_ignore_regex=None, packages_select=['seed_pdt'], packages_select_build_failed=False, packages_select_by_dep=None, packages_select_regex=None, packages_select_test_failures=False, packages_skip=None, packages_skip_build_finished=False, packages_skip_by_dep=None, packages_skip_regex=None, packages_skip_test_passed=False, packages_skip_up_to=None, packages_start=None, packages_up_to=None, packages_up_to_regex=None, parallel_workers=4, paths=None, symlink_install=False, test_result_base=None, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7fedd7c46e20>, verb_name='build', verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0x7fedd7c503d0>)
+[0.488s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.488s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.488s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.488s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.488s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.488s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.488s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/hargalaten/ros2_ws/src/seed_pdt'
+[0.489s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.489s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.489s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.489s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.489s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.489s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.489s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.489s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.489s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.522s] DEBUG:colcon.colcon_core.package_identification:Package '.' with type 'ros.ament_cmake' and name 'seed_pdt'
+[0.522s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.522s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.522s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.522s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.522s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.553s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.554s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.560s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 258 installed packages in /opt/ros/foxy
+[0.562s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.668s] Level 5:colcon.colcon_core.verb:set package 'seed_pdt' build argument 'cmake_args' from command line to 'None'
+[0.668s] Level 5:colcon.colcon_core.verb:set package 'seed_pdt' build argument 'cmake_target' from command line to 'None'
+[0.668s] Level 5:colcon.colcon_core.verb:set package 'seed_pdt' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.668s] Level 5:colcon.colcon_core.verb:set package 'seed_pdt' build argument 'cmake_clean_cache' from command line to 'False'
+[0.668s] Level 5:colcon.colcon_core.verb:set package 'seed_pdt' build argument 'cmake_clean_first' from command line to 'False'
+[0.668s] Level 5:colcon.colcon_core.verb:set package 'seed_pdt' build argument 'cmake_force_configure' from command line to 'False'
+[0.668s] Level 5:colcon.colcon_core.verb:set package 'seed_pdt' build argument 'ament_cmake_args' from command line to 'None'
+[0.669s] Level 5:colcon.colcon_core.verb:set package 'seed_pdt' build argument 'catkin_cmake_args' from command line to 'None'
+[0.669s] Level 5:colcon.colcon_core.verb:set package 'seed_pdt' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.669s] DEBUG:colcon.colcon_core.verb:Building package 'seed_pdt' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/hargalaten/ros2_ws/src/seed_pdt/build/seed_pdt', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt', 'merge_install': False, 'path': '/home/hargalaten/ros2_ws/src/seed_pdt', 'symlink_install': False, 'test_result_base': None}
+[0.670s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.675s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.675s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/hargalaten/ros2_ws/src/seed_pdt' with build type 'ament_cmake'
+[0.675s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/hargalaten/ros2_ws/src/seed_pdt'
+[0.685s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.686s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.686s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.704s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/hargalaten/ros2_ws/src/seed_pdt/build/seed_pdt': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/hargalaten/ros2_ws/src/seed_pdt -DCMAKE_INSTALL_PREFIX=/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt
+[4.540s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/hargalaten/ros2_ws/src/seed_pdt/build/seed_pdt' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/hargalaten/ros2_ws/src/seed_pdt -DCMAKE_INSTALL_PREFIX=/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt
+[4.544s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/hargalaten/ros2_ws/src/seed_pdt/build/seed_pdt': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/hargalaten/ros2_ws/src/seed_pdt/build/seed_pdt -- -j4 -l4
+[39.122s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/hargalaten/ros2_ws/src/seed_pdt/build/seed_pdt' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/hargalaten/ros2_ws/src/seed_pdt/build/seed_pdt -- -j4 -l4
+[39.214s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/hargalaten/ros2_ws/src/seed_pdt/build/seed_pdt': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/hargalaten/ros2_ws/src/seed_pdt/build/seed_pdt
+[39.258s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(seed_pdt)
+[39.261s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/hargalaten/ros2_ws/src/seed_pdt/build/seed_pdt' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/hargalaten/ros2_ws/src/seed_pdt/build/seed_pdt
+[39.280s] Level 1:colcon.colcon_core.environment:checking '/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt' for CMake module files
+[39.281s] Level 1:colcon.colcon_core.environment:checking '/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt' for CMake config files
+[39.282s] Level 1:colcon.colcon_core.shell:create_environment_hook('seed_pdt', 'cmake_prefix_path')
+[39.284s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt/share/seed_pdt/hook/cmake_prefix_path.ps1'
+[39.286s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt/share/seed_pdt/hook/cmake_prefix_path.dsv'
+[39.286s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt/share/seed_pdt/hook/cmake_prefix_path.sh'
+[39.288s] Level 1:colcon.colcon_core.environment:checking '/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt/lib'
+[39.288s] Level 1:colcon.colcon_core.environment:checking '/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt/bin'
+[39.288s] Level 1:colcon.colcon_core.environment:checking '/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt/lib/pkgconfig/seed_pdt.pc'
+[39.289s] Level 1:colcon.colcon_core.environment:checking '/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt/lib/python3.8/site-packages'
+[39.289s] Level 1:colcon.colcon_core.environment:checking '/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt/bin'
+[39.293s] INFO:colcon.colcon_core.shell:Creating package script '/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt/share/seed_pdt/package.ps1'
+[39.295s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt/share/seed_pdt/package.dsv'
+[39.296s] INFO:colcon.colcon_core.shell:Creating package script '/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt/share/seed_pdt/package.sh'
+[39.297s] INFO:colcon.colcon_core.shell:Creating package script '/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt/share/seed_pdt/package.bash'
+[39.298s] INFO:colcon.colcon_core.shell:Creating package script '/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt/share/seed_pdt/package.zsh'
+[39.299s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt/share/colcon-core/packages/seed_pdt)
+[39.353s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(seed_pdt)
+[39.360s] Level 1:colcon.colcon_core.environment:checking '/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt' for CMake module files
+[39.361s] Level 1:colcon.colcon_core.environment:checking '/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt' for CMake config files
+[39.362s] Level 1:colcon.colcon_core.shell:create_environment_hook('seed_pdt', 'cmake_prefix_path')
+[39.365s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt/share/seed_pdt/hook/cmake_prefix_path.ps1'
+[39.365s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt/share/seed_pdt/hook/cmake_prefix_path.dsv'
+[39.366s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt/share/seed_pdt/hook/cmake_prefix_path.sh'
+[39.367s] Level 1:colcon.colcon_core.environment:checking '/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt/lib'
+[39.367s] Level 1:colcon.colcon_core.environment:checking '/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt/bin'
+[39.367s] Level 1:colcon.colcon_core.environment:checking '/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt/lib/pkgconfig/seed_pdt.pc'
+[39.367s] Level 1:colcon.colcon_core.environment:checking '/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt/lib/python3.8/site-packages'
+[39.368s] Level 1:colcon.colcon_core.environment:checking '/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt/bin'
+[39.370s] INFO:colcon.colcon_core.shell:Creating package script '/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt/share/seed_pdt/package.ps1'
+[39.371s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt/share/seed_pdt/package.dsv'
+[39.372s] INFO:colcon.colcon_core.shell:Creating package script '/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt/share/seed_pdt/package.sh'
+[39.372s] INFO:colcon.colcon_core.shell:Creating package script '/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt/share/seed_pdt/package.bash'
+[39.373s] INFO:colcon.colcon_core.shell:Creating package script '/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt/share/seed_pdt/package.zsh'
+[39.374s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/hargalaten/ros2_ws/src/seed_pdt/install/seed_pdt/share/colcon-core/packages/seed_pdt)
+[39.374s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[39.376s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[39.376s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[39.377s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[39.414s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[39.414s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[39.414s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[39.447s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[39.450s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/hargalaten/ros2_ws/src/seed_pdt/install/local_setup.ps1'
+[39.451s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/hargalaten/ros2_ws/src/seed_pdt/install/_local_setup_util_ps1.py'
+[39.454s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/hargalaten/ros2_ws/src/seed_pdt/install/setup.ps1'
+[39.458s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/hargalaten/ros2_ws/src/seed_pdt/install/local_setup.sh'
+[39.460s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/hargalaten/ros2_ws/src/seed_pdt/install/_local_setup_util_sh.py'
+[39.460s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/hargalaten/ros2_ws/src/seed_pdt/install/setup.sh'
+[39.462s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/hargalaten/ros2_ws/src/seed_pdt/install/local_setup.bash'
+[39.463s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/hargalaten/ros2_ws/src/seed_pdt/install/setup.bash'
+[39.465s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/hargalaten/ros2_ws/src/seed_pdt/install/local_setup.zsh'
+[39.466s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/hargalaten/ros2_ws/src/seed_pdt/install/setup.zsh'

@@ -8,10 +8,12 @@ FROM ros:humble
 
 #Install essential
 RUN . /opt/ros/$ROS_DISTRO/setup.sh && \
-    apt-get update && \
+    apt-get clean && \
+	apt-get update && \
     apt-get install -y software-properties-common && \
     apt-add-repository ppa:swi-prolog/stable && \
-    apt-get update && apt-get install -y \
+    apt-get clean && \
+	apt-get update && apt-get install -y \
 	swi-prolog \
 	libgraphviz-dev \
 	libqt5charts5-dev \
@@ -32,7 +34,7 @@ RUN . /opt/ros/$ROS_DISTRO/setup.sh && \
 	libxcb-xinerama0 \
     && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get update && apt-get install -y ros-${ROS_DISTRO}-rqt*
+RUN apt-get clean && apt-get update && apt-get install -y ros-${ROS_DISTRO}-rqt*
 
 #Environment variables
 ENV DEBIAN_FRONTEND=noninteractive
@@ -51,7 +53,8 @@ ENV RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 ARG USER_ID
 ARG GROUP_ID
 RUN addgroup --gid $GROUP_ID user
-RUN adduser --disabled-password --gecos '' --uid $USER_ID --gid $GROUP_ID user
+# RUN adduser --disabled-password --gecos '' --uid $USER_ID --non-unique --gid $GROUP_ID user
+RUN useradd --home-dir /home/user --create-home --shell /bin/bash --comment '' --password '*' --uid $USER_ID --non-unique --gid $GROUP_ID user
 RUN echo "user:user" | chpasswd
 RUN echo "user ALL=(ALL:ALL) ALL" >> /etc/sudoers
 

@@ -95,6 +95,7 @@ message("NOTE: if source files are missing, please clean before build")
 # use: rm -r build install
 
 ament_target_dependencies(seed 
+  ament_index_cpp
   rclcpp 
   std_msgs 
   sensor_msgs 

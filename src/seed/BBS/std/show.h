@@ -11,8 +11,17 @@
 #include "seed_header.h"
 #include <graphviz/gvc.h>
 
-#include <image_transport/image_transport.h>
-#include <cv_bridge/cv_bridge.h>
+#if __has_include(<image_transport/image_transport.h>)
+    #include <image_transport/image_transport.h>
+#elif __has_include(<image_transport/image_transport.hpp>)
+    #include <image_transport/image_transport.hpp>
+#endif
+#if __has_include(<cv_bridge/cv_bridge.h>)
+    #include <cv_bridge/cv_bridge.h>
+#elif __has_include(<cv_bridge/cv_bridge.hpp>)
+    #include <cv_bridge/cv_bridge.hpp>
+#endif
+
 #include <opencv2/core.hpp>
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/highgui.hpp>

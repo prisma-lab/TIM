@@ -6,6 +6,11 @@ FROM ros:humble
 #	(solution from: https://stackoverflow.com/questions/63526272/release-file-is-not-valid-yet-docker)
 #RUN echo "Acquire::Check-Valid-Until \"false\";\nAcquire::Check-Date \"false\";" | cat > /etc/apt/apt.conf.d/10no--check-valid-until
 
+#Solve ROS2 gpg key issue, from 01-Jun-2025
+RUN apt-get install curl -y
+RUN rm -f /usr/share/keyrings/ros-archive-keyring.gpg
+RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
+
 #Install essential
 RUN . /opt/ros/$ROS_DISTRO/setup.sh && \
     apt-get update && \

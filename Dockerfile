@@ -6,6 +6,31 @@ FROM ros:humble
 #	(solution from: https://stackoverflow.com/questions/63526272/release-file-is-not-valid-yet-docker)
 #RUN echo "Acquire::Check-Valid-Until \"false\";\nAcquire::Check-Date \"false\";" | cat > /etc/apt/apt.conf.d/10no--check-valid-until
 
+# -----------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------------
+# Fix the GPG key error
+RUN rm -f /etc/apt/sources.list.d/ros2.list  \
+       /etc/apt/sources.list.d/ros2-latest.list  \
+    && rm -f /usr/share/keyrings/ros-archive-keyring.gpg
+
+# -----------------------------------------------------------------------------------
+RUN apt-get update && apt-get install -y \
+      curl \
+      gnupg2 \
+      lsb-release \
+    && rm -rf /var/lib/apt/lists/*
+
+# -----------------------------------------------------------------------------------
+RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key \
+      | gpg --dearmor -o /usr/share/keyrings/ros-archive-keyring.gpg \
+    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] \
+         http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" \
+         > /etc/apt/sources.list.d/ros2.list
+# -----------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------------
+
+
+
 #Install essential
 RUN . /opt/ros/$ROS_DISTRO/setup.sh && \
     apt-get clean && \
@@ -18,6 +43,7 @@ RUN . /opt/ros/$ROS_DISTRO/setup.sh && \
 	libgraphviz-dev \
 	libqt5charts5-dev \
 	libespeak-dev \
+	gdb \
 	ros-${ROS_DISTRO}-rviz2 \
 	ros-${ROS_DISTRO}-cv-bridge \
 	ros-${ROS_DISTRO}-vision-opencv \
@@ -26,6 +52,7 @@ RUN . /opt/ros/$ROS_DISTRO/setup.sh && \
 	ros-${ROS_DISTRO}-aruco-opencv \
 	ros-${ROS_DISTRO}-librealsense2* \
 	ros-${ROS_DISTRO}-realsense2-* \
+	ros-${ROS_DISTRO}-plansys2-* \
 	# TRY WITH CYCLONEDDS
 	ros-${ROS_DISTRO}-rmw-cyclonedds-cpp \ 
 	libboost-all-dev \
@@ -39,7 +66,7 @@ RUN apt-get clean && apt-get update && apt-get install -y ros-${ROS_DISTRO}-rqt*
 #Environment variables
 ENV DEBIAN_FRONTEND=noninteractive
 ENV DISPLAY=:0
-ENV HOME /home/user
+ENV HOME=/home/user
 #ENV ROS_DISTRO=foxy
 ENV ROS_DISTRO=$ROS_DISTRO
 
@@ -67,7 +94,7 @@ USER user
 RUN mkdir -p ${HOME}/ros2_ws/src
 WORKDIR ${HOME}/ros2_ws
 COPY --chown=user ./src ${HOME}/ros2_ws/src
-SHELL ["/bin/bash", "-c"] 
+SHELL ["/bin/bash", "-c"]
 RUN source /opt/ros/${ROS_DISTRO}/setup.bash; rosdep update; rosdep install -i --from-path src --rosdistro ${ROS_DISTRO} -y; colcon build --symlink-install
 
 #Add script source to .bashrc
@@ -75,7 +102,7 @@ RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash;" >>  ${HOME}/.bashrc
 RUN echo "source ${HOME}/ros2_ws/install/local_setup.bash;" >>  ${HOME}/.bashrc
 
 #Set env variables
-ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/lib/swi-prolog/lib/x86_64-linux/"
+ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:"/usr/lib/swi-prolog/lib/x86_64-linux/"
 
 #Clean image
 USER root
@@ -85,6 +112,8 @@ USER user
 # run launch file
 #CMD ["ros2", "run", "seed", "seed", "test"]
 
+ENV AMENT_PREFIX_PATH=/opt/ros/${ROS_DISTRO}
+ENV CMAKE_PREFIX_PATH=/opt/ros/${ROS_DISTRO}
 
-
-
+ENTRYPOINT ["/bin/bash", "-c", "source /opt/ros/${ROS_DISTRO}/setup.bash && exec \"$@\"", "--"]
+CMD ["/bin/bash"]

@@ -84,7 +84,7 @@ If you want to attach a new shell to the previously started container you can us
 ```
 
 
-### Execution
+### Execution (test)
 To execute SEED simply type the following command into one of the attached shell:
 ```
 ros2 run seed seed test
@@ -98,6 +98,11 @@ To start the QT5 GUI you can type `gui` into the shell.
 To start the ROS2 semaphore test type `ros2 semaphore` into the shell (demo output is available in the `/semaphore/out` topic).
 
 
+### Execution (TIM)
+To execute SEED in the Task Inversion and Quality Monitoring (TIM) domain, simply type the following command into one of the attached shell:
+```
+ros2 run seed seed TIM
+```
 
 ## Installation via apt-get (outdated and not recomanded)
 

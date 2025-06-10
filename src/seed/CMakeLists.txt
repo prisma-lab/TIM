@@ -51,6 +51,9 @@ find_package(Qt5Charts REQUIRED)
 
 find_package(tf2_ros REQUIRED)
 
+#INVERSE-specific libraries:
+find_package(plansys2_msgs REQUIRED)
+
 # let the compiler search for headers in the include folder
 include_directories(
   include
@@ -103,6 +106,7 @@ ament_target_dependencies(seed
   cv_bridge 
   #seed_interfaces
   tf2_ros
+  plansys2_msgs
 )
 
 target_link_libraries(seed

@@ -38,6 +38,7 @@ RUN . /opt/ros/$ROS_DISTRO/setup.sh && \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && apt-get install -y ros-${ROS_DISTRO}-rqt*
+RUN apt-get update && apt-get install -y ros-${ROS_DISTRO}-plansys2-*
 
 #Environment variables
 ENV DEBIAN_FRONTEND=noninteractive

@@ -204,10 +204,10 @@ schema(template(_), [], [], [] ).
 
 
 %hardSequence(TASK_LIST): sequential behavior used to implement HARD sequence in SEED
-schema(hardSequence(T), [], [hardSequence(T).done], [] ).
+schema(hardSequence(T,ID), [], [hardSequence(ID).done], [] ).
 
 %softSequence(TASK_LIST): sequential behavior used to implement SOFT sequence in SEED
-schema(softSequence(T), [], [softSequence(T).done], [] ).
+schema(softSequence(T,ID), [], [softSequence(ID).done], [] ).
 
 
 

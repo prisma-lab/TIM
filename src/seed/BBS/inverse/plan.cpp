@@ -48,6 +48,10 @@ InvPlanBehavior::InvPlanBehavior(std::string instance){
       std::bind(&InvPlanBehavior::plan_cb, this, std::placeholders::_1)
     );
 
+    status = Status::IDLE;
+
+    n_plan = 0;
+
     std::cout<<arg(0)<<": Constructor() executed "<<std::endl;
 }
 
@@ -73,34 +77,6 @@ void InvPlanBehavior::start(){
 bool InvPlanBehavior::perceptualSchema(){
     // write CUSTOM code here...
 
-    if(have_planning_request){
-        //send planning domain/problem
-
-        auto domain_msg = std_msgs::msg::String();
-        domain_msg.data = 
-        "(define (domain demo)\n"
-        "  (:requirements :strips :typing)\n"
-        "  (:types robot location)\n"
-        "  (:predicates\n"
-        "    (at ?r - robot ?l - location)\n"
-        "    (connected ?l1 - location ?l2 - location))\n"
-        "  (:action move\n"
-        "    :parameters (?r - robot ?from - location ?to - location)\n"
-        "    :precondition (and (at ?r ?from) (connected ?from ?to))\n"
-        "    :effect (and (not (at ?r ?from)) (at ?r ?to))))";
-
-        auto problem_msg = std_msgs::msg::String();
-        problem_msg.data = 
-        "(define (problem move_robot)\n"
-        "  (:domain demo)\n"
-        "  (:objects robot1 - robot loc1 loc2 - location)\n"
-        "  (:init (at robot1 loc1) (connected loc1 loc2) (connected loc2 loc1))\n"
-        "  (:goal (at robot1 loc2)))";
-
-        domain_pub_->publish(domain_msg);
-        problem_pub_->publish(problem_msg);
-    }
-
     //std::cout<<arg(0)<<": perceptualSchema() executed "<<std::endl;
     return true;
 }
@@ -115,6 +91,70 @@ bool InvPlanBehavior::perceptualSchema(){
 void InvPlanBehavior::motorSchema(){
     // write CUSTOM code here...
     //std::cout<<arg(0)<<": motorSchema() executed "<<std::endl;
+
+    if(have_planning_request && status == Status::IDLE){
+        //start new planning process
+        
+        //send planning domain/problem
+
+        auto domain_msg = std_msgs::msg::String();
+        domain_msg.data = create_plan_domain();
+
+        auto problem_msg = std_msgs::msg::String();
+        problem_msg.data = create_plan_problem();
+
+        domain_pub_->publish(domain_msg);
+        problem_pub_->publish(problem_msg);
+
+        status = Status::PLANNING;
+    }
+    else if(status == Status::PLAN_SUCCESS){
+        //start execution of plan
+
+        n_plan++;
+        current_plan_id = "plan" + std::string(n_plan);
+
+        std::stringstream ss;
+        ss<<"softSequence([";
+        for(auto i=0; i<plan.size()-1; i++){
+            ss<<plan[i]<<",";
+        }
+        ss<<plan[plan.size()-1]<<"],"<<current_plan_id<<")";
+
+        exec_instance = ss.str();
+
+        wm_lock();
+        std::cout<<arg(0)<<", loading new plan: "<<std::endl;
+        std::cout<<"\t "<<exec_instance<<std::endl;
+        exec_nodes = wm_add_child_node(exec_instance);
+        wm_unlock();
+
+        status = Status::EXECUTING;
+    }
+    else if(status == Status::PLAN_FAILURE){
+        //invoke teaching or learning process
+
+        std::cout<<arg(0)<<", planning FAILED! learning/teaching phase should be invoked"<<std::endl;
+
+        status = Status::IDLE;
+    }
+    else if(status == Status::EXECUTING){
+        //monitor execution
+
+        wm_lock();
+        
+        if(!WM->isWorking(exec_instance)){
+            if(exec_nodes[0]->goalStatus){
+                status = Status::EXEC_SUCCESS;
+            }
+            //otherwise, still executing
+        }
+        else{
+            status = Status::EXEC_FAILURE;
+        }
+
+        wm_unlock();
+    }
 }
 
 // 6. DEFINE the exit function.
@@ -127,11 +167,40 @@ void InvPlanBehavior::exit(){
 void InvPlanBehavior::plan_cb(const plansys2_msgs::msg::Plan::SharedPtr msg) {
     RCLCPP_INFO(nh->get_logger(), "Received plan with %zu actions:", msg->items.size());
 
+    if(status != Status::PLANNING)
+        return;
+
+    if( msg->items.size() == 0)
+        status = Status::PLAN_FAILURE;
+    else
+        plan.clear();
+
     for (const auto & item : msg->items) {
       std::stringstream ss;
       ss << item.time << ":\t" << item.action << " [" << item.duration << "s]";
       RCLCPP_INFO(nh->get_logger(), "%s", ss.str().c_str());
+
+      plan.push_back(plan2exec(item.action));
+
+      status = Status::PLAN_SUCCESS;
     }
   }
+
+
+std::string InvPlanBehavior::plan2exec(std::string plan_act){
+    //TBD depending on the planning domain,
+    //  for now just return the action assuming that plan and exec representations are compatible
+    return plan_act;
+}
+
+
+std::string InvPlanBehavior::create_plan_domain(){
+    //TBD, for now I would take it from file
+}
+
+
+std::string InvPlanBehavior::create_plan_problem(){
+    //TBD, for now I would take it from file
+}
 
 // ...enjoy

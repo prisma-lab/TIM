@@ -6,7 +6,9 @@
 #include "plansys2_msgs/msg/plan.hpp"
 #include "plansys2_msgs/msg/plan_item.hpp"
 
-using namespace seed; //this is not needed to compile, byt most IDEs require it
+using namespace seed; //this is not needed to compile, but most IDEs require it
+
+enum Status { PLANNING, PLAN_SUCCESS, PLAN_FAILURE, EXECUTING, EXEC_SUCCESS, EXEC_FAILURE, IDLE };
 
 class InvPlanBehavior : public Behavior {
 public:
@@ -31,13 +33,29 @@ protected:
 
     rclcpp::Publisher<std_msgs::msg::String>::SharedPtr domain_pub_;
     rclcpp::Publisher<std_msgs::msg::String>::SharedPtr problem_pub_;
-    
+
     rclcpp::Subscription<plansys2_msgs::msg::Plan>::SharedPtr plan_sub_;
 
     bool have_planning_request;
-    bool is_plan_running;
+    Status status;
+
+    std::vector<std::string> plan;
+    std::string current_plan_id;
+    int n_plan;
+
+    std::string exec_instance;
+    std::vector<WM_node *> exec_nodes;
 
     void plan_cb(const plansys2_msgs::msg::Plan::SharedPtr msg);
+
+    //convert planned action (item) into executive action (instance) if needed
+    std::string plan2exec(std::string);
+
+    //create the planning domain (from KB, file or context)
+    std::string create_plan_domain();
+
+    //create the planning problem (from user's reqest, file or context)
+    std::string create_plan_problem();
 };
 
 #endif	/* BEHAVIOR_INVPLAN_H */

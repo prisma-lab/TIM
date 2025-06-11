@@ -103,6 +103,9 @@ void InvPlanBehavior::motorSchema(){
         auto problem_msg = std_msgs::msg::String();
         problem_msg.data = create_plan_problem();
 
+        std::cout<<arg(0)<<", sending domain: "<<domain_msg.data<<std::endl;
+        std::cout<<arg(0)<<", sending problem: "<<problem_msg.data<<std::endl;
+
         domain_pub_->publish(domain_msg);
         problem_pub_->publish(problem_msg);
 
@@ -112,7 +115,7 @@ void InvPlanBehavior::motorSchema(){
         //start execution of plan
 
         n_plan++;
-        current_plan_id = "plan" + std::string(n_plan);
+        current_plan_id = "plan" + std::to_string(n_plan);
 
         std::stringstream ss;
         ss<<"softSequence([";
@@ -143,8 +146,8 @@ void InvPlanBehavior::motorSchema(){
 
         wm_lock();
         
-        if(!WM->isWorking(exec_instance)){
-            if(exec_nodes[0]->goalStatus){
+        if(!exec_nodes[0]->isWorking()){
+            if(exec_nodes[0]->goalStatus()){
                 status = Status::EXEC_SUCCESS;
             }
             //otherwise, still executing
@@ -196,11 +199,33 @@ std::string InvPlanBehavior::plan2exec(std::string plan_act){
 
 std::string InvPlanBehavior::create_plan_domain(){
     //TBD, for now I would take it from file
+    std::ifstream file(SEED_HOME_PATH + "/BBS/inverse/domains/example_blocksworld_domain.pddl");
+    
+    if (!file) {
+        std::cout<<"Unable to open DOMAIN file"<<std::endl;
+    }
+
+    std::ostringstream content;
+    content << file.rdbuf();
+    
+    return content.str();
 }
 
 
 std::string InvPlanBehavior::create_plan_problem(){
     //TBD, for now I would take it from file
+
+    std::ifstream file(SEED_HOME_PATH + "/BBS/inverse/domains/example_blocksworld_problem.pddl");
+    
+    if (!file) {
+        std::cout<<"Unable to open PROBLEM file"<<std::endl;
+
+    }
+
+    std::ostringstream content;
+    content << file.rdbuf();
+    
+    return content.str();
 }
 
 // ...enjoy

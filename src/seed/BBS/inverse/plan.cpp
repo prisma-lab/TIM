@@ -39,12 +39,13 @@ InvPlanBehavior::InvPlanBehavior(std::string instance){
     // write CUSTOM construction code here...
 
     //NOTE: These are strings for now, we must adjust them once the official type is selected
-    domain_pub_ = nh->create_publisher<std_msgs::msg::String>("planning_domain", 10);
-    problem_pub_ = nh->create_publisher<std_msgs::msg::String>("planning_problem", 10);
+    //domain_pub_ = nh->create_publisher<std_msgs::msg::String>("planning_domain", 10);
+    //problem_pub_ = nh->create_publisher<std_msgs::msg::String>("planning_problem", 10);
+    plan_pub_ = this->create_publisher<task_planner_msgs::msg::PlanningRequest>("/plan_request", 10);
 
     // Subscriber to the plan
     plan_sub_ = nh->create_subscription<plansys2_msgs::msg::Plan>(
-      "/plan", 10,
+      "/plan_response", 10,
       std::bind(&InvPlanBehavior::plan_cb, this, std::placeholders::_1)
     );
 
@@ -97,17 +98,25 @@ void InvPlanBehavior::motorSchema(){
         
         //send planning domain/problem
 
-        auto domain_msg = std_msgs::msg::String();
-        domain_msg.data = create_plan_domain();
+        //auto domain_msg = std_msgs::msg::String();
+        //domain_msg.data = create_plan_domain();
 
-        auto problem_msg = std_msgs::msg::String();
-        problem_msg.data = create_plan_problem();
+        //auto problem_msg = std_msgs::msg::String();
+        //problem_msg.data = create_plan_problem();
 
-        std::cout<<arg(0)<<", sending domain: "<<domain_msg.data<<std::endl;
-        std::cout<<arg(0)<<", sending problem: "<<problem_msg.data<<std::endl;
+        auto msg = task_planner_msgs::msg::PlanningRequest();
 
-        domain_pub_->publish(domain_msg);
-        problem_pub_->publish(problem_msg);
+        // set header too
+        msg.domain = create_plan_domain();
+        msg.problem = create_plan_problem();
+
+        std::cout<<arg(0)<<", sending domain: "<<msg.domain<<std::endl;
+        std::cout<<arg(0)<<", sending problem: "<<msg.problem<<std::endl;
+
+        //domain_pub_->publish(domain_msg);
+        //problem_pub_->publish(problem_msg);
+
+        plan_pub_->publish(msg);
 
         status = Status::PLANNING;
     }

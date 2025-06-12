@@ -6,6 +6,8 @@
 #include "plansys2_msgs/msg/plan.hpp"
 #include "plansys2_msgs/msg/plan_item.hpp"
 
+#include "task_planner_msgs/msg/PlanningRequest.hpp"
+
 using namespace seed; //this is not needed to compile, but most IDEs require it
 
 enum Status { PLANNING, PLAN_SUCCESS, PLAN_FAILURE, EXECUTING, EXEC_SUCCESS, EXEC_FAILURE, IDLE };
@@ -31,8 +33,10 @@ protected:
     static bool registered;
     std::string msg;
 
-    rclcpp::Publisher<std_msgs::msg::String>::SharedPtr domain_pub_;
-    rclcpp::Publisher<std_msgs::msg::String>::SharedPtr problem_pub_;
+    //rclcpp::Publisher<std_msgs::msg::String>::SharedPtr domain_pub_;
+    //rclcpp::Publisher<std_msgs::msg::String>::SharedPtr problem_pub_;
+
+    rclcpp::Publisher<task_planner_msgs::msg::PlanningRequest>::SharedPtr plan_pub_;
 
     rclcpp::Subscription<plansys2_msgs::msg::Plan>::SharedPtr plan_sub_;
 

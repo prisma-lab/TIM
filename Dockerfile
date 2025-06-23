@@ -43,7 +43,7 @@ RUN apt-get update && apt-get install -y ros-${ROS_DISTRO}-plansys2-*
 #Environment variables
 ENV DEBIAN_FRONTEND=noninteractive
 ENV DISPLAY=:0
-ENV HOME /home/user
+ENV HOME=/home/user
 #ENV ROS_DISTRO=foxy
 ENV ROS_DISTRO=$ROS_DISTRO
 
@@ -70,6 +70,10 @@ USER user
 RUN mkdir -p ${HOME}/ros2_ws/src
 WORKDIR ${HOME}/ros2_ws
 COPY --chown=user ./src ${HOME}/ros2_ws/src
+
+# YIGIT: building downward
+RUN ${HOME}/ros2_ws/src/downward/build.py
+
 SHELL ["/bin/bash", "-c"] 
 RUN source /opt/ros/${ROS_DISTRO}/setup.bash; rosdep update; rosdep install -i --from-path src --rosdistro ${ROS_DISTRO} -y; colcon build --symlink-install
 
@@ -79,6 +83,8 @@ RUN echo "source ${HOME}/ros2_ws/install/local_setup.bash;" >>  ${HOME}/.bashrc
 
 #Set env variables
 ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/lib/swi-prolog/lib/x86_64-linux/"
+# YIGIT: added downward to PATH
+ENV PATH="${PATH}:${HOME}/ros2_ws/src/downward/"
 
 #Clean image
 USER root

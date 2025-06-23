@@ -72,7 +72,7 @@ WORKDIR ${HOME}/ros2_ws
 COPY --chown=user ./src ${HOME}/ros2_ws/src
 
 # YIGIT: building downward
-RUN ${HOME}/ros2_ws/src/downward/build.py
+RUN cd /home/user/ros2_ws/src/downward && ./build.py && cd -
 
 SHELL ["/bin/bash", "-c"] 
 RUN source /opt/ros/${ROS_DISTRO}/setup.bash; rosdep update; rosdep install -i --from-path src --rosdistro ${ROS_DISTRO} -y; colcon build --symlink-install

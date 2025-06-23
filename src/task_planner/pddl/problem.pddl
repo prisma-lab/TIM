@@ -1,0 +1,6 @@
+(define (problem simple-problem)
+  (:domain simple)
+  (:objects robot1)
+  (:init (at robot1) (moveable robot1))
+  (:goal (and (not (at robot1))))
+)

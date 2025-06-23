@@ -41,7 +41,10 @@ InvPlanBehavior::InvPlanBehavior(std::string instance){
     //NOTE: These are strings for now, we must adjust them once the official type is selected
     //domain_pub_ = nh->create_publisher<std_msgs::msg::String>("planning_domain", 10);
     //problem_pub_ = nh->create_publisher<std_msgs::msg::String>("planning_problem", 10);
-    plan_pub_ = this->create_publisher<task_planner_msgs::msg::PlanningRequest>("/plan_request", 10);
+    
+    // TODO: YIGIT changed the following line for successful compilation. Uncomment it and delete the one below.
+    //plan_pub_ = this->create_publisher<task_planner_msgs::msg::PlanningRequest>("/plan_request", 10);
+    plan_pub_ = nh->create_publisher<task_planner_msgs::msg::PlanningRequest>("/plan_request", 10);
 
     // Subscriber to the plan
     plan_sub_ = nh->create_subscription<plansys2_msgs::msg::Plan>(

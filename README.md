@@ -2,7 +2,18 @@
 TIM (Task Inversion and quality Monitoring) Framework Version 1.0 (first prototype)
 
 ## About TIM
-TODO
+
+The TIM framework represents a novel approach to robotic task planning and execution, specifically designed to handle structured and invertible tasks in dynamic environments. Developed within the INVERSE project, the framework integrates flexible execution control, adaptive planning, and real-time quality monitoring into a coherent and modular architecture.
+
+At the core of the TIM framework lie three tightly integrated components: the Executive System, the Task Planning Module, and the Quality Monitoring Module. These internal subsystems operate in close coordination to ensure that robots can not only carry out complex tasks but also adapt and recover in case of failure or unforeseen events.
+
+The Executive System, inspired by attentional control models, manages the dynamic execution of tasks. It decomposes high-level plans into executable behaviors, regulates the activation and scheduling of concurrent processes, and orchestrates sensorimotor activity. Central to this system are two memory structures: the Long-Term Memory (LTM), which stores task definitions and schemas, and the Working Memory (WM), which maintains the current task hierarchy and execution state. A Behavior-Based System (BBS) handles low-level actions, dynamically prioritizing behaviors based on a combination of top-down goals and bottom-up stimuli. This design allows the robot to reactively shift focus, collaborate with humans, and resolve resource conflicts intelligently during task execution.
+
+The Task Planning Module supports both forward and inverse task generation. When an inverse task is requested, such as disassembling an object or undoing a prior sequence, the planner follows a staged strategy. It first attempts symbolic inversion using traditional planning methods. If this fails, the system can engage learning-based methods to fill gaps or correct errors, and ultimately defer to human guidance through demonstration if needed. 
+
+Complementing these systems is the Quality Monitoring Module, which oversees execution fidelity. It continuously evaluates whether task progress aligns with expected outcomes. When deviations are detected, the system can proactively trigger replanning, engage learning mechanisms, or prompt user intervention. This ensures robustness, especially in uncertain or collaborative settings.
+
+In addition to these core components, TIM interfaces with several external systems that supply essential input data. A Scene Understanding Module provides symbolic and quantitative descriptions of the robot’s environment. A Knowledge Base contains information about available actions and robot capabilities. Moreover, TIM supports integration with Self-Learning and Teaching Modules, enabling the robot to expand its skillset autonomously or via user instruction. These external systems are accessed through ROS2-based interfaces, ensuring modularity and interoperability.
 
 ## Installation and execution via Docker
 

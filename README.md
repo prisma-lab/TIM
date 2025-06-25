@@ -75,7 +75,11 @@ If you want to attach a new shell to the previously started container you can us
 
 
 ### Execution
-TODO
+To launch TIM software, run the following command from within the container:
+```
+ros2 launch seed tim.launch.py
+```
+This command will run both the SEED and the task_planning nodes. Notice that the robotic sensorimotor primitives specified in this version are defined for the Blocksworld setup at PrismaLab (IIWA robot endowed with WSG50 Gripper). 
 
 # References
 See references of specific packages

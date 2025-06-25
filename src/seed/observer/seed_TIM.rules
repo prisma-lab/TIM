@@ -1,0 +1,15 @@
+#brick10
+exists(iiwa_base_link,brick10) -> brick10.present
+1 / dist(iiwa_ee,brick10) ~> brick10.distance
+#
+#brick11
+exists(iiwa_base_link,brick11) -> brick11.present
+1 / dist(iiwa_ee,brick11) ~> brick11.distance
+#
+#brick20
+exists(iiwa_base_link,brick20) -> brick20.present
+1 / dist(iiwa_ee,brick20) ~> brick20.distance
+#
+#brick21
+exists(iiwa_base_link,brick21) -> brick21.present
+1 / dist(iiwa_ee,brick21) ~> brick21.distance

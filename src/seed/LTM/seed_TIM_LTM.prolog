@@ -91,6 +91,7 @@ schema(alive, [
 	%[wsg50Manager,0,["TRUE"]],
 	%[iiwaManager,0,["TRUE"]],
 	[plan,0,["TRUE"]],
+	[tfobserver,0,["TRUE"]],
 	[requestStream,0,["TRUE"]] ],
 	[],
 	[] ).
@@ -231,6 +232,9 @@ schema(iiwaExtract(Obj1,Frame), [], [extracted(Obj1,Frame)], [] ).
 
 %Interface with BOUN planner
 schema(plan, [], [], [] ).
+
+%tfObserver
+schema(tfobserver, [], [], [] ).
 
 
 

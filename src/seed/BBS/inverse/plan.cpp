@@ -202,7 +202,28 @@ void InvPlanBehavior::plan_cb(const plansys2_msgs::msg::Plan::SharedPtr msg) {
 std::string InvPlanBehavior::plan2exec(std::string plan_act){
     //TBD depending on the planning domain,
     //  for now just return the action assuming that plan and exec representations are compatible
-    return plan_act;
+
+    //transform PDDL operator into SEED behavior
+    //  e.g. (pickup a) -> pickup(a)
+    std::string s = "pddl" + plan_act;
+    std::replace( s.begin(), s.end(), ' ', ',');
+    std::vector<std::string> pddl_v = instance2vector(plan_act);
+    std::stringstream ss;
+
+    ss<<pddl_v[1];
+    //if we have arguments
+    if(pddl_v.size>2){
+        ss<<"(";
+        for(auto i=2; i<pddl_v.size();i++){
+            ss<<pddl_v[i];
+            if(i+1 == pddl_v.size())
+                ss<<")";
+            else
+                ss<<",";
+        }
+    }
+
+    return ss.str();
 }
 
 

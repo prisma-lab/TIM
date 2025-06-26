@@ -6,7 +6,7 @@
 #include "plansys2_msgs/msg/plan.hpp"
 #include "plansys2_msgs/msg/plan_item.hpp"
 
-#include "task_planner_msgs/msg/PlanningRequest.hpp"
+#include "task_planner_msgs/msg/planning_request.hpp"
 
 using namespace seed; //this is not needed to compile, but most IDEs require it
 

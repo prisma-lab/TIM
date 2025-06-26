@@ -41,6 +41,8 @@ class TaskPlanner(Node):
             result = subprocess.run(
                 [
                     'fast-downward.py',
+                    '--build',
+                    '/home/user/ros2_ws/build/builds/release/bin',
                     domain_path,
                     problem_path,
                     '--search',

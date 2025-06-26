@@ -85,6 +85,8 @@ RUN echo "source ${HOME}/ros2_ws/install/local_setup.bash;" >>  ${HOME}/.bashrc
 ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/lib/swi-prolog/lib/x86_64-linux/"
 # YIGIT: added downward to PATH
 ENV PATH="${PATH}:${HOME}/ros2_ws/src/downward/"
+# YIGIT: added ROS workspace path to use it in downward custom build (in downward/driver/util.py)
+ENV ROS_WS="${HOME}/ros2_ws" 
 
 #Clean image
 USER root

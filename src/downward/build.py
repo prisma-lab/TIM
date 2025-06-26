@@ -72,7 +72,9 @@ def get_project_root_path():
 
 
 def get_builds_path():
-    return os.path.join(get_project_root_path(), "builds")
+    #return os.path.join(get_project_root_path(), "builds")
+    return "/home/user/ros2_ws/build/builds"
+    
 
 
 def get_src_path():

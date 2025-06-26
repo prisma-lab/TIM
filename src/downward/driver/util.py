@@ -8,6 +8,12 @@ DRIVER_DIR = Path(__file__).parent.resolve()
 REPO_ROOT_DIR = DRIVER_DIR.parent
 BUILDS_DIR = REPO_ROOT_DIR / "builds"
 
+# YIGIT changed BUILDS_DIR to use custom build dir
+import os
+CUSTOM_BUILD_ROOT_DIR = os.environ['ROS_WS']
+CUSTOM_BUILD_DIR = CUSTOM_BUILD_ROOT_DIR+'/build/builds'
+BUILDS_DIR = CUSTOM_BUILD_DIR
+
 
 def get_elapsed_time():
     """

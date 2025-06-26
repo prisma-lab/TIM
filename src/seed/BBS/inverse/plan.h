@@ -3,8 +3,8 @@
 
 #include "seed.h"
 
-#include "plansys2_msgs/msg/plan.hpp"
-#include "plansys2_msgs/msg/plan_item.hpp"
+//#include "plansys2_msgs/msg/plan.hpp"
+//#include "plansys2_msgs/msg/plan_item.hpp"
 
 #include "task_planner_msgs/msg/planning_request.hpp"
 
@@ -38,7 +38,7 @@ protected:
 
     rclcpp::Publisher<task_planner_msgs::msg::PlanningRequest>::SharedPtr plan_pub_;
 
-    rclcpp::Subscription<plansys2_msgs::msg::Plan>::SharedPtr plan_sub_;
+    rclcpp::Subscription<std_msgs::msg::String>::SharedPtr plan_sub_;
 
     bool have_planning_request;
     Status status;
@@ -50,9 +50,12 @@ protected:
     std::string exec_instance;
     std::vector<WM_node *> exec_nodes;
 
-    void plan_cb(const plansys2_msgs::msg::Plan::SharedPtr msg);
+    void plan_cb(const std_msgs::msg::String::SharedPtr msg);
 
-    //convert planned action (item) into executive action (instance) if needed
+    //split plan-string into vector of action-strings 
+    std::vector<std::string> split_plan(std::string act);
+
+    //convert planned action (strings) into executive action (instance) if needed
     std::string plan2exec(std::string);
 
     //create the planning domain (from KB, file or context)

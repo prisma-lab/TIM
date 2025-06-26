@@ -44,11 +44,11 @@ InvPlanBehavior::InvPlanBehavior(std::string instance){
     
     // TODO: YIGIT changed the following line for successful compilation. Uncomment it and delete the one below.
     //plan_pub_ = this->create_publisher<task_planner_msgs::msg::PlanningRequest>("/plan_request", 10);
-    plan_pub_ = nh->create_publisher<task_planner_msgs::msg::PlanningRequest>("/plan_request", 10);
+    plan_pub_ = nh->create_publisher<task_planner_msgs::msg::PlanningRequest>("/planning_request", 10);
 
     // Subscriber to the plan
-    plan_sub_ = nh->create_subscription<plansys2_msgs::msg::Plan>(
-      "/plan_response", 10,
+    plan_sub_ = nh->create_subscription<std_msgs::msg::String>(
+      "/planner_result", 10,
       std::bind(&InvPlanBehavior::plan_cb, this, std::placeholders::_1)
     );
 
@@ -179,27 +179,34 @@ void InvPlanBehavior::exit(){
     std::cout<<arg(0)<<": exit() executed "<<std::endl;
 }
 
-void InvPlanBehavior::plan_cb(const plansys2_msgs::msg::Plan::SharedPtr msg) {
-    RCLCPP_INFO(nh->get_logger(), "Received plan with %zu actions:", msg->items.size());
+void InvPlanBehavior::plan_cb(const std_msgs::msg::String::SharedPtr msg) {
+    RCLCPP_INFO(nh->get_logger(), "Received plan");
 
     if(status != Status::PLANNING)
         return;
 
-    if( msg->items.size() == 0)
+    std::string msg_string = msg->data;
+
+    if( msg_string == "")
         status = Status::PLAN_FAILURE;
     else
-        plan.clear();
+        msg_string.clear();
 
-    for (const auto & item : msg->items) {
-      std::stringstream ss;
-      ss << item.time << ":\t" << item.action << " [" << item.duration << "s]";
-      RCLCPP_INFO(nh->get_logger(), "%s", ss.str().c_str());
+    std::vector<std::string> pddl_plan = split_plan(msg_string);
 
-      plan.push_back(plan2exec(item.action));
+    for (auto i=0; i<pddl_plan.size(); i++) {
+      RCLCPP_INFO(nh->get_logger(), "%s", pddl_plan[i].c_str());
+
+      plan.push_back(plan2exec(pddl_plan[i]));
 
       status = Status::PLAN_SUCCESS;
     }
   }
+
+std::vector<std::string> InvPlanBehavior::split_plan(std::string act){
+    return std::vector<std::string>();
+}
+
 
 
 std::string InvPlanBehavior::plan2exec(std::string plan_act){
@@ -215,7 +222,7 @@ std::string InvPlanBehavior::plan2exec(std::string plan_act){
 
     ss<<pddl_v[1];
     //if we have arguments
-    if(pddl_v.size>2){
+    if(pddl_v.size()>2){
         ss<<"(";
         for(auto i=2; i<pddl_v.size();i++){
             ss<<pddl_v[i];

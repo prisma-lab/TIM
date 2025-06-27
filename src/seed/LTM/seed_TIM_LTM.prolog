@@ -276,10 +276,6 @@ schema(iiwaTest3, [
 
 
 
-schema(iiwaTower(Obj1,Obj2,Obj3), [
-	[hardSequence([iiwaStack(Obj2,Obj1),iiwaStack(Obj3,Obj2)]), 0, ["TRUE"] ] ], 
-	[], []).
-
 %example IIWA-blocksworld domain:
 %	NOTE: BOUN planner lowercases everithing!
 %		iiwaUnstack -> iiwaunstack
@@ -287,12 +283,16 @@ schema(iiwaTower(Obj1,Obj2,Obj3), [
 %		iiwaPick -> iiwapick
 %		iiwaPut -> iiwaput
 
+%schema(iiwaTower(Obj1,Obj2,Obj3), [
+%	[hardSequence([iiwastack(Obj2,Obj1),iiwastack(Obj3,Obj2)]), 0, ["TRUE"] ] ], 
+%	[], []).
+
 schema(iiwaunstack(Obj1,Obj2), [
-	[hardSequence([iiwaDetach(Obj1,Obj2),iiwaWait(w0),iiwaPut(Obj1,gnd)],iiwaunstack.Obj1.Obj2), 0, ["TRUE"] ] ], 
+	[hardSequence([iiwaDetach(Obj1,Obj2),iiwaWait(w0)],iiwaunstack.Obj1.Obj2), 0, ["TRUE"] ] ], 
 	[], []).
 
 schema(iiwastack(Obj1,Obj2), [
-	[hardSequence([iiwaPick(Obj1),iiwaWait(w0),iiwaAttach(Obj1,Obj2)],iiwastack.Obj1.Obj2), 0, ["TRUE"] ] ], 
+	[hardSequence([iiwaWait(w0),iiwaAttach(Obj1,Obj2)],iiwastack.Obj1.Obj2), 0, ["TRUE"] ] ], 
 	[on(Obj1,Obj2)], []).
 
 schema(iiwapick(Obj1,Obj2), [

@@ -1,3 +1,4 @@
-w(hardSequence,(iiwaunstack,1),(iiwastack,1),(iiwapick,1),(iiwaput,1))
+w(hardSequence,(teleology,1),(iiwaput,1),(iiwapick,1),(iiwastack,1),(iiwaunstack,1))
 w(iiwaunstack,(softSequence,1))
 w(show,(requestStream,1))
+w(timer,(iiwaWait,1))

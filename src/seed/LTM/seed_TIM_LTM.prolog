@@ -205,10 +205,10 @@ schema(template(_), [], [], [] ).
 
 
 %hardSequence(TASK_LIST): sequential behavior used to implement HARD sequence in SEED
-schema(hardSequence(T,ID), [], [hardSequence(ID).done], [] ).
+schema(hardSequence(_,ID), [], [hardSequence(ID).done], [] ).
 
 %softSequence(TASK_LIST): sequential behavior used to implement SOFT sequence in SEED
-schema(softSequence(T,ID), [], [softSequence(ID).done], [] ).
+schema(softSequence(_,ID), [], [softSequence(ID).done], [] ).
 
 
 
@@ -280,29 +280,30 @@ schema(iiwaTower(Obj1,Obj2,Obj3), [
 	[hardSequence([iiwaStack(Obj2,Obj1),iiwaStack(Obj3,Obj2)]), 0, ["TRUE"] ] ], 
 	[], []).
 
+%example IIWA-blocksworld domain:
+%	NOTE: BOUN planner lowercases everithing!
+%		iiwaUnstack -> iiwaunstack
+%		iiwaStack -> iiwastack
+%		iiwaPick -> iiwapick
+%		iiwaPut -> iiwaput
 
-
-schema(iiwaUnstack(Obj1,Obj2), [
-	[hardSequence([iiwaDetach(Obj1,Obj2),iiwaWait(w0),iiwaPut(Obj1,gnd)]), 0, ["TRUE"] ] ], 
+schema(iiwaunstack(Obj1,Obj2), [
+	[hardSequence([iiwaDetach(Obj1,Obj2),iiwaWait(w0),iiwaPut(Obj1,gnd)],iiwaunstack.Obj1.Obj2), 0, ["TRUE"] ] ], 
 	[], []).
 
-
-schema(iiwaStack(Obj1,Obj2), [
-	[hardSequence([iiwaPick(Obj1),iiwaWait(w0),iiwaAttach(Obj1,Obj2)]), 0, ["TRUE"] ] ], 
+schema(iiwastack(Obj1,Obj2), [
+	[hardSequence([iiwaPick(Obj1),iiwaWait(w0),iiwaAttach(Obj1,Obj2)],iiwastack.Obj1.Obj2), 0, ["TRUE"] ] ], 
 	[on(Obj1,Obj2)], []).
-	
-	
 
-schema(iiwaPick(Obj), [
-	[hardSequence([iiwaGo(any,Obj.pre),iiwaGo(Obj.pre,Obj),iiwaWait(w1),wsg50Grasp(Obj),iiwaGo(Obj,home),timer(Obj.taken,true,0.1)]), 0, ["TRUE"] ] ], 
+schema(iiwapick(Obj1,Obj2), [
+	[hardSequence([iiwaGo(any,Obj.pre),iiwaGo(Obj.pre,Obj),iiwaWait(w1),wsg50Grasp(Obj),iiwaGo(Obj,home),timer(Obj.taken,true,0.1)],iiwapick.Obj1.Obj2), 0, ["TRUE"] ] ], 
 	[Obj.taken], []).
 %schema(iiwaPick(Obj1,Obj2), [
 %	[hardSequence([iiwaGo(Obj1.pre),iiwaGo(Obj1),iiwaWait(w1),wsg50Grasp(Obj1),iiwaGo(Obj2.pre),iiwaGo(home),timer(Obj1.taken,true,0.1)]), 0, ["TRUE"] ] ], 
 %	[Obj1.taken], []).
-
 	
-schema(iiwaPut(Obj1,Obj2), [
-	[hardSequence([iiwaGo(any,Obj2.pre),iiwaGo(Obj2.pre,Obj2.over),iiwaWait(w3),wsg50Release(Obj1),iiwaGo(home),timer(on(Obj1,Obj2),true,0.1)]), 0, ["TRUE"] ] ], 
+schema(iiwaput(Obj1,Obj2), [
+	[hardSequence([iiwaGo(any,Obj2.pre),iiwaGo(Obj2.pre,Obj2.over),iiwaWait(w3),wsg50Release(Obj1),iiwaGo(home),timer(on(Obj1,Obj2),true,0.1)],iiwaput.Obj1.Obj2), 0, ["TRUE"] ] ], 
 	[on(Obj1,Obj2)], []).
 
 

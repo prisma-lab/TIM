@@ -56,6 +56,9 @@ InvPlanBehavior::InvPlanBehavior(std::string instance){
 
     n_plan = 0;
 
+    // for testing, we assume we already have the request
+    have_planning_request = true;
+
     std::cout<<arg(0)<<": Constructor() executed "<<std::endl;
 }
 
@@ -187,24 +190,43 @@ void InvPlanBehavior::plan_cb(const std_msgs::msg::String::SharedPtr msg) {
 
     std::string msg_string = msg->data;
 
-    if( msg_string == "")
+    std::cout<<"received plan (RAW) is:"<<std::endl;
+    std::cout<<"\t ["<<msg_string<<"]"<<std::endl;
+
+    if( msg_string == ""){
+        std::cout<<"unable to find a plan!"<<std::endl;
         status = Status::PLAN_FAILURE;
+        plan.clear();
+        return;
+    }
     else
-        msg_string.clear();
+        status = Status::PLAN_SUCCESS;
 
     std::vector<std::string> pddl_plan = split_plan(msg_string);
 
+    std::cout<<"parsed plan is:"<<std::endl;
     for (auto i=0; i<pddl_plan.size(); i++) {
-      RCLCPP_INFO(nh->get_logger(), "%s", pddl_plan[i].c_str());
+
+      //RCLCPP_INFO(nh->get_logger(), "%s", pddl_plan[i].c_str());
 
       plan.push_back(plan2exec(pddl_plan[i]));
 
-      status = Status::PLAN_SUCCESS;
+      std::cout<<"\t"<<plan[plan.size()-1]<<std::endl;
     }
   }
 
-std::vector<std::string> InvPlanBehavior::split_plan(std::string act){
-    return std::vector<std::string>();
+std::vector<std::string> InvPlanBehavior::split_plan(std::string plan_string){
+
+    std::stringstream ss(plan_string);
+    std::string segment;
+    std::vector<std::string> act_v;
+
+    while(std::getline(ss, segment, ','))
+    {
+        act_v.push_back(segment);
+    }
+
+    return act_v;
 }
 
 
@@ -217,8 +239,12 @@ std::string InvPlanBehavior::plan2exec(std::string plan_act){
     //  e.g. (pickup a) -> pickup(a)
     std::string s = "pddl" + plan_act;
     std::replace( s.begin(), s.end(), ' ', ',');
-    std::vector<std::string> pddl_v = instance2vector(plan_act);
+    std::vector<std::string> pddl_v = instance2vector(s);
     std::stringstream ss;
+
+    std::cout<<"parsing act "<<plan_act<<std::endl;
+    for(auto i=0; i<pddl_v.size(); i++)
+        std::cout<<i<<": "<<pddl_v[i]<<std::endl;
 
     ss<<pddl_v[1];
     //if we have arguments

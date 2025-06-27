@@ -27,9 +27,15 @@ class TaskPlanner(Node):
         # Example: Call PlanSys2 or any PDDL planner here.
         # For demonstration, let's pretend you call an external planner (replace this!)
         plan = self.run_plansys2_planner("/tmp/domain.pddl", "/tmp/problem.pddl")
+
+        cleaned_plan_lines = [
+            line.strip() for line in plan.splitlines() 
+            if line.strip() and not line.strip().startswith(';')
+        ]
+        formatted_plan = ','.join(cleaned_plan_lines)
         
         result_msg = String()
-        result_msg.data = plan
+        result_msg.data = formatted_plan
         self.publisher.publish(result_msg)
         self.get_logger().info("Published planning result.")
 

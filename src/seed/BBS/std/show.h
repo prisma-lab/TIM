@@ -61,13 +61,16 @@ public:
 
         //image_transport::ImageTransport it(nh);
         //image_pub = it.advertise(SEED_NAME + "/show", 1);
-        image_pub = nh->create_publisher<sensor_msgs::msg::Image>(SEED_NAME + "/show", 1);
+
+        image_pub = image_transport::create_publisher(nh.get(), SEED_NAME + "/show");
+        //image_pub = nh->create_publisher<sensor_msgs::msg::Image>(SEED_NAME + "/show", 1);
         
     }
     std::string getName(){
         return "show";
     }
     bool perceptualSchema(){
+        this->setRate(1); // one execution per second
         return true;
     }
     void motorSchema(){
@@ -138,6 +141,7 @@ public:
         //sensor_msgs::ImagePtr msg = cv_bridge::CvImage(std_msgs::Header(), "bgr8", graphImg).toImageMsg();
         //image_pub.publish(msg);
         sensor_msgs::msg::Image::SharedPtr msg = cv_bridge::CvImage(std_msgs::msg::Header(), "bgr8", graphImg).toImageMsg();
+        image_pub.publish(msg);
 
 
 #if SHOW_OPENCV_IMAGE
@@ -179,9 +183,15 @@ public:
         //if the node is in background add a fence (#) at the begin
         if(node->background)
             ss<<"#";
+
+        //truncate too long strings
+        std::string str_inst = node->instance;
+
+        // 50 chars limit for the instance
+        str_inst = shortenString(str_inst,50);
         
         //create a string containing the instance and the emphasis
-        ss << node->instance << "\n" 
+        ss << str_inst << "\n" 
                 << "(" << WM->getInstanceEmphasis(node->instance) << ")"; 
         
         std::string str = ss.str();
@@ -325,6 +335,20 @@ public:
         else
             agsafeset(e, (char *)"color", (char *)"red", (char *)""); //agsafeset(e,"fontcolor","red","");
     }
+
+    // cut string lenght if it is too long
+    std::string shortenString(const std::string& str, size_t k) {
+        if (str.length() <= k) return str;
+
+        const std::string ellipsis = "...";
+        if (k <= ellipsis.length() + 1) return str.substr(0, k);  // Can't shorten meaningfully
+
+        size_t remaining = k - ellipsis.length();
+        size_t prefixLength = remaining / 2;
+        size_t suffixLength = remaining - prefixLength;
+
+        return str.substr(0, prefixLength) + ellipsis + str.substr(str.length() - suffixLength);
+    }
     
     void start() {
 
@@ -343,8 +367,8 @@ protected:
     Agraph_t *graph;
     std::vector< WM_node * > targetNodes;
     
-    rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr image_pub;
-    //image_transport::Publisher image_pub;
+    //rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr image_pub;
+    image_transport::Publisher image_pub;
     
     bool showLess;
 };

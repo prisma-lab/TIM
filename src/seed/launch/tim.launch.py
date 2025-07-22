@@ -9,15 +9,21 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_xml.launch_description_sources import XMLLaunchDescriptionSource
 
 def generate_launch_description():
+    apriltag_config = os.path.join(
+        get_package_share_directory('seed'),
+        'launch',
+        'apriltag.yaml'
+    )
+
     return LaunchDescription([
-        Node(
-            package='seed',
-            executable='seed',
-            name='mimic',
-            output="screen",
-            #output={"both","drone_ros2_log.txt"},
-            arguments=["TIM"]
-        ),
+        # Node(
+        #     package='seed',
+        #     executable='seed',
+        #     name='mimic',
+        #     output="screen",
+        #     #output={"both","drone_ros2_log.txt"},
+        #     arguments=["TIM"]
+        # ),
         Node(
             package='task_planner',
             executable='planner_node',
@@ -30,7 +36,7 @@ def generate_launch_description():
             package="tf2_ros",
             executable="static_transform_publisher",
             name="iiwa_to_world",
-            arguments=["-0.1615", "0", "0", "0", "0", "0", "marker_0", "iiwa_base_link"],
+            arguments=["0", "0.0580", "-0.1210", "-1.5707963", "-1.5707963", "0", "marker_0", "iiwa_base_link"],
             # output="screen",
         ),
         Node(
@@ -61,14 +67,14 @@ def generate_launch_description():
             arguments=["0.15", "0", "0.0", "0", "0", "0", "robot_bottle.3", "test1_final"], # NOTE: yaw, pitch, roll
             # output="screen",
         ),
-        Node(
-            package="tf2_ros",
-            executable="static_transform_publisher",
-            name="iiwa_to_cam2",
-            #arguments=["0.186", "0.002", "-0.064", "0", "0", "0", "iiwa_base_link", "frontal_camera_link"], # NOTE: yaw, pitch, roll
-            arguments=["0.186", "-0.055", "-0.015", "0", "0", "0", "iiwa_base_link", "frontal_camera_link"], # NOTE: yaw, pitch, roll
-            # output="screen",
-        ),
+        # Node(
+        #     package="tf2_ros",
+        #     executable="static_transform_publisher",
+        #     name="iiwa_to_cam2",
+        #     #arguments=["0.186", "0.002", "-0.064", "0", "0", "0", "iiwa_base_link", "frontal_camera_link"], # NOTE: yaw, pitch, roll
+        #     arguments=["0.186", "-0.055", "-0.015", "0", "0", "0", "iiwa_base_link", "frontal_camera_link"], # NOTE: yaw, pitch, roll
+        #     # output="screen",
+        # ),
         Node(
             package="tf2_ros",
             executable="static_transform_publisher",
@@ -250,43 +256,81 @@ def generate_launch_description():
         #    arguments=["0.0", "-0.15", "0.15", "0", "-2.2", "0", "marker_1", "bottle.3"], # NOTE: yaw, pitch, roll
         #    # output="screen",
         #),
-        
+
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([os.path.join(
             get_package_share_directory('seed'), 'launch'), '/iiwa_upper_rs_launch.py'] ),
-            launch_arguments = { "align_depth.enable" : "True",
-            			  "depth_module.depth_profile" : "640x480x30",
-            			  "rgb_camera.color_profile" : "640x480x30", 
-            			  "depth_qos": "SENSOR_DATA",
-            			  "color_qos": "SENSOR_DATA",
-            			  "serial_no": "'827112072041'",
-            			  "camera_name": "camera",
-            			  "camera_namespace": ""
-            			  }.items(),
-        ),
-        IncludeLaunchDescription(
-            XMLLaunchDescriptionSource([os.path.join(
-            get_package_share_directory('seed'), 'launch'),
-            '/seed_aruco_4x4.launch.xml'])
-        ),
-        
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([os.path.join(
-            get_package_share_directory('seed'), 'launch'), '/iiwa_frontal_rs_launch.py'] ),
-            launch_arguments = { "align_depth.enable" : "True",
-            			  "depth_module.depth_profile" : "640x480x30",
-            			  "rgb_camera.color_profile" : "640x480x30", 
-            			  "depth_qos": "SENSOR_DATA",
-            			  "color_qos": "SENSOR_DATA",
-            			  "serial_no": "'213322071559'",
+            launch_arguments = { 
+                          "align_depth.enable" : "false",
+            			  #"depth_module.depth_profile" : "640x480x30", #"1920x1080x30",
+            			  "rgb_camera.color_profile" :   "1920x1080x15", #"640x480x30", #"1920x1080x30", #1280x720x30
+            			  #"depth_qos": "SENSOR_DATA", #"SYSTEM_DEFAULT",  
+            			  "color_qos": "SENSOR_DATA", #"SYSTEM_DEFAULT",  
+            			  "serial_no": "'213322074516'",
             			  "camera_name": "frontal_camera",
-            			  "camera_namespace": ""
+            			  "camera_namespace": "",
+                          "enable_depth": "false",  
+                          #"enable_sync": "True",
             			  }.items(),
         ),
-        IncludeLaunchDescription(
-            XMLLaunchDescriptionSource([os.path.join(
-            get_package_share_directory('seed'), 'launch'),
-            '/seed_aruco_5x5.launch.xml'])
+
+        # IncludeLaunchDescription(
+        #     XMLLaunchDescriptionSource([os.path.join(
+        #     get_package_share_directory('seed'), 'launch'),
+        #     '/seed_aruco_4x4.launch.xml'])
+        # ),
+
+
+        # Apritag node for world marker 
+        Node(
+            package='apriltag_ros',
+            executable='apriltag_node',
+            name='apriltag_node',
+            output='screen',
+            parameters=[apriltag_config],
+            remappings=[
+                ('image_rect',  '/frontal_camera/color/image_raw'),
+                ('camera_info', '/frontal_camera/color/camera_info')
+            ]
         ),
+
+        # Aruco marker for objects in the scene
+        IncludeLaunchDescription(
+             XMLLaunchDescriptionSource([os.path.join(
+             get_package_share_directory('seed'), 'launch'),
+             '/seed_aruco_5x5.launch.xml'])
+         ),
+        
+        # IncludeLaunchDescription(
+        #     PythonLaunchDescriptionSource([os.path.join(
+        #     get_package_share_directory('seed'), 'launch'), '/iiwa_upper_rs_launch.py'] ),
+        #     launch_arguments = { "align_depth.enable" : "True",
+        #     			  "depth_module.depth_profile" : "640x480x30",
+        #     			  "rgb_camera.color_profile" : "640x480x30", 
+        #     			  "depth_qos": "SENSOR_DATA",
+        #     			  "color_qos": "SENSOR_DATA",
+        #     			  "serial_no": "'827112072041'",
+        #     			  "camera_name": "camera",
+        #     			  "camera_namespace": ""
+        #     			  }.items(),
+        # ),
+        # IncludeLaunchDescription(
+        #     XMLLaunchDescriptionSource([os.path.join(
+        #     get_package_share_directory('seed'), 'launch'),
+        #     '/seed_aruco_4x4.launch.xml'])
+        # ),
+        # IncludeLaunchDescription(
+        #     PythonLaunchDescriptionSource([os.path.join(
+        #     get_package_share_directory('seed'), 'launch'), '/iiwa_frontal_rs_launch.py'] ),
+        #     launch_arguments = { "align_depth.enable" : "True",
+        #     			  "depth_module.depth_profile" : "640x480x30",
+        #     			  "rgb_camera.color_profile" : "640x480x30", 
+        #     			  "depth_qos": "SENSOR_DATA",
+        #     			  "color_qos": "SENSOR_DATA",
+        #     			  "serial_no": "'213322071559'",
+        #     			  "camera_name": "frontal_camera",
+        #     			  "camera_namespace": ""
+        #     			  }.items(),
+        # ),
         
     ])

@@ -27,6 +27,7 @@ RUN . /opt/ros/$ROS_DISTRO/setup.sh && \
 	ros-${ROS_DISTRO}-image-transport \
 	ros-${ROS_DISTRO}-image-transport-plugins \
 	ros-${ROS_DISTRO}-aruco-opencv \
+	ros-${ROS_DISTRO}-apriltag-ros \
 	ros-${ROS_DISTRO}-librealsense2* \
 	ros-${ROS_DISTRO}-realsense2-* \
 	# TRY WITH CYCLONEDDS

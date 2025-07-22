@@ -1,0 +1,31 @@
+/**:          
+  ros__parameters:
+    image_transport: raw  # image format: "raw" or "compressed"
+    family: 36h11         # tag family name: 16h5, 25h9, 36h11
+    size: 0.10             # default tag edge size in meter
+    #profile: false        # print profiling information to stdout
+    max_hamming: 0        # maximum allowed hamming distance (corrected bits)
+
+
+    # image_sub_qos:
+    #   reliability: 1 # 0 - system default, 1 - reliable, 2 - best effort
+    #   durability: 2 # 0 - system default, 1 - transient local, 2 - volatile
+    #   depth: 1
+
+    # tuning of detection (defaults)
+    detector:
+      threads: 1          # number of threads
+      decimate: 2.0       # decimate resolution for quad detection
+      blur: 0.0           # sigma of Gaussian blur for quad detection
+      refine: True           # snap to strong gradients
+      sharpening: 0.25    # sharpening of decoded images
+      debug: False            # write additional debugging images to current working directory
+
+    pose_estimation_method: "pnp" # method for estimating the tag pose
+
+    # (optional) list of tags
+    # If defined, 'frames' and 'sizes' must have the same length as 'ids'.
+    tag:
+      ids:    [0]         # tag IDs for which to publish transform
+      frames: [marker_0]   # frame names
+      sizes:  [0.10]     # tag-specific edge size, overrides the default 'size'

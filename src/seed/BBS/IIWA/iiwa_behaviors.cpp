@@ -68,8 +68,12 @@ void IIWAManagerBehavior::start(){
     current_state = iiwa_interface.getFullState();
     
     //set control mode to cartesian position
-    iiwa_interface.setControlMode(IIWA_control_mode::CARTESIAN_POSITION);
-    iiwa_interface.setCartesianPosition(current_state.cartesian_position);
+    //  NOTE: changed on 22/07/2025 to JOINT_POSITION as CARTESIAN_POSITION is not working
+    //        after the first command it will automatically move to CARTESIAN_POSITION
+    //        in the "else" of the following if
+    //iiwa_interface.setControlMode(IIWA_control_mode::CARTESIAN_POSITION);
+    iiwa_interface.setControlMode(IIWA_control_mode::JOINT_POSITION);
+    //iiwa_interface.setCartesianPosition(current_state.cartesian_position);
 
     current_mode = "idle_cartesian_position";
     current_action = "idle";
@@ -200,7 +204,8 @@ void IIWAManagerBehavior::motorSchema(){
     if(current_action == "idle" || current_action == ""){
         // stay in the current position
         //std::cout<<arg(0)<<": IIWA is IDLE! "<<std::endl;
-        iiwa_interface.setCartesianPosition(current_state.cartesian_position);
+        //iiwa_interface.setCartesianPosition(current_state.cartesian_position);
+        iiwa_interface.setCartesianPosition(current_state.joint_position);
     }
     else if(current_mode == "teaching_joint_impedance"){
         iiwa_interface.setJointPosition(steady_pose);
@@ -549,6 +554,9 @@ bool IIWAGoBehavior::perceptualSchema(){
         wmv_compete<std::string>("iiwaManager", "iiwa", this->getInstance());
 
         IIWA_state state = wmv_get<IIWA_state>("iiwa.state");
+
+        std::cout<<arg(0)<<": DIFF: "<<std::endl;
+        plot_cartesian_difference(state.cartesian_position, cartesian_goal[0]);
 
         if(cartesian_pose_reached(cartesian_goal[0], state.cartesian_position, 30.0, 10.0))
             wmv_set<bool>(frame_name+".near", true);

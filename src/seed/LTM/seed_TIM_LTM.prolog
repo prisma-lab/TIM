@@ -309,7 +309,7 @@ schema(iiwaput(Obj1,Obj2), [
 
 
 schema(iiwaAttach(Obj1,Obj2), [
-	[hardSequence([iiwaGo(any,Obj2.pre),iiwaWait(w2),iiwaInsert(Obj1,Obj2.over),iiwaWait(w3),wsg50Release(Obj1),iiwaGo(Obj2.over,home),timer(on(Obj1,Obj2),true,0.1)],iiwaAttach.Obj1.Obj2), 0, ["TRUE"] ] ], 
+	[hardSequence([iiwaGo(any,Obj2.pre),iiwaWait(w2),iiwaInsert(Obj1,Obj2.over),iiwaWait(w3),wsg50Release(Obj1),iiwaGo(Obj2.over,Obj1.pre),iiwaGo(Obj1.pre,home),timer(on(Obj1,Obj2),true,0.1)],iiwaAttach.Obj1.Obj2), 0, ["TRUE"] ] ], 
 	[on(Obj1,Obj2)], []).
 	
 schema(iiwaDetach(Obj1,Obj2), [

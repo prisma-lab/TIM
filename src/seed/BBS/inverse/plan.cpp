@@ -133,7 +133,8 @@ void InvPlanBehavior::motorSchema(){
         current_plan_id = "plan" + std::to_string(n_plan);
 
         std::stringstream ss;
-        ss<<"softSequence([";
+        //ss<<"softSequence([";
+        ss<<"hardSequence([";
         for(auto i=0; i<plan.size()-1; i++){
             ss<<plan[i]<<",";
         }

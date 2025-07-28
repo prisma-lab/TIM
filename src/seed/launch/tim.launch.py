@@ -142,7 +142,7 @@ def generate_launch_description():
             package="tf2_ros",
             executable="static_transform_publisher",
             name="brick20_to_pre",
-            arguments=["0", "0.0", "-0.07", "0", "0", "0", "brick20", "brick20.pre"], # NOTE: yaw, pitch, roll
+            arguments=["0", "0.0", "-0.1", "0", "0", "0", "brick20", "brick20.pre"], # NOTE: yaw, pitch, roll
             # output="screen",
         ),
         
@@ -164,7 +164,7 @@ def generate_launch_description():
             package="tf2_ros",
             executable="static_transform_publisher",
             name="brick21_to_pre",
-            arguments=["0", "0.0", "-0.07", "0", "0", "0", "brick21", "brick21.pre"], # NOTE: yaw, pitch, roll
+            arguments=["0", "0.0", "-0.1", "0", "0", "0", "brick21", "brick21.pre"], # NOTE: yaw, pitch, roll
         ),
         
         
@@ -185,7 +185,7 @@ def generate_launch_description():
             package="tf2_ros",
             executable="static_transform_publisher",
             name="brick22_to_pre",
-            arguments=["0", "0.0", "-0.07", "0", "0", "0", "brick22", "brick22.pre"], # NOTE: yaw, pitch, roll
+            arguments=["0", "0.0", "-0.1", "0", "0", "0", "brick22", "brick22.pre"], # NOTE: yaw, pitch, roll
         ),
         
         

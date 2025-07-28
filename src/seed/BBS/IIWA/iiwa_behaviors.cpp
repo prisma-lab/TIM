@@ -534,7 +534,7 @@ void IIWAGoBehavior::start(){
         std::cout<<"\t "<<cartesian_goal[0][4]<<std::endl;
         std::cout<<"\t "<<cartesian_goal[0][5]<<std::endl;
 
-        std::cout<<arg(0)<<": DIFF: "<<std::endl;
+        std::cout<<this->getInstance()<<": DIFF: "<<std::endl;
         plot_cartesian_difference(state.cartesian_position, cartesian_goal[0]);
     
     }
@@ -555,7 +555,7 @@ bool IIWAGoBehavior::perceptualSchema(){
 
         IIWA_state state = wmv_get<IIWA_state>("iiwa.state");
 
-        std::cout<<arg(0)<<": DIFF: "<<std::endl;
+        std::cout<<this->getInstance()<<": DIFF: "<<std::endl;
         plot_cartesian_difference(state.cartesian_position, cartesian_goal[0]);
 
         if(cartesian_pose_reached(cartesian_goal[0], state.cartesian_position, 30.0, 10.0))

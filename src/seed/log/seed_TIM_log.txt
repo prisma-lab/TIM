@@ -58,6 +58,9 @@ iiwa, (iiwaGo(any,brick21.pre),true,0), WINNER(iiwaGo(any,brick21.pre),0)
 iiwa, (iiwaGo(any,brick21.pre),true,0), WINNER(iiwaGo(any,brick21.pre),0)
 iiwa, (iiwaGo(any,brick21.pre),true,0), WINNER(iiwaGo(any,brick21.pre),0)
 iiwa, (iiwaGo(any,brick21.pre),true,0), WINNER(iiwaGo(any,brick21.pre),0)
+iiwa, (iiwaGo(any,brick21.pre),true,0), WINNER(iiwaGo(any,brick21.pre),0)
+iiwa, (iiwaGo(any,brick21.pre),true,0), WINNER(iiwaGo(any,brick21.pre),0)
+iiwa, (iiwaGo(any,brick21.pre),true,0), WINNER(iiwaGo(any,brick21.pre),0)
 iiwa, (iiwaGo(brick21.pre,brick21),true,0), WINNER(iiwaGo(brick21.pre,brick21),0)
 iiwa, (iiwaGo(brick21.pre,brick21),true,0), WINNER(iiwaGo(brick21.pre,brick21),0)
 iiwa, (iiwaGo(brick21.pre,brick21),true,0), WINNER(iiwaGo(brick21.pre,brick21),0)
@@ -155,6 +158,9 @@ iiwa, (iiwaGo(brick21,home),true,0), WINNER(iiwaGo(brick21,home),0)
 iiwa, (iiwaGo(brick21,home),true,0), WINNER(iiwaGo(brick21,home),0)
 iiwa, (iiwaGo(brick21,home),true,0), WINNER(iiwaGo(brick21,home),0)
 iiwa, (iiwaGo(brick21,home),true,0), WINNER(iiwaGo(brick21,home),0)
+iiwa, (iiwaGo(brick21,home),true,0), WINNER(iiwaGo(brick21,home),0)
+iiwa, (iiwaGo(brick21,home),true,0), WINNER(iiwaGo(brick21,home),0)
+iiwa, (iiwaGo(brick21,home),true,0), WINNER(iiwaGo(brick21,home),0)
 iiwa, (iiwaGo(any,brick20.pre),true,0), WINNER(iiwaGo(any,brick20.pre),0)
 iiwa, (iiwaGo(any,brick20.pre),true,0), WINNER(iiwaGo(any,brick20.pre),0)
 iiwa, (iiwaGo(any,brick20.pre),true,0), WINNER(iiwaGo(any,brick20.pre),0)
@@ -203,6 +209,14 @@ iiwa, (iiwaGo(any,brick20.pre),true,0), WINNER(iiwaGo(any,brick20.pre),0)
 iiwa, (iiwaGo(any,brick20.pre),true,0), WINNER(iiwaGo(any,brick20.pre),0)
 iiwa, (iiwaGo(any,brick20.pre),true,0), WINNER(iiwaGo(any,brick20.pre),0)
 iiwa, (iiwaGo(any,brick20.pre),true,0), WINNER(iiwaGo(any,brick20.pre),0)
+iiwa, (iiwaGo(any,brick20.pre),true,0), WINNER(iiwaGo(any,brick20.pre),0)
+iiwa, (iiwaGo(any,brick20.pre),true,0), WINNER(iiwaGo(any,brick20.pre),0)
+iiwa, (iiwaInsert(brick21,brick20.over),true,0), WINNER(iiwaInsert(brick21,brick20.over),0)
+iiwa, (iiwaInsert(brick21,brick20.over),true,0), WINNER(iiwaInsert(brick21,brick20.over),0)
+iiwa, (iiwaInsert(brick21,brick20.over),true,0), WINNER(iiwaInsert(brick21,brick20.over),0)
+iiwa, (iiwaInsert(brick21,brick20.over),true,0), WINNER(iiwaInsert(brick21,brick20.over),0)
+iiwa, (iiwaInsert(brick21,brick20.over),true,0), WINNER(iiwaInsert(brick21,brick20.over),0)
+iiwa, (iiwaInsert(brick21,brick20.over),true,0), WINNER(iiwaInsert(brick21,brick20.over),0)
 iiwa, (iiwaInsert(brick21,brick20.over),true,0), WINNER(iiwaInsert(brick21,brick20.over),0)
 iiwa, (iiwaInsert(brick21,brick20.over),true,0), WINNER(iiwaInsert(brick21,brick20.over),0)
 iiwa, (iiwaInsert(brick21,brick20.over),true,0), WINNER(iiwaInsert(brick21,brick20.over),0)
@@ -251,6 +265,7 @@ wsg50, (wsg50Release(brick21),true,0), WINNER(wsg50Release(brick21),0)
 wsg50, (wsg50Release(brick21),true,0), WINNER(wsg50Release(brick21),0)
 wsg50, (wsg50Release(brick21),true,0), WINNER(wsg50Release(brick21),0)
 wsg50, (wsg50Release(brick21),true,0), WINNER(wsg50Release(brick21),0)
+wsg50, (wsg50Release(brick21),true,0), WINNER(wsg50Release(brick21),0)
 iiwa, (iiwaGo(brick20.over,brick21.pre),true,0), WINNER(iiwaGo(brick20.over,brick21.pre),0)
 iiwa, (iiwaGo(brick20.over,brick21.pre),true,0), WINNER(iiwaGo(brick20.over,brick21.pre),0)
 iiwa, (iiwaGo(brick20.over,brick21.pre),true,0), WINNER(iiwaGo(brick20.over,brick21.pre),0)
@@ -279,6 +294,13 @@ iiwa, (iiwaGo(brick20.over,brick21.pre),true,0), WINNER(iiwaGo(brick20.over,bric
 iiwa, (iiwaGo(brick20.over,brick21.pre),true,0), WINNER(iiwaGo(brick20.over,brick21.pre),0)
 iiwa, (iiwaGo(brick20.over,brick21.pre),true,0), WINNER(iiwaGo(brick20.over,brick21.pre),0)
 iiwa, (iiwaGo(brick20.over,brick21.pre),true,0), WINNER(iiwaGo(brick20.over,brick21.pre),0)
+iiwa, (iiwaGo(brick20.over,brick21.pre),true,0), WINNER(iiwaGo(brick20.over,brick21.pre),0)
+iiwa, (iiwaGo(brick20.over,brick21.pre),true,0), WINNER(iiwaGo(brick20.over,brick21.pre),0)
+iiwa, (iiwaGo(brick20.over,brick21.pre),true,0), WINNER(iiwaGo(brick20.over,brick21.pre),0)
+iiwa, (iiwaGo(brick21.pre,home),true,0), WINNER(iiwaGo(brick21.pre,home),0)
+iiwa, (iiwaGo(brick21.pre,home),true,0), WINNER(iiwaGo(brick21.pre,home),0)
+iiwa, (iiwaGo(brick21.pre,home),true,0), WINNER(iiwaGo(brick21.pre,home),0)
+iiwa, (iiwaGo(brick21.pre,home),true,0), WINNER(iiwaGo(brick21.pre,home),0)
 iiwa, (iiwaGo(brick21.pre,home),true,0), WINNER(iiwaGo(brick21.pre,home),0)
 iiwa, (iiwaGo(brick21.pre,home),true,0), WINNER(iiwaGo(brick21.pre,home),0)
 iiwa, (iiwaGo(brick21.pre,home),true,0), WINNER(iiwaGo(brick21.pre,home),0)
@@ -365,6 +387,8 @@ iiwa, (iiwaGo(any,brick22.pre),true,0), WINNER(iiwaGo(any,brick22.pre),0)
 iiwa, (iiwaGo(any,brick22.pre),true,0), WINNER(iiwaGo(any,brick22.pre),0)
 iiwa, (iiwaGo(any,brick22.pre),true,0), WINNER(iiwaGo(any,brick22.pre),0)
 iiwa, (iiwaGo(any,brick22.pre),true,0), WINNER(iiwaGo(any,brick22.pre),0)
+iiwa, (iiwaGo(any,brick22.pre),true,0), WINNER(iiwaGo(any,brick22.pre),0)
+iiwa, (iiwaGo(brick22.pre,brick22),true,0), WINNER(iiwaGo(brick22.pre,brick22),0)
 iiwa, (iiwaGo(brick22.pre,brick22),true,0), WINNER(iiwaGo(brick22.pre,brick22),0)
 iiwa, (iiwaGo(brick22.pre,brick22),true,0), WINNER(iiwaGo(brick22.pre,brick22),0)
 iiwa, (iiwaGo(brick22.pre,brick22),true,0), WINNER(iiwaGo(brick22.pre,brick22),0)
@@ -457,6 +481,10 @@ iiwa, (iiwaGo(brick22,home),true,0), WINNER(iiwaGo(brick22,home),0)
 iiwa, (iiwaGo(brick22,home),true,0), WINNER(iiwaGo(brick22,home),0)
 iiwa, (iiwaGo(brick22,home),true,0), WINNER(iiwaGo(brick22,home),0)
 iiwa, (iiwaGo(brick22,home),true,0), WINNER(iiwaGo(brick22,home),0)
+iiwa, (iiwaGo(brick22,home),true,0), WINNER(iiwaGo(brick22,home),0)
+iiwa, (iiwaGo(any,brick21.pre),true,0), WINNER(iiwaGo(any,brick21.pre),0)
+iiwa, (iiwaGo(any,brick21.pre),true,0), WINNER(iiwaGo(any,brick21.pre),0)
+iiwa, (iiwaGo(any,brick21.pre),true,0), WINNER(iiwaGo(any,brick21.pre),0)
 iiwa, (iiwaGo(any,brick21.pre),true,0), WINNER(iiwaGo(any,brick21.pre),0)
 iiwa, (iiwaGo(any,brick21.pre),true,0), WINNER(iiwaGo(any,brick21.pre),0)
 iiwa, (iiwaGo(any,brick21.pre),true,0), WINNER(iiwaGo(any,brick21.pre),0)
@@ -508,6 +536,33 @@ iiwa, (iiwaInsert(brick22,brick21.over),true,0), WINNER(iiwaInsert(brick22,brick
 iiwa, (iiwaInsert(brick22,brick21.over),true,0), WINNER(iiwaInsert(brick22,brick21.over),0)
 iiwa, (iiwaInsert(brick22,brick21.over),true,0), WINNER(iiwaInsert(brick22,brick21.over),0)
 iiwa, (iiwaInsert(brick22,brick21.over),true,0), WINNER(iiwaInsert(brick22,brick21.over),0)
+iiwa, (iiwaInsert(brick22,brick21.over),true,0), WINNER(iiwaInsert(brick22,brick21.over),0)
+iiwa, (iiwaInsert(brick22,brick21.over),true,0), WINNER(iiwaInsert(brick22,brick21.over),0)
+iiwa, (iiwaInsert(brick22,brick21.over),true,0), WINNER(iiwaInsert(brick22,brick21.over),0)
+iiwa, (iiwaInsert(brick22,brick21.over),true,0), WINNER(iiwaInsert(brick22,brick21.over),0)
+iiwa, (iiwaInsert(brick22,brick21.over),true,0), WINNER(iiwaInsert(brick22,brick21.over),0)
+iiwa, (iiwaInsert(brick22,brick21.over),true,0), WINNER(iiwaInsert(brick22,brick21.over),0)
+iiwa, (iiwaInsert(brick22,brick21.over),true,0), WINNER(iiwaInsert(brick22,brick21.over),0)
+iiwa, (iiwaInsert(brick22,brick21.over),true,0), WINNER(iiwaInsert(brick22,brick21.over),0)
+iiwa, (iiwaInsert(brick22,brick21.over),true,0), WINNER(iiwaInsert(brick22,brick21.over),0)
+iiwa, (iiwaInsert(brick22,brick21.over),true,0), WINNER(iiwaInsert(brick22,brick21.over),0)
+iiwa, (iiwaInsert(brick22,brick21.over),true,0), WINNER(iiwaInsert(brick22,brick21.over),0)
+iiwa, (iiwaInsert(brick22,brick21.over),true,0), WINNER(iiwaInsert(brick22,brick21.over),0)
+iiwa, (iiwaInsert(brick22,brick21.over),true,0), WINNER(iiwaInsert(brick22,brick21.over),0)
+iiwa, (iiwaInsert(brick22,brick21.over),true,0), WINNER(iiwaInsert(brick22,brick21.over),0)
+iiwa, (iiwaInsert(brick22,brick21.over),true,0), WINNER(iiwaInsert(brick22,brick21.over),0)
+iiwa, (iiwaInsert(brick22,brick21.over),true,0), WINNER(iiwaInsert(brick22,brick21.over),0)
+iiwa, (iiwaInsert(brick22,brick21.over),true,0), WINNER(iiwaInsert(brick22,brick21.over),0)
+iiwa, (iiwaInsert(brick22,brick21.over),true,0), WINNER(iiwaInsert(brick22,brick21.over),0)
+iiwa, (iiwaInsert(brick22,brick21.over),true,0), WINNER(iiwaInsert(brick22,brick21.over),0)
+iiwa, (iiwaInsert(brick22,brick21.over),true,0), WINNER(iiwaInsert(brick22,brick21.over),0)
+iiwa, (iiwaInsert(brick22,brick21.over),true,0), WINNER(iiwaInsert(brick22,brick21.over),0)
+iiwa, (iiwaInsert(brick22,brick21.over),true,0), WINNER(iiwaInsert(brick22,brick21.over),0)
+iiwa, (iiwaInsert(brick22,brick21.over),true,0), WINNER(iiwaInsert(brick22,brick21.over),0)
+iiwa, (iiwaInsert(brick22,brick21.over),true,0), WINNER(iiwaInsert(brick22,brick21.over),0)
+iiwa, (iiwaInsert(brick22,brick21.over),true,0), WINNER(iiwaInsert(brick22,brick21.over),0)
+iiwa, (iiwaInsert(brick22,brick21.over),true,0), WINNER(iiwaInsert(brick22,brick21.over),0)
+iiwa, (iiwaInsert(brick22,brick21.over),true,0), WINNER(iiwaInsert(brick22,brick21.over),0)
 wsg50, (wsg50Release(brick22),true,0), WINNER(wsg50Release(brick22),0)
 wsg50, (wsg50Release(brick22),true,0), WINNER(wsg50Release(brick22),0)
 wsg50, (wsg50Release(brick22),true,0), WINNER(wsg50Release(brick22),0)
@@ -524,275 +579,67 @@ wsg50, (wsg50Release(brick22),true,0), WINNER(wsg50Release(brick22),0)
 wsg50, (wsg50Release(brick22),true,0), WINNER(wsg50Release(brick22),0)
 wsg50, (wsg50Release(brick22),true,0), WINNER(wsg50Release(brick22),0)
 wsg50, (wsg50Release(brick22),true,0), WINNER(wsg50Release(brick22),0)
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, NO-WINNER
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),true,0), WINNER(iiwaGo(any,home),0)
-iiwa, (iiwaGo(any,home),false,0), NO-WINNER
-iiwa, (iiwaGo(any,home),false,0), NO-WINNER
-iiwa, (iiwaGo(any,home),false,0), NO-WINNER
-iiwa, (iiwaGo(any,home),false,0), NO-WINNER
-iiwa, (iiwaGo(any,home),false,0), NO-WINNER
-iiwa, (iiwaGo(any,home),false,0), NO-WINNER
-iiwa, (iiwaGo(any,home),false,0), NO-WINNER
-iiwa, (iiwaGo(any,home),false,0), NO-WINNER
-iiwa, (iiwaGo(any,home),false,0), NO-WINNER
-iiwa, (iiwaGo(any,home),false,0), NO-WINNER
-iiwa, (iiwaGo(any,home),false,0), NO-WINNER
-iiwa, (iiwaGo(any,home),false,0), NO-WINNER
-iiwa, (iiwaGo(any,home),false,0), NO-WINNER
-iiwa, (iiwaGo(any,home),false,0), NO-WINNER
-iiwa, (iiwaGo(any,home),false,0), NO-WINNER
-iiwa, (iiwaGo(any,home),false,0), NO-WINNER
-iiwa, (iiwaGo(any,home),false,0), NO-WINNER
-iiwa, (iiwaGo(any,home),false,0), NO-WINNER
-iiwa, (iiwaGo(any,home),false,0), NO-WINNER
-iiwa, (iiwaGo(any,home),false,0), NO-WINNER
-iiwa, (iiwaGo(any,home),false,0), NO-WINNER
-iiwa, (iiwaGo(any,home),false,0), NO-WINNER
-iiwa, (iiwaGo(any,home),false,0), NO-WINNER
+iiwa, (iiwaGo(brick21.over,brick22.pre),true,0), WINNER(iiwaGo(brick21.over,brick22.pre),0)
+iiwa, (iiwaGo(brick21.over,brick22.pre),true,0), WINNER(iiwaGo(brick21.over,brick22.pre),0)
+iiwa, (iiwaGo(brick21.over,brick22.pre),true,0), WINNER(iiwaGo(brick21.over,brick22.pre),0)
+iiwa, (iiwaGo(brick21.over,brick22.pre),true,0), WINNER(iiwaGo(brick21.over,brick22.pre),0)
+iiwa, (iiwaGo(brick21.over,brick22.pre),true,0), WINNER(iiwaGo(brick21.over,brick22.pre),0)
+iiwa, (iiwaGo(brick21.over,brick22.pre),true,0), WINNER(iiwaGo(brick21.over,brick22.pre),0)
+iiwa, (iiwaGo(brick21.over,brick22.pre),true,0), WINNER(iiwaGo(brick21.over,brick22.pre),0)
+iiwa, (iiwaGo(brick21.over,brick22.pre),true,0), WINNER(iiwaGo(brick21.over,brick22.pre),0)
+iiwa, (iiwaGo(brick21.over,brick22.pre),true,0), WINNER(iiwaGo(brick21.over,brick22.pre),0)
+iiwa, (iiwaGo(brick21.over,brick22.pre),true,0), WINNER(iiwaGo(brick21.over,brick22.pre),0)
+iiwa, (iiwaGo(brick21.over,brick22.pre),true,0), WINNER(iiwaGo(brick21.over,brick22.pre),0)
+iiwa, (iiwaGo(brick21.over,brick22.pre),true,0), WINNER(iiwaGo(brick21.over,brick22.pre),0)
+iiwa, (iiwaGo(brick21.over,brick22.pre),true,0), WINNER(iiwaGo(brick21.over,brick22.pre),0)
+iiwa, (iiwaGo(brick21.over,brick22.pre),true,0), WINNER(iiwaGo(brick21.over,brick22.pre),0)
+iiwa, (iiwaGo(brick21.over,brick22.pre),true,0), WINNER(iiwaGo(brick21.over,brick22.pre),0)
+iiwa, (iiwaGo(brick21.over,brick22.pre),true,0), WINNER(iiwaGo(brick21.over,brick22.pre),0)
+iiwa, (iiwaGo(brick21.over,brick22.pre),true,0), WINNER(iiwaGo(brick21.over,brick22.pre),0)
+iiwa, (iiwaGo(brick21.over,brick22.pre),true,0), WINNER(iiwaGo(brick21.over,brick22.pre),0)
+iiwa, (iiwaGo(brick21.over,brick22.pre),true,0), WINNER(iiwaGo(brick21.over,brick22.pre),0)
+iiwa, (iiwaGo(brick21.over,brick22.pre),true,0), WINNER(iiwaGo(brick21.over,brick22.pre),0)
+iiwa, (iiwaGo(brick21.over,brick22.pre),true,0), WINNER(iiwaGo(brick21.over,brick22.pre),0)
+iiwa, (iiwaGo(brick21.over,brick22.pre),true,0), WINNER(iiwaGo(brick21.over,brick22.pre),0)
+iiwa, (iiwaGo(brick21.over,brick22.pre),true,0), WINNER(iiwaGo(brick21.over,brick22.pre),0)
+iiwa, (iiwaGo(brick21.over,brick22.pre),true,0), WINNER(iiwaGo(brick21.over,brick22.pre),0)
+iiwa, (iiwaGo(brick21.over,brick22.pre),true,0), WINNER(iiwaGo(brick21.over,brick22.pre),0)
+iiwa, (iiwaGo(brick21.over,brick22.pre),true,0), WINNER(iiwaGo(brick21.over,brick22.pre),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)
+iiwa, (iiwaGo(brick22.pre,home),true,0), WINNER(iiwaGo(brick22.pre,home),0)

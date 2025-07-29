@@ -289,7 +289,8 @@ def generate_launch_description():
             output='screen',
             parameters=[apriltag_config],
             remappings=[
-                ('image_rect',  '/frontal_camera/color/image_raw'),
+                #('image_rect',  '/frontal_camera/color/image_raw'),
+                ('image_rect/compressed',  '/frontal_camera/color/image_raw/compressed'),
                 ('camera_info', '/frontal_camera/color/camera_info')
             ]
         ),

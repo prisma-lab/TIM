@@ -554,7 +554,7 @@ bool IIWAGoBehavior::perceptualSchema(){
         wmv_compete<std::string>("iiwaManager", "iiwa", this->getInstance());
 
         IIWA_state state = wmv_get<IIWA_state>("iiwa.state");
-
+/*
         std::cout<<this->getInstance()<<": DIFF: "<<std::endl;
         plot_cartesian_difference(state.cartesian_position, cartesian_goal[0]);
 
@@ -568,6 +568,17 @@ bool IIWAGoBehavior::perceptualSchema(){
             wmv_set<bool>(frame_name+".reached", true);
         else
             wmv_set<bool>(frame_name+".reached", false);
+*/
+    }
+    else{
+        cartesian_goal.push_back( iiwa_subscribe_tf( end_pos ) );
+        if(!cartesian_goal[0].empty()){
+            have_goal = true;
+            frame_name = end_pos;
+            std::cout<<arg(0)<<": have goal (tf)! "<<std::endl;
+        }
+        else
+            cartesian_goal.clear();
     }
     wm_unlock();
 
@@ -1167,7 +1178,7 @@ std::vector<double> IIWAInsertBehavior::iiwa_subscribe_tf(std::string target_fra
             //t = tf_buffer->lookupTransform(target_frame, start_frame, tf2::TimePointZero);
             t = tf_buffer->lookupTransform(start_frame, target_frame, tf2::TimePointZero);
             //t = tf_buffer->lookupTransform(target_frame, start_frame, nh->get_clock()->now(),rclcpp::Duration(1000000));
-            std::cout<<arg(0)<<": TF FOUND"<<std::endl;
+            //std::cout<<arg(0)<<": TF FOUND"<<std::endl;
 
             tf2::Quaternion q(
                 t.transform.rotation.x,

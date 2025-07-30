@@ -1,15 +1,23 @@
-#brick10
-exists(iiwa_base_link,brick10) -> brick10.present
-1 / dist(iiwa_ee,brick10) ~> brick10.distance
+0.03 > dist(iiwa_ee,home) -> home.reached
 #
-#brick11
-exists(iiwa_base_link,brick11) -> brick11.present
-1 / dist(iiwa_ee,brick11) ~> brick11.distance
 #
 #brick20
 exists(iiwa_base_link,brick20) -> brick20.present
 1 / dist(iiwa_ee,brick20) ~> brick20.distance
+0.15 > dist(iiwa_ee,brick20) -> brick20.near
+0.02 > xydist(iiwa_ee,brick20) -> brick20.aligned
+0.03 > dist(iiwa_ee,brick20) -> brick20.reached
 #
 #brick21
 exists(iiwa_base_link,brick21) -> brick21.present
 1 / dist(iiwa_ee,brick21) ~> brick21.distance
+0.15 > dist(iiwa_ee,brick21) -> brick21.near
+0.02 > xydist(iiwa_ee,brick21) -> brick21.aligned
+0.03 > dist(iiwa_ee,brick21) -> brick21.reached
+#
+#brick22
+exists(iiwa_base_link,brick22) -> brick22.present
+1 / dist(iiwa_ee,brick22) ~> brick22.distance
+0.15 > dist(iiwa_ee,brick22) -> brick22.near
+0.02 > xydist(iiwa_ee,brick22) -> brick22.aligned
+0.03 > dist(iiwa_ee,brick22) -> brick22.reached

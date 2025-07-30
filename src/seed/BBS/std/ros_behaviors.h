@@ -568,7 +568,7 @@ public:
                     kv.v = ydiff(t);
                 else if(rules[i].function == "zdiff")
                     kv.v = zdiff(t);
-                else if(rules[i].function == "eudist")
+                else if(rules[i].function == "dist")
                     kv.v = eudist(t);
                 else if(rules[i].function == "xydist")
                     kv.v = xydist(t);

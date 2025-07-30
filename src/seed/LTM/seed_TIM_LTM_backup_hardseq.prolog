@@ -287,58 +287,35 @@ schema(iiwaTest3, [
 %	[hardSequence([iiwastack(Obj2,Obj1),iiwastack(Obj3,Obj2)]), 0, ["TRUE"] ] ], 
 %	[], []).
 
-%NOTE: for now, stack and unstack are just placeholders for attach and detach
-
 schema(iiwaunstack(Obj1,Obj2), [
 	[hardSequence([iiwaDetach(Obj1,Obj2),iiwaWait(w0)],iiwaunstack.Obj1.Obj2), 0, ["TRUE"] ] ], 
 	[], []).
 
-%schema(iiwastack(Obj1,Obj2), [
-%	[hardSequence([iiwaWait(w0),iiwaAttach(Obj1,Obj2)],iiwastack.Obj1.Obj2), 0, ["TRUE"] ] ], 
-%	[on(Obj1,Obj2)], []).
 schema(iiwastack(Obj1,Obj2), [
-	[iiwaAttach(Obj1,Obj2),0,["TRUE"]] ],
+	[hardSequence([iiwaWait(w0),iiwaAttach(Obj1,Obj2)],iiwastack.Obj1.Obj2), 0, ["TRUE"] ] ], 
 	[on(Obj1,Obj2)], []).
 
-
-%schema(iiwaAttach(Obj1,Obj2), [
-%	[hardSequence([iiwaGo(any,Obj2.pre),iiwaWait(w2),iiwaInsert(Obj1,Obj2.over),iiwaWait(w3),wsg50Release(Obj1),iiwaGo(Obj2.over,Obj1.pre),iiwaGo(Obj1.pre,home),timer(on(Obj1,Obj2),true,0.1)],iiwaAttach.Obj1.Obj2), 0, ["TRUE"] ] ], 
-%	[on(Obj1,Obj2)], []).
-schema(iiwaAttach(Obj1,Obj2), [
-	[iiwaGo(any,Obj2.pre),0,[-Obj2.near, -inserted(Obj1,Obj2.over)]],
-	[iiwaInsert(Obj1,Obj2.over),0,[Obj2.aligned, Obj2.near, -inserted(Obj1,Obj2.over)]],
-	[wsg50Release(Obj1),0,[Obj2.aligned, Obj2.near, inserted(Obj1,Obj2.over)]],
-	[iiwaGo(Obj2.over,Obj1.pre),0,[-gripper.hold(Obj1), inserted(Obj1,Obj2.over), Obj1.near]], 
-	[iiwaGo(Obj1.pre,home),0,[-gripper.hold(Obj1), inserted(Obj1,Obj2.over), -Obj1.near, -home.reached]], 
-	[timer(on(Obj1,Obj2),true,0.1),0,[-gripper.hold(Obj1), home.reached]] ],
-	[on(Obj1,Obj2)], []).
-
-	
-schema(iiwaDetach(Obj1,Obj2), [
-	[hardSequence([iiwaGo(any,Obj1.pre),iiwaGo(Obj1.pre,Obj1),iiwaWait(w2),wsg50Grasp(Obj1),iiwaExtract(Obj1,Obj2.pre),iiwaWait(w3),iiwaGo(Obj2.pre,home),timer(Obj1.taken,true,0.1)],iiwaDetach.Obj1.Obj2), 0, ["TRUE"] ] ], 
+schema(iiwapick(Obj1,Obj2), [
+	[hardSequence([iiwaGo(any,Obj1.pre),iiwaGo(Obj1.pre,Obj1),iiwaWait(w1),wsg50Grasp(Obj1),iiwaGo(Obj1,home),timer(Obj1.taken,true,0.1)],iiwapick.Obj1.Obj2), 0, ["TRUE"] ] ], 
 	[Obj1.taken], []).
-
-
-
+%schema(iiwaPick(Obj1,Obj2), [
+%	[hardSequence([iiwaGo(Obj1.pre),iiwaGo(Obj1),iiwaWait(w1),wsg50Grasp(Obj1),iiwaGo(Obj2.pre),iiwaGo(home),timer(Obj1.taken,true,0.1)]), 0, ["TRUE"] ] ], 
+%	[Obj1.taken], []).
+	
 schema(iiwaput(Obj1,Obj2), [
 	[hardSequence([iiwaGo(any,Obj2.pre),iiwaGo(Obj2.pre,Obj2.over),iiwaWait(w3),wsg50Release(Obj1),iiwaGo(home),timer(on(Obj1,Obj2),true,0.1)],iiwaput.Obj1.Obj2), 0, ["TRUE"] ] ], 
 	[on(Obj1,Obj2)], []).
 
 
-%schema(iiwapick(Obj1,Obj2), [
-%	[hardSequence([iiwaGo(any,Obj1.pre),iiwaGo(Obj1.pre,Obj1),iiwaWait(w1),wsg50Grasp(Obj1),iiwaGo(Obj1,home),timer(Obj1.taken,true,0.1)],iiwapick.Obj1.Obj2), 0, ["TRUE"] ] ], 
-%	[Obj1.taken], []).
-schema(iiwapick(Obj,Loc), [
-	[go_grasp(Obj, Loc),0,["TRUE"]],
-	[iiwaGo(Obj,home),0,[gripper.hold(Obj), -home.reached]], 
-	[timer(Obj.taken,true,0.1),0,[gripper.hold(Obj), home.reached]] ],
-	[Obj.taken], []).
 
-schema(go_grasp(Obj,_), [
-	[iiwaGo(any, Obj.pre),0,[-Obj.aligned, -Obj.near]],
-	[iiwaGo(Obj.pre, Obj),0,[Obj.aligned, Obj.near, -Obj.reached]],
-	[wsg50Grasp(Obj),0,[Obj.reached]] ],
-	[gripper.hold(Obj)], []).
+schema(iiwaAttach(Obj1,Obj2), [
+	[hardSequence([iiwaGo(any,Obj2.pre),iiwaWait(w2),iiwaInsert(Obj1,Obj2.over),iiwaWait(w3),wsg50Release(Obj1),iiwaGo(Obj2.over,Obj1.pre),iiwaGo(Obj1.pre,home),timer(on(Obj1,Obj2),true,0.1)],iiwaAttach.Obj1.Obj2), 0, ["TRUE"] ] ], 
+	[on(Obj1,Obj2)], []).
+	
+schema(iiwaDetach(Obj1,Obj2), [
+	[hardSequence([iiwaGo(any,Obj1.pre),iiwaGo(Obj1.pre,Obj1),iiwaWait(w2),wsg50Grasp(Obj1),iiwaExtract(Obj1,Obj2.pre),iiwaWait(w3),iiwaGo(Obj2.pre,home),timer(Obj1.taken,true,0.1)],iiwaDetach.Obj1.Obj2), 0, ["TRUE"] ] ], 
+	[Obj1.taken], []).
+
 
 % --
 

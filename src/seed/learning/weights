@@ -2,7 +2,7 @@ w(hardSequence,(teleology,1),(iiwaput,1),(iiwapick,1),(iiwastack,1),(iiwaunstack
 w(iiwaunstack,(softSequence,1))
 w(show,(requestStream,1))
 w(timer,(iiwaWait,1),(iiwapick,1),(iiwaAttach,1))
-w(iiwaGo,(go_grasp,1),(iiwaAttach,1),(requestStream,1),(iiwapick,1))
+w(iiwaGo,(iiwapick,1),(requestStream,1),(iiwaAttach,1),(go_grasp,1))
 w(iiwapick,(teleology,1),(requestStream,1),(softSequence,1))
 w(iiwaAttach,(requestStream,1),(iiwastack,1),(teleology,1))
 w(requestStream,(teleology,1))

@@ -1125,7 +1125,9 @@ void IIWAInsertBehavior::motorSchema(){
         double ang_limit = 0.02;
 
         //compensate with markers' difference (x and y only)
-        double k = 0.8;
+        //  NOTE: this only works if bricks are perpendicular to the ground
+        //        otherwise it leads the robot to tear down the tower
+        double k = 0.6;
         double err_x = (object_pose[0] - cartesian_target[0]);
         double err_y = (object_pose[1] - cartesian_target[1]);
         double err_z = (object_pose[2] - cartesian_target[2]);

@@ -140,7 +140,8 @@ bool IIWAManagerBehavior::perceptualSchema(){
             }
             else if(new_mode=="insertion_cartesian_impedance"){
                 //THESE PARAMETERS WORK REALLY GOOD FOR EXECUTION (300 is MAX for angles!)
-                std::vector<double> c_stiff_insertion = {250,250,250,30,30,30}; //less force during insertion
+                //std::vector<double> c_stiff_insertion = {250,250,250,30,30,30}; //less force during insertion
+                std::vector<double> c_stiff_insertion = {200,200,200,30,30,30};
                 std::vector<double> c_dump_insertion  = {1,1,1,1,1,1};
                 
                 iiwa_interface.setCartesianStiffness(c_stiff_insertion);
@@ -1119,14 +1120,20 @@ void IIWAInsertBehavior::motorSchema(){
         //  NOTE: here we have to implement a sort of peg-in-hole
         //      the target has to randomly change a bit to shake a little the robot
 
-        double lin_limit = 15.0; //10.0;
+        double lin_limit = 10.0; //15.0;
         double yaw_limit = 0.1;
         double ang_limit = 0.02;
 
+        //compensate with markers' difference (x and y only)
+        double k = 0.8;
+        double err_x = (object_pose[0] - cartesian_target[0]);
+        double err_y = (object_pose[1] - cartesian_target[1]);
+        double err_z = (object_pose[2] - cartesian_target[2]);
+
         //shakle the robot
         std::vector<double> noisy_cartesian_target;
-        noisy_cartesian_target.push_back(cartesian_target[0] + rnd.real(-lin_limit,lin_limit) ); // 5mm
-        noisy_cartesian_target.push_back(cartesian_target[1] + rnd.real(-lin_limit,lin_limit) );
+        noisy_cartesian_target.push_back(cartesian_target[0] -k*err_x + rnd.real(-lin_limit,lin_limit) ); // 5mm
+        noisy_cartesian_target.push_back(cartesian_target[1] -k*err_y + rnd.real(-lin_limit,lin_limit) );
         noisy_cartesian_target.push_back(cartesian_target[2] + rnd.real(-lin_limit,lin_limit) );
         noisy_cartesian_target.push_back(cartesian_target[3] + rnd.real(-yaw_limit,yaw_limit) ); // 10deg 
         noisy_cartesian_target.push_back(cartesian_target[4] + rnd.real(-ang_limit,ang_limit) );
@@ -1139,10 +1146,13 @@ void IIWAInsertBehavior::motorSchema(){
 
         IIWA_state state = wmv_get<IIWA_state>("iiwa.state");
 
-        if(!cartesian_pose_reached(cartesian_target, state.cartesian_position,8,0.10)){
-        //if(!cartesian_pose_reached(cartesian_target, object_pose)){
+        //if(!cartesian_pose_reached(cartesian_target, state.cartesian_position,8,0.10)){
+        if(!cartesian_pose_reached(cartesian_target, object_pose,8,0.08)){
             wmv_set<bool>("inserted("+object_id+","+slot_id+")", false);
             std::cout<<"insertion running:"<<std::endl;
+            std::cout<<"x_err: "<<err_x<<std::endl;
+            std::cout<<"y_err: "<<err_y<<std::endl;
+            std::cout<<"z_err: "<<err_z<<std::endl;
             plot_cartesian_difference(cartesian_target, state.cartesian_position);
         }
         else {

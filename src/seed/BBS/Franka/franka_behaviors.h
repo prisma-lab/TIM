@@ -13,6 +13,13 @@
 #include "tf2_ros/transform_listener.h"
 #include "tf2_ros/buffer.h"
 
+//ROS services from UNITN to invoke Franka primitives
+#include <chrono>
+#include "inverse_msgs/srv/execute_skill.hpp"
+#include "inverse_msgs/srv/point_to_point_motion.hpp"
+#include "std_srvs/srv/trigger.hpp"  
+
+
 using namespace seed; //this is not needed to compile, byt most IDEs require it
 
 
@@ -36,50 +43,34 @@ inline double deg2rad(double degree) {
 class FrankaBehavior : public Behavior {
 public:
 
-FrankaBehavior(std::string instance);
+    FrankaBehavior();
 
-inline std::vector<double> franka_subscribe_tf(std::string target_frame){
+    inline geometry_msgs::msg::PoseStamped franka_subscribe_tf(std::string target_frame){
 
-    geometry_msgs::msg::TransformStamped t;
+        geometry_msgs::msg::PoseStamped p;
+        geometry_msgs::msg::TransformStamped t;
 
-    //std::string start_frame = "iiwa_base_link";
-    std::string start_frame = "franka_"+robot_name+"/base_link";
-    
-    try {
-        //t = tf_buffer->lookupTransform(target_frame, start_frame, tf2::TimePointZero);
-        t = tf_buffer->lookupTransform(start_frame, target_frame, tf2::TimePointZero);
-        //t = tf_buffer->lookupTransform(target_frame, start_frame, nh->get_clock()->now(),rclcpp::Duration(1000000));
-        std::cout<<arg(0)<<": TF FOUND"<<std::endl;
-
-        tf2::Quaternion q(
-            t.transform.rotation.x,
-            t.transform.rotation.y,
-            t.transform.rotation.z,
-            t.transform.rotation.w);
-
-        tf2::Matrix3x3 m(q);
-        double roll, pitch, yaw;
-        m.getRPY(roll, pitch, yaw);
+        //std::string start_frame = "iiwa_base_link";
+        std::string start_frame = "franka_"+robot_name+"/base_link";
         
-        //NOTE: IIWA EE seems to use YPR!
-        std::vector<double> iiwa_cartesian_goal{
-            t.transform.translation.x*1000.0,
-            t.transform.translation.y*1000.0,
-            t.transform.translation.z*1000.0,
-            //roll,
-            //pitch,
-            //yaw
-            yaw,
-            pitch,
-            roll
-        };
+        try {
+            //t = tf_buffer->lookupTransform(target_frame, start_frame, tf2::TimePointZero);
+            t = tf_buffer->lookupTransform(start_frame, target_frame, tf2::TimePointZero);
+            //t = tf_buffer->lookupTransform(target_frame, start_frame, nh->get_clock()->now(),rclcpp::Duration(1000000));
+            std::cout<<arg(0)<<": TF FOUND"<<std::endl;
 
-        return iiwa_cartesian_goal;
-    } catch (const tf2::TransformException & ex) {
-        std::cout<<arg(0)<<": unable to find transform from "<<start_frame<<" to "<<target_frame<<std::endl;
-        return std::vector<double>();
+            p.header = t.header;
+            p.pose.position.x = t.transform.translation.x;
+            p.pose.position.y = t.transform.translation.y;
+            p.pose.position.z = t.transform.translation.z;
+            p.pose.orientation = t.transform.rotation;
+
+            return p;
+        } catch (const tf2::TransformException & ex) {
+            std::cout<<arg(0)<<": unable to find transform from "<<start_frame<<" to "<<target_frame<<std::endl;
+            return p;
+        }
     }
-}
 
 protected:
     //Franka varaibles
@@ -109,6 +100,19 @@ public:
     
     void exit();
 
+    // functions invoking UNITN services
+    bool franka_stop();
+
+    bool franka_execute_skill(std::string skill_name, geometry_msgs::msg::PoseStamped init_p, geometry_msgs::msg::PoseStamped fin_p);
+
+    bool franka_move_p2p(geometry_msgs::msg::PoseStamped init_p, geometry_msgs::msg::PoseStamped fin_p);
+
+    //functions invoking Franka actions
+
+    bool franka_open_gripper(double width, double velocity);
+
+    bool franka_close_gripper(double width, double force, double velocity);
+
 protected:
     //NOTE: this variable is used to self-register the class into the BBS
     //inline static bool registered = BehaviorBasedSystem::add("template",&TemplateBehavior::create); //this should be done in the .cpp
@@ -117,6 +121,12 @@ protected:
     std::string msg;
 
     std::string current_action;
+    std::string new_action;
+
+    //UNITN services
+    rclcpp::Client<inverse_msgs::srv::ExecuteSkill>::SharedPtr client_skill;
+    rclcpp::Client<inverse_msgs::srv::PointToPointMotion>::SharedPtr client_p2p;
+    rclcpp::Client<std_srvs::srv::Trigger>::SharedPtr client_stop;
 };
 
 
@@ -272,7 +282,7 @@ public:
     
     static Behavior *create(std::string instance);
 
-    bool perceptualSchema();
+    bool perceptualSchema();    
 
     void motorSchema();
 

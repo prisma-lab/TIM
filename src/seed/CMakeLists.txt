@@ -54,6 +54,9 @@ find_package(tf2_ros REQUIRED)
 #INVERSE-specific libraries:
 find_package(plansys2_msgs REQUIRED)
 find_package(task_planner_msgs REQUIRED)
+#UNITN msgs
+find_package(inverse_msgs REQUIRED)
+find_package(std_srvs REQUIRED)
 
 # let the compiler search for headers in the include folder
 include_directories(
@@ -110,6 +113,8 @@ ament_target_dependencies(seed
   #inverse-specific:
   plansys2_msgs
   task_planner_msgs
+  inverse_msgs
+  std_srvs
 )
 
 target_link_libraries(seed

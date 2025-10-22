@@ -16,7 +16,7 @@ using namespace seed; //this is not needed to compile, but most IDEs require it
 *  *******************************************************************************
 */
 
-FrankaBehavior::FrankaBehavior(std::string instance){
+FrankaBehavior::FrankaBehavior(){
     //initialize buffer
     tf_buffer = std::make_unique<tf2_ros::Buffer>(nh->get_clock());
     //initialize listener
@@ -62,6 +62,11 @@ FrankaManagerBehavior::FrankaManagerBehavior(std::string instance){
 
     current_action = "idle";
 
+    // Create clients for services
+    client_skill = nh->create_client<inverse_msgs::srv::ExecuteSkill>("TODO");
+    client_p2p = nh->create_client<inverse_msgs::srv::PointToPointMotion>("TODO");
+    client_stop = nh->create_client<std_srvs::srv::Trigger>("TODO");
+
     //TODO: initialize communication with robot
 
     // write CUSTOM construction code here...
@@ -96,30 +101,9 @@ bool FrankaManagerBehavior::perceptualSchema(){
     wm_lock();
 
     //NOTE: here we will try the self-competition among behaviors
-    std::string new_action = wmv_get<std::string>("franka_"+robot_name+".action");
+    new_action = wmv_get<std::string>("franka_"+robot_name+".action");
 
     wm_unlock();
-
-
-    // if action to be executed is changed, get the data about the new action
-    if(new_action != current_action){
-        std::cout<<arg(0)<<": starting "<<new_action<<std::endl;
-
-        if(current_action!="idle"){
-            std::cout<<arg(0)<<": stopping "<<current_action<<std::endl;
-            //stop execution of current action
-
-            std::cout<<arg(0)<<": "<<current_action<<" stopped!"<<std::endl;
-        }
-
-        //start execution of current action
-
-        current_action = new_action;
-
-        std::cout<<arg(0)<<": "<<current_action<<" started!"<<std::endl;
-    }
-
-    
 
     return true;
 }
@@ -133,6 +117,64 @@ bool FrankaManagerBehavior::perceptualSchema(){
 //  if these conditions are not satisfied, only perceptualSchema is executed.
 void FrankaManagerBehavior::motorSchema(){
     // write CUSTOM code here...
+
+    // if action to be executed is changed, get the data about the new action
+    if(new_action != current_action && current_action != ""){
+        std::cout<<arg(0)<<": starting "<<new_action<<std::endl;
+
+        if(current_action!="idle"){
+            std::cout<<arg(0)<<": stopping "<<current_action<<std::endl;
+            //stop execution of current action
+
+            std::cout<<arg(0)<<": "<<current_action<<" stopped!"<<std::endl;
+        }
+
+        //start execution of current action
+
+        std::vector<std::string> v = instance2vector(current_action);
+
+        if(v[0] == "frankaGo"){
+            geometry_msgs::msg::PoseStamped p_init, p_fin;
+            if(v.size()>3){
+                p_init = franka_subscribe_tf(v[2]);
+                p_fin = franka_subscribe_tf(v[3]);
+            }
+            else{
+                p_init = franka_subscribe_tf("TODO_FRANKA_CURRENT_POSE");
+                p_fin = franka_subscribe_tf(v[2]);
+            }
+            if(!franka_move_p2p(p_init, p_fin)){
+                return;
+            }
+        }
+        else if(v[0] == "frankaExec"){
+            geometry_msgs::msg::PoseStamped p_init, p_fin;
+
+            p_init = franka_subscribe_tf(v[3]);
+            p_fin = franka_subscribe_tf(v[4]);
+
+            if(!franka_execute_skill(v[2], p_init, p_fin)){
+                return;
+            }
+        }
+        else if(v[0] == "frankaInsert"){
+
+        }
+        else if(v[0] == "frankaOpen"){
+
+        }
+        else if(v[0] == "frankaClose"){
+
+        }
+        else {
+            std::cout<<arg(0)<<": action "<<current_action<<" does not exists"<<std::endl;
+        }
+
+
+        current_action = new_action;
+
+        std::cout<<arg(0)<<": "<<current_action<<" started!"<<std::endl;
+    }
 }
 
 // 6. DEFINE the exit function.
@@ -144,10 +186,110 @@ void FrankaManagerBehavior::exit(){
 }
 
 
+// FUNCTIONS FOR UNITN SERVICES
+
+bool FrankaManagerBehavior::franka_stop()
+{
+    while (!client_stop->wait_for_service(std::chrono::seconds(1))) {
+        if (!rclcpp::ok()) {
+            std::cout<<"waiting for stop service"<<std::endl;
+            return false;
+        }
+        std::cout<<"service on"<<std::endl;
+    }
+
+    auto request = std::make_shared<std_srvs::srv::Trigger::Request>();
+    auto result_future = client_stop->async_send_request(request);
+
+    if (rclcpp::spin_until_future_complete(nh->get_node_base_interface(), result_future) == rclcpp::FutureReturnCode::SUCCESS) {
+        auto response = result_future.get();
+        if (response->success) {
+            std::cout<<"franka stopped: "<<response->message<<std::endl;
+        }
+        else {
+            std::cout<<"unable to stop franka: "<<response->message<<std::endl;
+        }
+        return response->success;
+    }
+    else {
+        std::cout<<"failed to call service"<<std::endl;
+        return false;
+    }
+}
+
+bool FrankaManagerBehavior::franka_execute_skill(std::string skill_name, geometry_msgs::msg::PoseStamped init_p, geometry_msgs::msg::PoseStamped fin_p){
+    while (!client_skill->wait_for_service(std::chrono::seconds(1))) {
+        if (!rclcpp::ok()) {
+            std::cout<<"waiting for skill service "<<std::endl;
+            return false;
+        }
+        std::cout<<"service on"<<std::endl;
+    }
+
+    auto request = std::make_shared<inverse_msgs::srv::ExecuteSkill::Request>();
+    request->skill_name = skill_name;
+    request->initial_pose = init_p;
+    request->final_pose = fin_p;
+    //request->max_vel = 0.05;
+    //request->use_learned_initial_pose = true;
+    //request->use_learned_final_pose = true;
+
+    auto result_future = client_skill->async_send_request(request);
+
+    if (rclcpp::spin_until_future_complete(nh->get_node_base_interface(), result_future) == rclcpp::FutureReturnCode::SUCCESS) {
+        auto response = result_future.get();
+        if (response->success) {
+            std::cout<<"franka execute_skill accepted"<<std::endl;
+        }
+        else {
+            std::cout<<"unable to start execute_skill franka"<<std::endl;
+        }
+        return response->success;
+    }
+    else {
+        std::cout<<"failed to call service"<<std::endl;
+        return false;
+    }
+}
+
+bool FrankaManagerBehavior::franka_move_p2p(geometry_msgs::msg::PoseStamped init_p, geometry_msgs::msg::PoseStamped fin_p){
+    while (!client_p2p->wait_for_service(std::chrono::seconds(1))) {
+        if (!rclcpp::ok()) {
+            std::cout<<"waiting for skill service "<<std::endl;
+            return false;
+        }
+        std::cout<<"service on"<<std::endl;
+    }
+
+    auto request = std::make_shared<inverse_msgs::srv::PointToPointMotion::Request>();
+    request->y0 = init_p;
+    request->g = fin_p;
+    //request->max_vel = 0.25;
+    //request->plan_y0_motion = false;
+    auto result_future = client_p2p->async_send_request(request);
+
+    if (rclcpp::spin_until_future_complete(nh->get_node_base_interface(), result_future) == rclcpp::FutureReturnCode::SUCCESS) {
+        auto response = result_future.get();
+        if (response->success) {
+            std::cout<<"franka p2p accepted"<<std::endl;
+        }
+        else {
+            std::cout<<"unable to start p2p franka: "<<std::endl;
+        }
+        return response->success;
+    }
+    else {
+        std::cout<<"failed to call service"<<std::endl;
+        return false;
+    }
+}
+
+
+
 
 /* 
 *  *******************************************************************************
-*                                   IIWA GO
+*                                   FRANKA GO
 *  *******************************************************************************
 */
 

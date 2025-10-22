@@ -72,11 +72,14 @@ RUN mkdir -p ${HOME}/ros2_ws/src
 WORKDIR ${HOME}/ros2_ws
 COPY --chown=user ./src ${HOME}/ros2_ws/src
 
+#RUN git clone -b dmp --single-branch https://github.com/matteodv99tn/mdv_cpp_lib.git src/mdvcpplib
+
 # YIGIT: building downward
 RUN cd /home/user/ros2_ws/src/downward && ./build.py && cd -
 
 SHELL ["/bin/bash", "-c"] 
-RUN source /opt/ros/${ROS_DISTRO}/setup.bash; rosdep update; rosdep install -i --from-path src --rosdistro ${ROS_DISTRO} -y; colcon build --symlink-install
+RUN source /opt/ros/${ROS_DISTRO}/setup.bash; rosdep update; rosdep install -i --from-path src --rosdistro ${ROS_DISTRO} -y; colcon build --symlink-install --packages-skip inverse_bringup inverse_calibration inverse_motion_planner inverse_orchestrator inverse_perception inverse_resources --cmake-args -DCMAKE_CXX_FLAGS="-w"
+
 
 #Add script source to .bashrc
 RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash;" >>  ${HOME}/.bashrc

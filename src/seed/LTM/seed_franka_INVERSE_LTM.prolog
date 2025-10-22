@@ -327,13 +327,14 @@ schema(wsg50Release(Obj), [], [-gripper.hold(Obj)], [] ).
 
 
 % FRANKA tasks (concrete)
-schema(frankaManager(R), [], [], [] ).
+schema(frankaManager(_), [], [], [] ).
 
-schema(frankaGo(R,F1,F2), [], [frankaGo(R,F1,F2).done], [] ).
+schema(frankaGo(R,P1,P2), [], [frankaGo(R,P1,P2).done], [] ).
+schema(frankaGo(R,P2), [], [frankaGo(R,P2).done], [] ).
 
 %schema(frankaTeach(Motion), [], [frankaTeach(Motion).done], [] ).
 
-schema(frankaExe(R,Motion), [], [frankaExe(R,Motion).done], [] ).
+schema(frankaExec(R,Motion,P1,P2), [], [frankaExec(R,Motion,P1,P2).done], [] ).
 
 schema(frankaInsert(R,Obj1,Frame), [], [inserted(R,Obj1,Frame)], [] ).
 
@@ -376,8 +377,7 @@ schema(position(R,Obj,FromPos,ToPos), [
 		frankaGo(R,home),
 		frankaPick(R,Obj,FromPos),
 		frankaPlace(R,Obj,ToPos),
-		timer(positioned(Obj,ToPos),true,0.1),
-	]), 0, ["TRUE"] ] ], 
+		timer(positioned(Obj,ToPos),true,0.1) ]), 0, ["TRUE"] ] ], 
 	[positioned(Obj,ToPos)], []).
 
 
@@ -393,18 +393,18 @@ schema(assembly(R,connection_bar), [
 	[timer(assembled(connection_bar),true,0.1), 0, [tightened(screw,battery_module_1), tightened(screw,battery_module_2)]]
 	% closing protective hoods omitted for brevity
 	],
-	[assembled(connection_bar),], []).
+	[assembled(connection_bar)], []).
 
 %Install exit connectors on battery front
 schema(install(R,exit_connectors), [
 	[hardSequence([
 		frankaPick(R,protection_plate,kit2_1),
-		frankaExec(R,TO_ADD),
+		frankaExec(R,id_of_primitive_TO_ADD),
 		frankaInsert(R,protection_plate,battery_front) ]), 0, ["TRUE"] ],
 	[user_monitor(tighten(screw,battery_front_1)), 0, [inserted(R,protection_plate,battery_front)] ],
 	[user_monitor(tighten(screw,battery_front_2)), 0, [inserted(R,protection_plate,battery_front)] ],
 	[timer(tightened(protection_plate),true,0.1), 0, [tightened(screw,battery_module_1), tightened(screw,battery_module_2)] ]],
-	[assembled(connection_bar),], []).
+	[assembled(connection_bar)], []).
 
 
 

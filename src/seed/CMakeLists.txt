@@ -57,6 +57,8 @@ find_package(task_planner_msgs REQUIRED)
 #UNITN msgs
 find_package(inverse_msgs REQUIRED)
 find_package(std_srvs REQUIRED)
+find_package(rclcpp_action REQUIRED)
+find_package(franka_msgs REQUIRED)
 
 # let the compiler search for headers in the include folder
 include_directories(
@@ -115,6 +117,8 @@ ament_target_dependencies(seed
   task_planner_msgs
   inverse_msgs
   std_srvs
+  rclcpp_action
+  franka_msgs
 )
 
 target_link_libraries(seed

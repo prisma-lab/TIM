@@ -67,6 +67,18 @@ FrankaManagerBehavior::FrankaManagerBehavior(std::string instance){
     client_p2p = nh->create_client<inverse_msgs::srv::PointToPointMotion>("TODO");
     client_stop = nh->create_client<std_srvs::srv::Trigger>("TODO");
 
+    // Grasp client
+    grasp_client_ = rclcpp_action::create_client<Grasp>(nh, "TODO");
+    std::cout<<arg(0)<<": wait for Grasp action server"<<std::endl;
+    grasp_client_->wait_for_action_server();
+    std::cout<<arg(0)<<": Grasp action server ready"<<std::endl;
+
+    // Move client
+    move_client_ = rclcpp_action::create_client<Move>(nh, "TODO");
+    std::cout<<arg(0)<<": wait for Move action server"<<std::endl;
+    move_client_->wait_for_action_server();
+    std::cout<<arg(0)<<": Move action server ready"<<std::endl;
+
     //TODO: initialize communication with robot
 
     // write CUSTOM construction code here...
@@ -161,10 +173,16 @@ void FrankaManagerBehavior::motorSchema(){
 
         }
         else if(v[0] == "frankaOpen"){
-
+            auto future = franka_open_gripper(3.0,10);
+            rclcpp::spin_until_future_complete(nh, future);
+            bool success = future.get();
+            std::cout<<arg(0)<<": action "<<current_action<<" finished"<<std::endl;
         }
         else if(v[0] == "frankaClose"){
-
+            auto future = franka_close_gripper(2.0,30,10);
+            rclcpp::spin_until_future_complete(nh, future);
+            bool success = future.get();
+            std::cout<<arg(0)<<": action "<<current_action<<" finished"<<std::endl;
         }
         else {
             std::cout<<arg(0)<<": action "<<current_action<<" does not exists"<<std::endl;
@@ -284,8 +302,41 @@ bool FrankaManagerBehavior::franka_move_p2p(geometry_msgs::msg::PoseStamped init
     }
 }
 
+std::shared_future<bool> FrankaManagerBehavior::franka_open_gripper(double width, double velocity)
+{
+    Move::Goal goal;
+    goal.width = width;
+    goal.speed = velocity;
 
+    auto promise = std::make_shared<std::promise<bool>>();
+    auto future = promise->get_future().share();
 
+    rclcpp_action::Client<Move>::SendGoalOptions options;
+    options.goal_response_callback = std::bind(&FrankaManagerBehavior::onMoveGoalResponse, this, promise, std::placeholders::_1);
+    options.result_callback = std::bind(&FrankaManagerBehavior::onMoveResult, this, promise, std::placeholders::_1);
+
+    move_client_->async_send_goal(goal, options);
+    return future;
+}
+
+std::shared_future<bool> FrankaManagerBehavior::franka_close_gripper(double width, double force, double velocity) {
+    Grasp::Goal goal;
+    goal.width = width;
+    goal.speed = velocity;
+    goal.force = force;
+    goal.epsilon.inner = 0.005;
+    goal.epsilon.outer = 0.005;
+
+    auto promise = std::make_shared<std::promise<bool>>();
+    auto future = promise->get_future().share();
+
+    rclcpp_action::Client<Grasp>::SendGoalOptions options;
+    options.goal_response_callback = std::bind(&FrankaManagerBehavior::onGraspGoalResponse, this, promise, std::placeholders::_1);
+    options.result_callback = std::bind(&FrankaManagerBehavior::onGraspResult, this, promise, std::placeholders::_1);
+
+    grasp_client_->async_send_goal(goal, options);
+    return future;
+}
 
 /* 
 *  *******************************************************************************

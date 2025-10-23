@@ -20,7 +20,16 @@
 #include "std_srvs/srv/trigger.hpp"  
 
 
+//ROS actions for the franka gripper
+#include <rclcpp/rclcpp.hpp>
+#include <rclcpp_action/rclcpp_action.hpp>
+#include <franka_msgs/action/grasp.hpp>
+#include <franka_msgs/action/move.hpp>
+
 using namespace seed; //this is not needed to compile, byt most IDEs require it
+
+using Grasp = franka_msgs::action::Grasp;
+using Move = franka_msgs::action::Move;
 
 
 // Function for conversion
@@ -109,9 +118,49 @@ public:
 
     //functions invoking Franka actions
 
-    bool franka_open_gripper(double width, double velocity);
+    std::shared_future<bool> franka_open_gripper(double width, double velocity);
 
-    bool franka_close_gripper(double width, double force, double velocity);
+    std::shared_future<bool> franka_close_gripper(double width, double force, double velocity);
+
+    inline void onGraspGoalResponse(
+        const std::shared_ptr<std::promise<bool>> &promise,
+        //std::shared_future<typename rclcpp_action::ClientGoalHandle<Grasp>::SharedPtr> future_handle) {
+        std::shared_ptr<rclcpp_action::ClientGoalHandle<Grasp>> future_handle) {
+        auto goal_handle = future_handle.get();
+        if (!goal_handle)
+        {
+            promise->set_value(false);
+            return;
+        }
+    }
+
+    inline void onGraspResult(
+        const std::shared_ptr<std::promise<bool>> &promise,
+        //const typename rclcpp_action::ClientGoalHandle<Grasp>::WrappedResult &result) {
+        rclcpp_action::ClientGoalHandle<Grasp>::WrappedResult result) {
+        bool success = result.result->success;
+        promise->set_value(success);
+    }
+
+    inline void onMoveGoalResponse(
+        const std::shared_ptr<std::promise<bool>> &promise,
+        //std::shared_future<typename rclcpp_action::ClientGoalHandle<Move>::SharedPtr> future_handle) {
+        std::shared_ptr<rclcpp_action::ClientGoalHandle<Move>> future_handle) {
+        auto goal_handle = future_handle.get();
+        if (!goal_handle)
+        {
+            promise->set_value(false);
+            return;
+        }
+    }
+
+    inline void onMoveResult(
+        const std::shared_ptr<std::promise<bool>> &promise,
+        //const typename rclcpp_action::ClientGoalHandle<Move>::WrappedResult &result) {
+        rclcpp_action::ClientGoalHandle<Move>::WrappedResult result) {
+        bool success = result.result->success;
+        promise->set_value(success);
+    }
 
 protected:
     //NOTE: this variable is used to self-register the class into the BBS
@@ -127,6 +176,10 @@ protected:
     rclcpp::Client<inverse_msgs::srv::ExecuteSkill>::SharedPtr client_skill;
     rclcpp::Client<inverse_msgs::srv::PointToPointMotion>::SharedPtr client_p2p;
     rclcpp::Client<std_srvs::srv::Trigger>::SharedPtr client_stop;
+
+    //Franka gripper actions
+    rclcpp_action::Client<Grasp>::SharedPtr grasp_client_;
+    rclcpp_action::Client<Move>::SharedPtr move_client_;
 };
 
 

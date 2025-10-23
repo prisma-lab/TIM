@@ -32,6 +32,7 @@ RUN . /opt/ros/$ROS_DISTRO/setup.sh && \
 	ros-${ROS_DISTRO}-realsense2-* \
 	# TRY WITH CYCLONEDDS
 	ros-${ROS_DISTRO}-rmw-cyclonedds-cpp \ 
+	ros-${ROS_DISTRO}-franka-msgs \
 	libboost-all-dev \
 	#libxcb-randr0-dev libxcb-xtest0-dev libxcb-xinerama0-dev libxcb-shape0-dev libxcb-xkb-dev \
 	#libxcb-util-dev \

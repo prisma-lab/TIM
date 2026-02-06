@@ -60,6 +60,9 @@ find_package(std_srvs REQUIRED)
 find_package(rclcpp_action REQUIRED)
 find_package(franka_msgs REQUIRED)
 
+# JSON-based GUI
+find_package(nlohmann_json REQUIRED)
+
 # let the compiler search for headers in the include folder
 include_directories(
   include
@@ -67,7 +70,10 @@ include_directories(
   BBS/IIWA/wsg_50_cpp_driver/include
   /usr/lib/swi-prolog/include
   ${OpenCV_INCLUDE_DIRS}
+  # JSON-based GUI
+  ${nlohmann_json_INCLUDE_DIRS}
 )
+
 message("opencv: " ${OpenCV_INCLUDE_DIRS})
 message("Qt5Widgets: " ${Qt5Charts_INCLUDE_DIRS})
 message("Qt5Widgets: " ${Qt5Charts_INCLUDE_DIRS})
@@ -119,6 +125,8 @@ ament_target_dependencies(seed
   std_srvs
   rclcpp_action
   franka_msgs
+  # JSON-based GUI
+  nlohmann_json
 )
 
 target_link_libraries(seed

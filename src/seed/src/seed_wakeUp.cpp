@@ -105,7 +105,8 @@ bool wakeUp(std::string behavior, std::string instance){
 
 #if GUI_Behavior
     else if(behavior=="gui")
-        obj=new GuiBehavior(instance);
+        //obj=new GuiBehavior(instance);
+        obj=new GUIBehavior(instance);
 #endif
 
     // SELF-REGISTERING BEHAVIORS (SINCE SEED 7.0)

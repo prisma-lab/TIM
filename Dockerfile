@@ -34,6 +34,8 @@ RUN . /opt/ros/$ROS_DISTRO/setup.sh && \
 	ros-${ROS_DISTRO}-rmw-cyclonedds-cpp \ 
 	ros-${ROS_DISTRO}-franka-msgs \
 	libboost-all-dev \
+	# for new json-based seed GUI
+	nlohmann-json3-dev \
 	#libxcb-randr0-dev libxcb-xtest0-dev libxcb-xinerama0-dev libxcb-shape0-dev libxcb-xkb-dev \
 	#libxcb-util-dev \
 	libxcb-xinerama0 \

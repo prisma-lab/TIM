@@ -36,6 +36,7 @@ RUN . /opt/ros/$ROS_DISTRO/setup.sh && \
 	libboost-all-dev \
 	# for new json-based seed GUI
 	nlohmann-json3-dev \
+	python3-pyqt5 \
 	#libxcb-randr0-dev libxcb-xtest0-dev libxcb-xinerama0-dev libxcb-shape0-dev libxcb-xkb-dev \
 	#libxcb-util-dev \
 	libxcb-xinerama0 \

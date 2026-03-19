@@ -1,0 +1,8 @@
+string skill_name
+bool use_learned_initial_pose true # if true, discarts this message initial pose and prepend a cartesian interpolation motion to reach the initial pose from the learning procedure
+bool use_learned_final_pose true
+geometry_msgs/PoseStamped initial_pose
+geometry_msgs/PoseStamped final_pose
+float64 max_vel 0.05
+---
+bool success

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package format="3">
+    <name>inverse_msgs</name>
+    <version>0.1.0</version>
+    <description>Inverse interfaces</description>
+
+    <maintainer email="davide.nardi-1@unitn.it">Davide Nardi</maintainer>
+    <license>TODO: Add license</license>
+
+    <!-- Build system -->
+    <buildtool_depend>ament_cmake</buildtool_depend>
+
+    <!-- ROS 2 dependencies -->
+    <depend>std_msgs</depend>
+
+    <!-- Generate custom messages -->
+    <member_of_group>rosidl_interface_packages</member_of_group>
+    <buildtool_depend>ament_cmake</buildtool_depend>
+    <build_depend>rosidl_default_generators</build_depend>
+    <exec_depend>rosidl_default_runtime</exec_depend>
+
+    <export>
+        <build_type>ament_cmake</build_type>
+    </export>
+</package>

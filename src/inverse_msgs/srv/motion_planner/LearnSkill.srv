@@ -1,0 +1,8 @@
+string skill_name
+float64 registration_duration_secs 10.0  # number of seconds for recording
+int64 num_basis 30  # for the DMP
+---
+float64 total_demonstration_time
+geometry_msgs/Pose initial_pose
+geometry_msgs/Pose final_pose
+bool success

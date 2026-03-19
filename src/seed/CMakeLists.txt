@@ -52,7 +52,6 @@ find_package(Qt5Charts REQUIRED)
 find_package(tf2_ros REQUIRED)
 
 #INVERSE-specific libraries:
-find_package(plansys2_msgs REQUIRED)
 find_package(task_planner_msgs REQUIRED)
 #UNITN msgs
 find_package(inverse_msgs REQUIRED)
@@ -119,7 +118,6 @@ ament_target_dependencies(seed
   #seed_interfaces
   tf2_ros
   #inverse-specific:
-  plansys2_msgs
   task_planner_msgs
   inverse_msgs
   std_srvs

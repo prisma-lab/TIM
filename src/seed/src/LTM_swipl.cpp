@@ -87,7 +87,8 @@ bool LongTermMemory_swipl::loadNodeSemantics(WM_node *new_node){
         if( pq.next_solution() ) {
             //std::cout << (char*) inputs[1] << std::endl;
             
-            semantic_from_prolog = (char*) inputs[1];
+            //semantic_from_prolog = (char*) inputs[1];
+            semantic_from_prolog = inputs[1].as_string();
             
             //adjust the string and replace the \ operator with a space (added 01/12/2020 in SEED 4.0)
             replaceAll(semantic_from_prolog,"(is)","is");
@@ -107,7 +108,8 @@ bool LongTermMemory_swipl::loadNodeSemantics(WM_node *new_node){
             loadSemantics(semantic_from_prolog, new_node);
             
             //new GOAL procedure (added 02/12/2020 in SEED 4.0)
-            goal_from_prolog = (char*) inputs[2];
+            //goal_from_prolog = (char*) inputs[2];
+            goal_from_prolog = inputs[2].as_string();
             //std::cout<<"GOAL: "<<goal_from_prolog<<std::endl;
                 
             //adjust the string and replace the \ operator with a space (added 01/12/2020 in SEED 4.0)
@@ -127,7 +129,8 @@ bool LongTermMemory_swipl::loadNodeSemantics(WM_node *new_node){
             }
             
             //new REGULATIONS procedure (added 08/04/2022 in SEED 5.0)
-            regulations_from_prolog = (char*) inputs[3];
+            //regulations_from_prolog = (char*) inputs[3];
+            regulations_from_prolog = inputs[3].as_string();
             //std::cout<<"REGS: "<<regulations_from_prolog<<std::endl;
 
             //adjust the string and replace the \ operator with a space (added 01/12/2020 in SEED 4.0)
@@ -153,7 +156,8 @@ bool LongTermMemory_swipl::loadNodeSemantics(WM_node *new_node){
         
     } catch (PlException& e) {
         std::cout << "SWIPL: Query error for "<<new_node->instance<<std::endl;
-        std::cout << (char*) e << std::endl;
+        //std::cout << (char*) e << std::endl;
+        std::cout << e.what() << std::endl;
     }
     
     PL_thread_destroy_engine();
@@ -251,19 +255,23 @@ PlTerm LongTermMemory_swipl::string2term(std::string str, std::unordered_map<std
     
     PlTermv fun_args( strv.size()-1 );
     
-    try {
-        
-        //if it is an atom
-        if(strv.size()<=1){
-            
-            if(fun_name.at(0) != '_' && !isupper(fun_name.at(0)) ){
-                //std::cout<<"\t term: "<<fun_name<<std::endl;
-                return PlTerm(fun_name.c_str());
+    try
+    {
+        // if it is an atom
+        if (strv.size() <= 1)
+        {
+
+            if (fun_name.at(0) != '_' && !isupper(fun_name.at(0)))
+            {
+                // std::cout<<"\t term: "<<fun_name<<std::endl;
+                // return PlTerm(fun_name.c_str());
+                return PlTerm_string(fun_name);
             }
+            /*
             else if(fun_name.at(0) != '_'){
-                
+
                 auto it = swi_vars.find(fun_name);
-                
+
                 if (it != swi_vars.end()){
                     //std::cout<<"\t old var: "<<fun_name<<std::endl;
                     return swi_vars[fun_name];
@@ -272,21 +280,39 @@ PlTerm LongTermMemory_swipl::string2term(std::string str, std::unordered_map<std
                     //std::cout<<"\t new var: "<<fun_name<<std::endl;
                     swi_vars[fun_name] = PlCompound(fun_name.c_str());
                     return swi_vars[fun_name];
-                }   
+                }
+            }
+            */
+            else if (fun_name.at(0) != '_')
+            {
+                auto it = swi_vars.find(fun_name);
+
+                if (it != swi_vars.end())
+                {
+                    return it->second; // Return the existing PlTerm
+                }
+                else
+                {
+                    // Use insert or try_emplace to put the actual term in the map
+                    auto [inserted_it, success] = swi_vars.insert({fun_name, PlTerm_var()});
+                    return inserted_it->second;
+                }
             }
         }
-        
+
         //std::cout<<"\t compound: "<<str<<std::endl;
         
         for(size_t i=1; i<strv.size(); i++){
             fun_args[i-1] = string2term(strv[i],swi_vars);
         }
-        
-    } catch (PlException& e) {
-        std::cout << "SWIPL: Query error!"<<std::endl;
-        std::cout << (char*) e << std::endl;
     }
-    
+    catch (PlException &e)
+    {
+        std::cout << "SWIPL: Query error!"<<std::endl;
+        //std::cout << (char*) e << std::endl;
+        std::cout << e.what() << std::endl;
+    }
+
     return PlCompound(fun_name.c_str(),fun_args);
     
 }
@@ -333,7 +359,8 @@ std::string LongTermMemory_swipl::query(std::string request){
             bool not_first = false;
             
             for(size_t i=0; i<rv.size()-1; i++){
-                from_prolog = (char*) inputs[i];
+                //from_prolog = (char*) inputs[i];
+                from_prolog = inputs[i].as_string();
                 replace_point(from_prolog);
                 
                 if(not_first)
@@ -349,7 +376,8 @@ std::string LongTermMemory_swipl::query(std::string request){
         
     } catch (PlException& e) {
         std::cout << "SWIPL: Query error!"<<std::endl;
-        std::cout << (char*) e << std::endl;
+        //std::cout << (char*) e << std::endl;
+        std::cout << e.what() << std::endl;
     }
     
     //free SWI

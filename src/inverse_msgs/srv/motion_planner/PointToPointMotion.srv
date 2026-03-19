@@ -1,0 +1,9 @@
+# Executes an end effector motion from an initial to a target pose.
+# Optionally, it can pre-pend a motion plan to reach such initial configuration.
+
+geometry_msgs/PoseStamped y0           # initial pose
+geometry_msgs/PoseStamped g            # target pose
+float64 max_vel 0.25                   # maximum velocity in m/s
+bool plan_y0_motion false              # wether a motion to reach y0 shall be preplanned or not
+---
+bool success

@@ -1,0 +1,5 @@
+# Trivial motion interface that stops the robot motion for 5 seconds
+
+float64 wait_sec 5.0                     # amount, in seconds, for which the position is hold
+---
+bool success

@@ -1,0 +1,4 @@
+# inverse_msgs/srv/ListTopics.srv
+
+---
+string[] topics

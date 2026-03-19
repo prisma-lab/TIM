@@ -10,7 +10,8 @@
 
 #include "seed.h"
 
-#include <SWI-cpp.h>
+//#include <SWI-cpp.h>
+#include <SWI-cpp2.h>
 #include <SWI-Prolog.h>
 
 //#include "eclipseclass.h"

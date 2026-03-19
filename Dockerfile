@@ -1,4 +1,3 @@
-#FROM ros:foxy
 FROM ros:humble
 
 
@@ -43,20 +42,20 @@ RUN . /opt/ros/$ROS_DISTRO/setup.sh && \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && apt-get install -y ros-${ROS_DISTRO}-rqt*
-RUN apt-get update && apt-get install -y ros-${ROS_DISTRO}-plansys2-*
 
 #Environment variables
 ENV DEBIAN_FRONTEND=noninteractive
 ENV DISPLAY=:0
 ENV HOME=/home/user
-#ENV ROS_DISTRO=foxy
 ENV ROS_DISTRO=$ROS_DISTRO
 
 #Set ROS2 domain (fixed for now)
-ENV ROS_DOMAIN_ID=77
+ENV ROS_DOMAIN_ID=101
+##### YIGIT: Commented out (HFI uses FastDDS) #####
 # set DDS to cyclone! default version of DDS is bugged!
 # DDS cyclone guide: https://docs.ros.org/en/humble/Installation/DDS-Implementations/Working-with-Eclipse-CycloneDDS.html
-ENV RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+# ENV RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+###################################################
 
 #Add non root user using UID and GID passed as argument
 ARG USER_ID

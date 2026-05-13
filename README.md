@@ -1,5 +1,5 @@
 # TIM
-TIM (Task Inversion and quality Monitoring) Framework Version 1.0 (first prototype)
+TIM (Task Inversion and quality Monitoring) Framework Version 2.0 (second prototype)
 
 ## About TIM
 

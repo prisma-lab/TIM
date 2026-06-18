@@ -1,0 +1,17 @@
+[
+
+    {"label": "slide",   
+        "pre": "img4.jpg",    "post": "img3.jpg"},
+
+    {"label": "pick-up",  
+        "pre": "img0.jpg",     "post": "img2.jpg"},
+
+    {"label": "transfer", 
+        "pre": "img5.jpg", "post": "img2.jpg"},
+
+    {"label": "transfer", 
+        "pre": "img6.jpg", "post": "img2.jpg"},
+
+    {"label": "release",  
+        "pre": "img2.jpg",  "post": "img1.jpg"}
+]

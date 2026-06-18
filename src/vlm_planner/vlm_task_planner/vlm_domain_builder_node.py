@@ -13,7 +13,7 @@ The produced ``domain.pddl`` is the artefact consumed by the inference node
 (``vlm_task_planner_node``), which loads it from disk to ground problems and
 request plans. The two nodes therefore compose through the domain file.
 
-Integration notes (this is a prototype -- "no need to be perfect"):
+Integration notes:
   * Add to setup.py console_scripts:
         "vlm_domain_builder_node = vlm_task_planner.vlm_domain_builder_node:main",
   * Add to package.xml:

@@ -10,7 +10,6 @@ class OneShotPublisher(Node):
 
         self.publisher = self.create_publisher(String, '/planner_result', 10)
 
-        # pubblica una sola volta dopo un piccolo delay
         self.timer = self.create_timer(0.5, self.publish_once)
         self.published = False
 
@@ -29,8 +28,6 @@ class OneShotPublisher(Node):
             if line.strip() and not line.strip().startswith(';')
         ]
 
-        # puoi scegliere formato:
-        # 1️⃣ con newline (come vuoi tu)
         formatted_plan = '\n'.join(cleaned_plan_lines)
 
         msg = String()
@@ -41,7 +38,6 @@ class OneShotPublisher(Node):
 
         self.published = True
 
-        # opzionale: chiudi il nodo dopo aver pubblicato
         self.destroy_timer(self.timer)
         rclpy.shutdown()
 

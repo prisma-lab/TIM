@@ -138,7 +138,7 @@ and searches for a sequence of actions.
   expected results.
 - The **problem** describes the starting situation and the goal for one task.
 
-A simple model of our task could say:
+A simple model of our task says:
 
 | Action | Required before the action | Expected after the action |
 | --- | --- | --- |
@@ -147,7 +147,7 @@ A simple model of our task could say:
 | `place` | The arm is above place and the robot holds the connector. | The connector is at the destination and the gripper is empty. |
 
 Starting situation: the connector is on the table and the gripper is empty.
-Goal: the connector is at the destination. A planner could produce:
+Goal: the connector is at the destination. The included PDDL example produces:
 
 ```text
 move_a_b(pick) → pick → move_a_b(place) → place
@@ -156,7 +156,7 @@ move_a_b(pick) → pick → move_a_b(place) → place
 For this small example, that is the same order we wrote by hand. Planning becomes
 more useful when there are more objects, actions, and possible orders.
 
-The roles would be:
+The roles are:
 
 ```text
 PDDL descriptions → Fast Downward chooses an action sequence
@@ -174,29 +174,25 @@ happened before SEED advances.
 
 **What is already connected in TIM?**
 
-The repository has an initial PDDL connection:
+The UR10 demo now has a `pddl_to_seed` command:
 
-1. SEED's `plan` behavior sends domain and problem text on `/planning_request`.
-2. The `task_planner` node calls Fast Downward.
-3. It returns the action list on `/planner_result`.
-4. The SEED behavior converts those actions into task names and creates a
-   `hardSequence` to execute them.
+1. It reads the domain and problem files and calls Fast Downward.
+2. A mapping file translates each planned action into an existing SEED task.
+   For example, `(pick red-connector pick)` becomes `pick`.
+3. With `--execute`, it sends the complete `hardSequence` to `/seed_ur10/stream`.
+4. SEED runs the sequence using the same primitives and feedback as the manual demo.
 
-That behavior currently reads example blocks-world PDDL files. **Our UR10
-`pick_place_demo` does not use this planning connection yet.** Its sequence is
-written directly in the LTM.
+Without `--execute`, it only prints the plan. Every action must have a mapping
+before any request is sent. Numeric poses still come from the external publisher.
+The current mapping handles one connector and the existing pick/place targets.
 
-To connect PDDL to our demo, we need a connector domain and problem, a way to
-provide the starting state and goal, and matching SEED tasks for the planned
-actions. A first plan could use `(move_a_b pick)`, `(pick)`,
-`(move_a_b place)`, and `(place)`. The bridge would turn the move actions into
-`move_a_b(pick)` and `move_a_b(place)`, matching our commands. We also need to handle planning and execution
-failures in that connection.
+The problem's initial facts must match the scene. The command does not yet build
+those facts from perception or replan after execution failures. See
+[Run pick and place using Fast Downward](pddl-pick-place.md) for commands and examples.
 
-Numeric poses can continue to come from the external publisher or perception.
-If later plans name specific objects or destinations, we will need to select the
-corresponding poses. SEED can work with those names while the coordinates stay
-outside its task recipes.
+Typing `pick_place_demo` still uses the recipe written directly in the LTM.
+SEED's older `plan` behavior uses blocks-world example files; the UR10 command
+uses the ROS stream instead.
 
 Our current grasp uses an explicit Gazebo attachment. It demonstrates the task
 and motion interfaces; grasping through physical finger contact remains a later
@@ -211,6 +207,8 @@ improvement.
 - [Shared motion helpers](../src/ur10_primitives/src/manipulation_primitive.cpp)
 - [Primitive manager](../src/primitive_manager/src/manager.cpp)
 - [Test target publisher](../src/ur10_primitives/scripts/target_publisher.py)
-- [SEED planning connection](../src/seed/BBS/inverse/plan.cpp)
-- [Fast Downward caller](../src/task_planner/task_planner/planner_node.py)
+- [PDDL-to-SEED command](../src/task_planner/task_planner/pddl_to_seed.py)
+- [Fast Downward caller](../src/task_planner/task_planner/fast_downward.py)
+- [Example domain](../src/task_planner/pddl/ur10_pick_place_domain.pddl)
+- [Example problem](../src/task_planner/pddl/ur10_pick_place_problem.pddl)
 - [Instructions for running the demo](pick-place-design.md)

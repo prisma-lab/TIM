@@ -58,7 +58,9 @@ pick_place_demo
 
 The connector moves from the middle of the scene to the free table area at
 approximately `(0.50, 0.35, 0.815)` m in `world`. SEED executes the library's
-`hardSequence([move_a_b(pick),pick,move_a_b(place),place])`. Fast Downward is not generating this sequence yet.
+`hardSequence([move_a_b(pick),pick,move_a_b(place),place])`. This command uses
+the predefined recipe. To have Fast Downward generate the sequence from PDDL
+instead, follow [Step 4: PDDL to execution](pddl-pick-place.md).
 
 For a first exercise without SEED, send the four commands yourself. Wait for
 each command to report `succeeded` before sending the next one:

@@ -221,9 +221,10 @@ pick_place_demo
 ```
 
 SEED runs `move_a_b(pick)` → `pick` → `move_a_b(place)` → `place`.
-Numeric target poses come from the test publisher. This demo uses a predefined
-SEED sequence; PDDL planning is not yet generating these four steps. Object
-holding uses the Gazebo attach/detach plugin.
+Numeric target poses come from the test publisher. Typing `pick_place_demo` uses
+a predefined SEED sequence. To generate the sequence from domain and problem
+PDDL files with Fast Downward, follow the [PDDL execution guide](docs/pddl-pick-place.md).
+Object holding uses the Gazebo attach/detach plugin.
 
 #### After rebuilding an image
 
@@ -263,6 +264,8 @@ Continue with [Step 3: parametric pick and place](docs/pick-place-design.md) to 
 the red connector using externally published poses and three distinct skills:
 `move_a_b`, `pick`, and `place`. SEED explicitly sequences the transfers and
 local grasp/release operations.
+[Step 4: PDDL to execution](docs/pddl-pick-place.md) connects Fast Downward plans
+to those same SEED tasks and primitives.
 
 # References
 See references of specific packages

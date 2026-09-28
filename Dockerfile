@@ -81,7 +81,7 @@ RUN cd /home/user/ros2_ws/src/downward && ./build.py -j${BUILD_JOBS}
 
 SHELL ["/bin/bash", "-c"] 
 # Install dependencies as root, and stop immediately if installation fails.
-# The external LN/HFI bridge and inverse_demo require separately supplied packages.
+# The external LN/HFI bridge requires separately supplied packages.
 USER root
 RUN source /opt/ros/${ROS_DISTRO}/setup.bash && \
     ROS_HOME=/root/.ros rosdep update --rosdistro ${ROS_DISTRO} && apt-get update && \

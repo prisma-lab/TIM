@@ -9,22 +9,25 @@ a finger-joint position; detecting and maintaining an object grasp is a later st
 From the TIM repository on the host:
 
 ```bash
+./docker_build.sh       # Once, if tim_img does not exist yet
 ./docker_sim_build.sh
 ./docker_sim_run.sh
 ```
 
-The build script expects the scene package at
-`../use_case_crf/ros2_ws/src/use_case_sim`. You can supply a different path:
+The build uses the minimal scene bundled at
+[`simulation/use_case_sim`](../simulation/use_case_sim); no second repository
+is needed. For an optional custom scene, pass its package directory:
 
 ```bash
-./docker_sim_build.sh /path/to/ros2_ws/src/use_case_sim
+./docker_sim_build.sh /path/to/use_case_sim
 ```
 
-`Dockerfile.sim` extends the existing `tim_img`, installs Gazebo Classic and the
-robot descriptions, and copies the complete `use_case_sim` package into the image.
-The copied `assembly_task.launch.py` is the simulation entry point. The Robotiq
-description revision matches the submodule recorded in the CRF repository.
-Rebuild this image to pick up changes to the external scene package.
+`Dockerfile.sim` extends `tim_img`, installs Gazebo Classic and the robot
+descriptions, and copies the bundled scene into the image. The original
+`assembly_task.launch.py` is the simulation entry point. The Robotiq description
+is downloaded automatically at a pinned revision matching the original CRF
+scene. Rebuild the image and create a new container after editing the bundled
+scene files.
 
 The run script creates or starts `tim_ur10` and opens a shell inside it. It uses
 the desktop's X11 authentication for Gazebo/RViz. The host needs `xauth` and an

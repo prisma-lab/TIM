@@ -29,7 +29,8 @@ RUN git init src/robotiq_gripper && \
     git fetch --depth 1 origin ${ROBOTIQ_REVISION} && \
     git checkout --detach FETCH_HEAD
 
-# Supply the existing external scene with --build-context use_case_sim=PATH.
+# docker_sim_build.sh supplies the bundled simulation/use_case_sim by default.
+# --build-context use_case_sim=PATH can select an optional custom scene.
 COPY --from=use_case_sim --chown=user:user . /home/user/sim_ws/src/use_case_sim
 RUN source /opt/ros/humble/setup.bash && \
     colcon build --symlink-install --executor sequential \

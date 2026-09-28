@@ -26,11 +26,11 @@ physical grasp. The asymmetric fingers remain a separate, lower-priority issue.
 
 ## Start the demonstration
 
-The [gripper exercise](ur10-gripper.md) explains the container setup. Build the
+The [gripper exercise](ur10-gripper.md) explains the container setup. The scene
+is bundled in `simulation/use_case_sim`, so no CRF checkout is needed. Build the
 updated image on the host with `./docker_sim_build.sh`. To use that image in a new
 container, run `./docker_sim_run.sh tim_pick_place`. An existing container keeps
-its original image. The development `tim_ur10` container has also been updated
-and built during implementation.
+its original image.
 
 Stop the previous gripper exercise's applications before starting this combined
 launch in the same ROS domain. Inside the container:
@@ -41,8 +41,8 @@ ros2 launch ur10_primitives pick_place.launch.py
 
 This launches the copied `use_case_sim/launch/assembly_task.launch.py`, with a
 world containing the demo grasp plugin, plus MoveIt, the primitive manager, and
-the test target publisher. The external CRF project is not modified. Wait for
-the robot controllers and both loose objects to finish spawning.
+the test target publisher. Wait for the robot controllers and both loose
+objects to finish spawning.
 
 In another terminal inside the same container:
 

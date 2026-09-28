@@ -37,11 +37,13 @@ public:
         setRtm(QUIESCENCE);
 
         sb_local_stream = nh->create_subscription<std_msgs::msg::String>(SEED_NAME + "/stream", 0, std::bind(&RosStreamBehavior::ros_input_callback, this, _1));
-        sb_local_state = nh->create_subscription<std_msgs::msg::String>(SEED_NAME + "/state", 0, std::bind(&RosStreamBehavior::ros_state_callback, this, _1));
+        // State observers may publish several distinct facts in one update.
+        // Depth 0 becomes KEEP_LAST(1) and drops earlier facts in that burst.
+        sb_local_state = nh->create_subscription<std_msgs::msg::String>(SEED_NAME + "/state", 100, std::bind(&RosStreamBehavior::ros_state_callback, this, _1));
         sb_local_reg = nh->create_subscription<std_msgs::msg::String>(SEED_NAME + "/regulation", 0, std::bind(&RosStreamBehavior::ros_regulation_callback, this, _1));
 
         sb_global_stream = nh->create_subscription<std_msgs::msg::String>("seed/stream", 0, std::bind(&RosStreamBehavior::ros_input_callback, this, _1));
-        sb_global_state = nh->create_subscription<std_msgs::msg::String>("seed/state", 0, std::bind(&RosStreamBehavior::ros_state_callback, this, _1));
+        sb_global_state = nh->create_subscription<std_msgs::msg::String>("seed/state", 100, std::bind(&RosStreamBehavior::ros_state_callback, this, _1));
 
 #if SEED_INTERFACES
         ss_wmv = nh->create_service<seed_interfaces::srv::SetWmv>(SEED_NAME + "/set_wmv", std::bind(&RosStreamBehavior::service_set_variable, this, _1, _2));

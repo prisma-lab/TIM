@@ -2,3 +2,5 @@ src/seed/build
 src/seed/noname.gv.png
 src/seed/.vscode
 .DS_Store
+.runtime/
+.vscode/

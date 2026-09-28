@@ -46,6 +46,7 @@ RUN source /opt/ros/humble/setup.bash && \
     source /home/user/ros2_ws/install/local_setup.bash && \
     MAKEFLAGS=-j2 CMAKE_BUILD_PARALLEL_LEVEL=2 \
     colcon build --symlink-install --packages-select seed --cmake-args -DCMAKE_CXX_FLAGS="-w"
+COPY --chown=user:user src/task_planner src/task_planner
 COPY --chown=user:user src/primitive_manager src/primitive_manager
 COPY --chown=user:user src/ur10_sim_support src/ur10_sim_support
 COPY --chown=user:user src/ur10_primitives src/ur10_primitives
@@ -54,7 +55,7 @@ RUN source /opt/ros/humble/setup.bash && \
     source /home/user/ros2_ws/install/local_setup.bash && \
     MAKEFLAGS=-j2 CMAKE_BUILD_PARALLEL_LEVEL=2 \
     colcon build --symlink-install --executor sequential \
-        --packages-select primitive_manager ur10_sim_support ur10_primitives
+        --packages-select task_planner primitive_manager ur10_sim_support ur10_primitives
 
 # Keep this teaching environment separate from existing TIM/CRF processes.
 ENV ROS_DOMAIN_ID=119

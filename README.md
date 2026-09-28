@@ -48,12 +48,17 @@ newgrp docker
 
 
 ### Create Docker Image for TIM
+
+For the **UR10 Gazebo pick-and-place demo**, follow the complete
+[simulation setup below](#build-and-run-the-ur10-simulation). It uses both
+Dockerfiles: the base TIM image first, then the simulation image.
+
 Build the TIM image from the repository directory. The first build downloads ROS
 and system dependencies and compiles the workspace; allow several gigabytes of
 disk space and several minutes for the build.
 ```
-./docker_build.sh [image_name]
-# example:
+./docker_build.sh           # defaults to tim_img
+# Or choose an image name:
 ./docker_build.sh tim_img
 ```
 The default build includes SEED, its GUI, the task planner, their message packages,
@@ -66,6 +71,64 @@ Compilation uses two jobs by default. To change this limit, build directly:
 docker build -t tim_img --build-arg USER_ID="$(id -u)" \
   --build-arg GROUP_ID="$(id -g)" --build-arg BUILD_JOBS=4 .
 ```
+
+
+### If the build reports `Plx_exception` was not declared
+
+The earlier build log identifies the cause: that version of SEED included the
+obsolete **`SWI-cpp.h`** header through `src/seed/include/LTM_swipl.h`. The log
+first warns:
+
+```text
+SWI-cpp.h is obsolete and replaced by SWI-cpp2.h
+```
+
+Compilation then fails inside `SWI-cpp.h` because it references the helpers
+`Plx_exception` and `PlWrap` without declaring them. This is a problem in the
+legacy C++ interface supplied by that Prolog installation. It happens while
+compiling SEED, before any Prolog task or robot primitive runs.
+
+This failure was reproduced with SWI-Prolog **10.0.2**
+(`10.0.2-0-jammyppa2`): a minimal C++ program including only `SWI-cpp.h` produces
+the same errors, while the same check with `SWI-cpp2.h` succeeds. The Dockerfile's
+unpinned stable PPA can expose old source code to newer dependencies. However,
+the original log does not record its package version, so it cannot establish
+which update first introduced this legacy-header bug.
+
+**The current checkout already contains the migration to `SWI-cpp2.h`.**
+[The include](src/seed/include/LTM_swipl.h) and
+[the corresponding API changes](src/seed/src/LTM_swipl.cpp) were updated together
+in commit `e25be93`. For example, the code now uses `.as_string()` and
+`PlTerm_var()`. See SWI-Prolog's
+[C++ interface migration documentation](https://www.swi-prolog.org/pldoc/man?section=cpp2).
+When updating an older checkout, use the complete migration rather than changing
+only the include line or editing installed Prolog headers.
+
+The current base Dockerfile successfully compiled all six selected packages,
+including SEED, with SWI-Prolog 10.0.2 under the diagnostic image tag
+`tim_build_check`; dependency installation layers were cached. No Prolog
+downgrade is needed for this tested setup.
+
+To build from the current checkout and save the output, run on the host:
+
+```bash
+set -o pipefail
+./docker_build.sh tim_img 2>&1 | tee /tmp/tim-build.log
+```
+
+If a new log still shows an active include of `SWI-cpp.h`, check that the build
+uses this updated source directory. The build script resolves the context to
+its own repository directory. To inspect the last successfully built image:
+
+```bash
+docker run --rm tim_img swipl --version
+docker run --rm tim_img dpkg-query -W swi-prolog swi-prolog-nox
+```
+
+A failed build does not replace the previous image. The Qt deprecation warnings
+and `$LD_LIBRARY_PATH` warning in the earlier log are separate from this compiler
+failure. Fast Downward was reported as aborted after SEED failed; the log does
+not show a separate Fast Downward compiler error.
 
 
 ### Run a container
@@ -149,6 +212,93 @@ an attached shell leaves the container running; use `docker stop tim_ur10` or
 `docker stop tim_cnt` to stop it.
 
 ## UR10 Gazebo exercises
+
+### Build and run the UR10 simulation
+
+**Yes: the current complete pick-and-place demo needs the image built from
+`Dockerfile.sim`.** The two Dockerfiles serve different purposes:
+
+| Dockerfile | Image | What it provides |
+| --- | --- | --- |
+| `Dockerfile` | `tim_img` | Base ROS 2 Humble environment, SEED, its GUI, and the task planner. |
+| `Dockerfile.sim` | `tim_ur10_img` | Everything in `tim_img`, plus Gazebo, MoveIt, the copied CRF assembly scene, the primitive manager, and the UR10 primitive plugins. |
+
+Build the images in this order, from a **host terminal in the TIM directory**:
+
+```bash
+./docker_build.sh           # 1. Build tim_img (skip if you already have it)
+./docker_sim_build.sh       # 2. Build tim_ur10_img from tim_img
+./docker_sim_run.sh         # 3. Create/start tim_ur10 and open its shell
+```
+
+You only need the `tim_ur10` container to run this demo; the base `tim_cnt`
+container and the separate CRF container do not need to be running. The build
+requires Docker Buildx/BuildKit (installed by the prerequisites above). For the
+Gazebo and RViz windows, run the simulation script from your Linux desktop
+terminal with `DISPLAY` set and `xauth` installed on the host
+(`sudo apt-get install xauth` if needed).
+
+By default, the simulation build copies the package at
+`../use_case_crf/ros2_ws/src/use_case_sim`, including
+`launch/assembly_task.launch.py`. To use a different source location, pass the
+**package directory**, not the launch file:
+
+```bash
+./docker_sim_build.sh /home/yigit/projects/inverse/use_case_crf/ros2_ws/src/use_case_sim
+```
+
+The copied scene is built inside the simulation image. The original CRF project
+is not changed, and its container does not have to be started.
+
+Inside the simulation shell, start the environment:
+
+```bash
+ros2 launch ur10_primitives pick_place.launch.py
+```
+
+Wait for the robot controllers and objects to spawn. In a **second host
+terminal**, open another shell in the same container and start SEED:
+
+```bash
+./docker_attach.sh tim_ur10
+# Now inside the container:
+ros2 run seed seed ur10
+```
+
+At the SEED prompt, enter:
+
+```text
+pick_place_demo
+```
+
+SEED runs `move_a_b(pick)` → `pick` → `move_a_b(place)` → `place`.
+Numeric target poses come from the test publisher. This demo uses a predefined
+SEED sequence; PDDL planning is not yet generating these four steps. Object
+holding uses the Gazebo attach/detach plugin.
+
+#### After rebuilding an image
+
+Rebuilding `tim_ur10_img` does **not** update an existing container. In particular,
+`./docker_sim_run.sh` reuses `tim_ur10` if it already exists. To try the rebuilt
+image while keeping your existing container, use a new, unused name:
+
+```bash
+./docker_sim_run.sh tim_ur10_updated
+# In the second host terminal, use the same name:
+./docker_attach.sh tim_ur10_updated
+```
+
+Stop any previous demo launch before starting the new one. The VS Code automatic
+task starts the name `tim_ur10`; change that task's container name in
+`.vscode/tasks.json` if you switch to `tim_ur10_updated`.
+
+The scripts mount TIM's `src` directory into the container, so source edits are
+visible immediately, but C++ changes still need compilation. The CRF scene is a
+build-time copy: rerun `./docker_sim_build.sh` and create a new container to pick
+up changes to it. See the [pick-and-place guide](docs/pick-place-design.md) for
+changing targets and running individual primitives.
+
+### Learning guides
 
 Start with [SEED explained using pick and place](docs/seed-explained.md) for a
 simple explanation of SEED, primitive plugins, and how PDDL planning fits in.

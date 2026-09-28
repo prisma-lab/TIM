@@ -76,10 +76,25 @@ COPY --chown=user ./src ${HOME}/ros2_ws/src
 #RUN git clone -b dmp --single-branch https://github.com/matteodv99tn/mdv_cpp_lib.git src/mdvcpplib
 
 # YIGIT: building downward
-RUN cd /home/user/ros2_ws/src/downward && ./build.py && cd -
+ARG BUILD_JOBS=2
+RUN cd /home/user/ros2_ws/src/downward && ./build.py -j${BUILD_JOBS}
 
 SHELL ["/bin/bash", "-c"] 
-RUN source /opt/ros/${ROS_DISTRO}/setup.bash; rosdep update; rosdep install -i --from-path src --rosdistro ${ROS_DISTRO} -y; colcon build --symlink-install --packages-skip inverse_bringup inverse_calibration inverse_motion_planner inverse_orchestrator inverse_perception inverse_resources --cmake-args -DCMAKE_CXX_FLAGS="-w"
+# Install dependencies as root, and stop immediately if installation fails.
+# The external LN/HFI bridge and inverse_demo require separately supplied packages.
+USER root
+RUN source /opt/ros/${ROS_DISTRO}/setup.bash && \
+    ROS_HOME=/root/.ros rosdep update --rosdistro ${ROS_DISTRO} && apt-get update && \
+    ROS_HOME=/root/.ros rosdep install -i --from-paths src/seed src/seed_gui src/task_planner \
+        src/task_planner_msgs src/inverse_msgs src/vlm_planner \
+        --rosdistro ${ROS_DISTRO} -y && \
+    rm -rf /var/lib/apt/lists/*
+USER user
+RUN source /opt/ros/${ROS_DISTRO}/setup.bash && \
+    MAKEFLAGS="-j${BUILD_JOBS}" CMAKE_BUILD_PARALLEL_LEVEL=${BUILD_JOBS} \
+    colcon build --symlink-install --executor sequential \
+        --packages-select seed seed_gui task_planner task_planner_msgs inverse_msgs vlm_task_planner \
+        --cmake-args -DCMAKE_CXX_FLAGS="-w"
 
 #Add script source to .bashrc
 RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash;" >>  ${HOME}/.bashrc
@@ -91,6 +106,8 @@ ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/lib/swi-prolog/lib/x86_64-linux/"
 ENV PATH="${PATH}:${HOME}/ros2_ws/src/downward/"
 # YIGIT: added ROS workspace path to use it in downward custom build (in downward/driver/util.py)
 ENV ROS_WS="${HOME}/ros2_ws" 
+# Keep Python from rewriting bytecode in the bind-mounted source checkout.
+ENV PYTHONDONTWRITEBYTECODE=1
 
 #Clean image
 USER root
@@ -99,7 +116,4 @@ USER user
 
 # run launch file
 #CMD ["ros2", "run", "seed", "seed", "test"]
-
-
-
 

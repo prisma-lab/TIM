@@ -48,12 +48,23 @@ newgrp docker
 
 
 ### Create Docker Image for TIM
-In order to build the package you have to create an image for seed.
-NOTE: the image may take up to 3Gb of memory on your drive.
+Build the TIM image from the repository directory. The first build downloads ROS
+and system dependencies and compiles the workspace; allow several gigabytes of
+disk space and several minutes for the build.
 ```
 ./docker_build.sh [image_name]
 # example:
 ./docker_build.sh tim_img
+```
+The default build includes SEED, its GUI, the task planner, their message packages,
+and the VLM planner package. The LN/HFI bridge and the optional `inverse_demo`
+submodule require additional external dependencies and are not part of this build.
+The VLM nodes also require separate Gemini SDK/API-key configuration before use.
+
+Compilation uses two jobs by default. To change this limit, build directly:
+```bash
+docker build -t tim_img --build-arg USER_ID="$(id -u)" \
+  --build-arg GROUP_ID="$(id -g)" --build-arg BUILD_JOBS=4 .
 ```
 
 
@@ -75,11 +86,83 @@ If you want to attach a new shell to the previously started container you can us
 
 
 ### Execution
-To launch TIM software, run the following command from within the container:
+For local development without robot hardware or a display, you can instead start
+a persistent container from the repository directory:
+```bash
+docker run -dit --name tim_cnt \
+  --mount "type=bind,source=$(pwd)/src,target=/home/user/ros2_ws/src" \
+  tim_img bash
+./docker_attach.sh tim_cnt
+```
+This container stays running when an attached shell closes. Stop it with
+`docker stop tim_cnt` and restart it with `docker start tim_cnt`.
+
+Inside the container, start the task planner:
+```bash
+ros2 run task_planner planner_node
+```
+In a second attached shell, run SEED's hardware-independent test mode:
+```bash
+ros2 run seed seed test
+```
+Type `listing` to inspect working memory and `q` to exit SEED. The default ROS
+domain is `101`, using Cyclone DDS. The local container uses Docker's default
+network; use the hardware run script above when ROS nodes must share the host's
+network and devices.
+
+For the PrismaLab hardware configuration, run the following command from within
+the container started by `docker_run.sh`:
 ```
 ros2 launch seed tim.launch.py
 ```
-This command will run both the SEED and the task_planning nodes. Notice that the robotic sensorimotor primitives specified in this version are defined for the Blocksworld setup at PrismaLab (IIWA robot endowed with WSG50 Gripper). 
+The current launch file starts the task planner, camera, marker detection, and
+coordinate transforms. Its SEED node is commented out, so start SEED separately
+with `ros2 run seed seed TIM` when using the lab setup. The launch file selects
+RealSense serial `213322074516`. The robotic sensorimotor primitives are defined
+for the Blocksworld setup at PrismaLab (IIWA robot with WSG50 gripper).
+
+### Automatically start the container in VS Code
+
+Opening this repository folder in VS Code runs two automatic tasks:
+
+- `TIM: Start container` starts `tim_cnt` for the base TIM setup.
+- `TIM: Start UR10 container` starts `tim_ur10` for the Gazebo exercises.
+
+Automatic tasks are enabled in this workspace's settings and require a trusted
+workspace. Docker must be running, and the named containers must already exist.
+Starting an already running container does not restart it. These tasks start
+containers; launch Gazebo and SEED separately inside `tim_ur10`.
+
+Reopen the folder or run **Developer: Reload Window** to activate newly added
+tasks. You can also run either task through **Tasks: Run Task**. To open the
+simulation shell, run:
+
+```bash
+./docker_attach.sh tim_ur10
+```
+
+The attach script starts the named container if needed, refreshes desktop
+authentication for simulation containers, and opens a shell. Use
+`./docker_attach.sh tim_cnt` for the base container. VS Code itself runs on the
+host and can remain open even when a container is stopped. Closing VS Code or
+an attached shell leaves the container running; use `docker stop tim_ur10` or
+`docker stop tim_cnt` to stop it.
+
+## UR10 Gazebo exercises
+
+Start with [SEED explained using pick and place](docs/seed-explained.md) for a
+simple explanation of SEED, primitive plugins, and how PDDL planning fits in.
+
+The first robot integration adds topic-triggered Robotiq gripper plugins, a C++
+primitive manager, and SEED task definitions, using a copy of the CRF assembly scene. Follow
+[Step 2: gripper primitives in Gazebo](docs/ur10-gripper.md) for the simulation
+image, commands, and an explanation of the SEED connection.
+The [manager/plugin walkthrough](docs/primitive-manager.md) explains the common
+interface, execution lifecycle, configuration, and how to add primitives.
+Continue with [Step 3: parametric pick and place](docs/pick-place-design.md) to move
+the red connector using externally published poses and three distinct skills:
+`move_a_b`, `pick`, and `place`. SEED explicitly sequences the transfers and
+local grasp/release operations.
 
 # References
 See references of specific packages

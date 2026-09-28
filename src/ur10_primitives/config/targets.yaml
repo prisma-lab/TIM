@@ -1,0 +1,8 @@
+pick_place_targets:
+  ros__parameters:
+    use_sim_time: true
+    frame_id: world
+    pick_position: [0.55, 0.0, 0.825]
+    place_position: [0.5, 0.35, 0.835]
+    # Downward grasp: tool Z points down and the fingers close along world X.
+    orientation_xyzw: [1.0, 0.0, 0.0, 0.0]

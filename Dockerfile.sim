@@ -1,0 +1,60 @@
+# syntax=docker/dockerfile:1
+ARG TIM_IMAGE=tim_img
+FROM ${TIM_IMAGE} AS sim_base
+
+USER root
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git xvfb xauth \
+    ros-humble-gazebo-ros-pkgs \
+    ros-humble-gazebo-ros2-control \
+    ros-humble-ros2-controllers \
+    ros-humble-ur-description \
+    ros-humble-xacro \
+    ros-humble-robot-state-publisher \
+    ros-humble-joint-state-publisher \
+    ros-humble-moveit-planners-ompl \
+    ros-humble-moveit-simple-controller-manager \
+    ros-humble-tf2-geometry-msgs \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /home/user/sim_ws/src && chown -R user:user /home/user/sim_ws
+USER user
+WORKDIR /home/user/sim_ws
+
+# Match the Robotiq revision recorded in use_case_crf's submodule.
+ARG ROBOTIQ_REVISION=e78b482c98a58cc3a91ab14c9dd7db3e296c1088
+RUN git init src/robotiq_gripper && \
+    cd src/robotiq_gripper && \
+    git remote add origin https://github.com/PickNikRobotics/ros2_robotiq_gripper.git && \
+    git fetch --depth 1 origin ${ROBOTIQ_REVISION} && \
+    git checkout --detach FETCH_HEAD
+
+# Supply the existing external scene with --build-context use_case_sim=PATH.
+COPY --from=use_case_sim --chown=user:user . /home/user/sim_ws/src/use_case_sim
+RUN source /opt/ros/humble/setup.bash && \
+    colcon build --symlink-install --executor sequential \
+        --packages-select robotiq_description use_case_sim \
+        --cmake-args -DBUILD_TESTING=OFF
+RUN echo 'source /home/user/sim_ws/install/local_setup.bash' >> /home/user/.bashrc
+ENV GAZEBO_MODEL_DATABASE_URI=""
+
+FROM sim_base
+WORKDIR /home/user/ros2_ws
+COPY --chown=user:user src/seed/BBS/std/ros_behaviors.h src/seed/BBS/std/ros_behaviors.h
+RUN source /opt/ros/humble/setup.bash && \
+    source /home/user/ros2_ws/install/local_setup.bash && \
+    MAKEFLAGS=-j2 CMAKE_BUILD_PARALLEL_LEVEL=2 \
+    colcon build --symlink-install --packages-select seed --cmake-args -DCMAKE_CXX_FLAGS="-w"
+COPY --chown=user:user src/primitive_manager src/primitive_manager
+COPY --chown=user:user src/ur10_sim_support src/ur10_sim_support
+COPY --chown=user:user src/ur10_primitives src/ur10_primitives
+COPY --chown=user:user src/seed/LTM/seed_ur10_LTM.prolog src/seed/LTM/seed_ur10_LTM.prolog
+RUN source /opt/ros/humble/setup.bash && \
+    source /home/user/ros2_ws/install/local_setup.bash && \
+    MAKEFLAGS=-j2 CMAKE_BUILD_PARALLEL_LEVEL=2 \
+    colcon build --symlink-install --executor sequential \
+        --packages-select primitive_manager ur10_sim_support ur10_primitives
+
+# Keep this teaching environment separate from existing TIM/CRF processes.
+ENV ROS_DOMAIN_ID=119
+CMD ["bash"]

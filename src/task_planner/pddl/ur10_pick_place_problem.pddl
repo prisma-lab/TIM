@@ -1,0 +1,12 @@
+(define (problem red-connector-to-place)
+  (:domain ur10-pick-place)
+  (:objects red-connector - item home pick place - location)
+  (:init
+    (arm-at home)
+    (connected home pick)
+    (connected pick place)
+    (object-at red-connector pick)
+    (hand-empty)
+    (pick-location pick)
+    (place-location place))
+  (:goal (and (object-at red-connector place) (hand-empty))))

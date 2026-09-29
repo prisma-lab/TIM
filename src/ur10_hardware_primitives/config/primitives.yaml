@@ -1,0 +1,55 @@
+ur10_primitive_manager:
+  ros__parameters:
+    use_sim_time: false
+    command_topic: /ur10/primitives/command
+    command_alias_topics: [/ur10/gripper/command]
+    additional_failure_facts: [gripper.failed]
+    status_topic: /ur10/primitives/status
+    seed_state_topic: /seed_ur10/state
+    failure_fact: manipulation.failed
+    primitives: [move_a_b, pick, place, open_gripper, close_gripper]
+    move_a_b:
+      plugin: ur10_hardware_primitives/MoveABPrimitive
+      targets: [pick, place]
+      target_topics:
+        pick: /ur10/targets/pick
+        place: /ur10/targets/place
+    pick:
+      plugin: ur10_hardware_primitives/PickPrimitive
+      target_topic: /ur10/targets/pick
+    place:
+      plugin: ur10_hardware_primitives/PlacePrimitive
+      target_topic: /ur10/targets/place
+    open_gripper:
+      plugin: ur10_hardware_primitives/GripperPrimitive
+      target_position: 0.0
+      state_fact: gripper.open
+    close_gripper:
+      plugin: ur10_hardware_primitives/GripperPrimitive
+      target_position: 0.695
+      state_fact: gripper.closed
+    manipulation:
+      frame: base_link
+      group: ur_manipulator
+      tool_link: grasp_tcp
+      approach_height: 0.10
+      target_timeout: 2.0
+      execution_timeout: 180.0
+      velocity_scale: 0.10
+      position_tolerance: 0.005
+      orientation_tolerance: 0.05
+      object_id: workpiece
+      # Dimensions and offsets are supplied by cell.yaml through the launch.
+      touch_links: [left_inner_finger, right_inner_finger, left_inner_finger_pad, right_inner_finger_pad]
+      open:
+        target_position: 0.0
+      grasp:
+        target_position: 0.695
+        require_object: true
+    gripper:
+      action_name: /robotiq_gripper_controller/gripper_cmd
+      state_topic: /dynamic_joint_states
+      joint_name: finger_joint
+      position_tolerance: 0.02
+      feedback_timeout: 0.5
+      execution_timeout: 15.0

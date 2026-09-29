@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="ur10">
+  <xacro:arg name="cell_config" default="$(find ur10_hardware_primitives)/config/cell.yaml"/>
+  <xacro:property name="cell_path" value="$(arg cell_config)"/>
+  <xacro:property name="cell" value="${xacro.load_yaml(cell_path)}"/>
+  <xacro:include filename="$(find ur_description)/urdf/ur.urdf.xacro"/>
+  <xacro:include filename="$(find robotiq_description)/urdf/robotiq_2f_140_macro.urdf.xacro"/>
+  <link name="robotiq_mount">
+    <visual><origin xyz="${' '.join(map(str, cell['mount_box_xyz']))}"/><geometry>
+      <box size="${' '.join(map(str, cell['mount_dimensions']))}"/></geometry></visual>
+    <collision><origin xyz="${' '.join(map(str, cell['mount_box_xyz']))}"/><geometry>
+      <box size="${' '.join(map(str, cell['mount_dimensions']))}"/></geometry></collision>
+  </link>
+  <joint name="robotiq_mount_joint" type="fixed">
+    <parent link="tool0"/><child link="robotiq_mount"/>
+    <origin xyz="${' '.join(map(str, cell['mount_xyz']))}" rpy="${' '.join(map(str, cell['mount_rpy']))}"/>
+  </joint>
+  <xacro:robotiq_gripper name="RobotiqGripperHardware" prefix="" parent="robotiq_mount"
+      com_port="${cell['serial_port']}" baudrate="115200"
+      gripper_speed_multiplier="${cell['gripper_speed_multiplier']}"
+      gripper_force_multiplier="${cell['gripper_force_multiplier']}">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </xacro:robotiq_gripper>
+  <link name="grasp_tcp"/>
+  <joint name="grasp_tcp_joint" type="fixed">
+    <parent link="robotiq_140_base_link"/><child link="grasp_tcp"/>
+    <origin xyz="${' '.join(map(str, cell['tcp_xyz']))}" rpy="${' '.join(map(str, cell['tcp_rpy']))}"/>
+  </joint>
+</robot>

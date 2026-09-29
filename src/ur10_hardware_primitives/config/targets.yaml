@@ -1,0 +1,7 @@
+hardware_targets:
+  ros__parameters:
+    frame: base_link
+    # Required: TCP contact poses [x, y, z, qx, qy, qz, qw], all floating point.
+    # The publisher refuses to run until both poses are filled in.
+    pick_pose: []
+    place_pose: []

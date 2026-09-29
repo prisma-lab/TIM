@@ -1,0 +1,40 @@
+# syntax=docker/dockerfile:1
+ARG TIM_IMAGE=tim_img
+FROM ${TIM_IMAGE}
+USER root
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git libserialport-dev \
+    ros-humble-ur-robot-driver ros-humble-ur-moveit-config \
+    ros-humble-gripper-controllers ros-humble-joint-state-broadcaster \
+    ros-humble-moveit-planners-ompl ros-humble-moveit-kinematics \
+    ros-humble-moveit-simple-controller-manager ros-humble-tf2-geometry-msgs \
+    && rm -rf /var/lib/apt/lists/*
+RUN mkdir -p /home/user/hardware_ws/src && chown -R user:user /home/user/hardware_ws
+USER user
+WORKDIR /home/user/hardware_ws
+ARG ROBOTIQ_REVISION=8d7b8412ad685ffe1db5719da6e8fce6c1896e5e
+RUN git init src/robotiq && cd src/robotiq && \
+    git remote add origin https://github.com/robotiq/ros.git && \
+    git fetch --depth 1 origin ${ROBOTIQ_REVISION} && git checkout --detach FETCH_HEAD && \
+    git submodule update --init --depth 1 extern/grippers
+COPY --chown=user:user src/ur10_hardware_primitives/patches/robotiq-feedback-health.patch /tmp/robotiq-feedback-health.patch
+RUN cd src/robotiq && git apply --check /tmp/robotiq-feedback-health.patch && \
+    git apply /tmp/robotiq-feedback-health.patch
+RUN source /opt/ros/humble/setup.bash && MAKEFLAGS=-j2 CMAKE_BUILD_PARALLEL_LEVEL=2 \
+    colcon build --symlink-install --executor sequential \
+      --packages-select robotiq_description robotiq_driver robotiq_msgs robotiq_controllers --cmake-args -DBUILD_TESTING=OFF
+WORKDIR /home/user/ros2_ws
+COPY --chown=user:user src/primitive_manager src/primitive_manager
+COPY --chown=user:user src/ur10_hardware_primitives src/ur10_hardware_primitives
+COPY --chown=user:user src/task_planner src/task_planner
+COPY --chown=user:user src/seed/BBS/std/ros_behaviors.h src/seed/BBS/std/ros_behaviors.h
+COPY --chown=user:user src/seed/LTM/seed_ur10_LTM.prolog src/seed/LTM/seed_ur10_LTM.prolog
+RUN source /opt/ros/humble/setup.bash && source /home/user/hardware_ws/install/local_setup.bash && \
+    source install/local_setup.bash && MAKEFLAGS=-j2 CMAKE_BUILD_PARALLEL_LEVEL=2 \
+    colcon build --symlink-install --executor sequential \
+      --packages-select seed task_planner primitive_manager ur10_hardware_primitives \
+      --cmake-args -DBUILD_TESTING=OFF -DCMAKE_CXX_FLAGS="-w"
+RUN echo 'source /home/user/hardware_ws/install/local_setup.bash' >> /home/user/.bashrc && \
+    echo 'source /home/user/ros2_ws/install/local_setup.bash' >> /home/user/.bashrc
+ENV ROS_DOMAIN_ID=120
+CMD ["bash"]

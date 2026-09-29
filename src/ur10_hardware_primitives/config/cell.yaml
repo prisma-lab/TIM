@@ -1,0 +1,24 @@
+# Copy this file, measure the real setup, and pass cell_config:=/absolute/path.
+# Zero transforms below are placeholders, not calibrated robot/gripper values.
+configured: false
+robot_ip: ""
+kinematics_file: ""  # Absolute path from ur_calibration/calibration_correction.launch.py.
+serial_port: ""      # Prefer /dev/serial/by-id/...; map that device into Docker.
+mount_xyz: [0.0, 0.0, 0.0]  # tool0 -> robotiq_mount; metres
+mount_dimensions: []  # Conservative box enclosing the measured mounting bracket.
+mount_box_xyz: [0.0, 0.0, 0.0]  # Box centre in robotiq_mount.
+mount_rpy: [0.0, 0.0, 0.0]  # radians
+# TCP relative to the vendor's robotiq_140_base_link (includes vendor base rotation).
+tcp_xyz: [0.0, 0.0, 0.0]
+tcp_rpy: [0.0, 0.0, 0.0]
+gripper_speed_multiplier: 0.2
+gripper_force_multiplier: 0.2
+# Conservative measured workpiece box in the grasp_tcp frame while held:
+object_dimensions: []  # [x, y, z] in metres
+object_offset_xyz: [0.0, 0.0, 0.0]
+object_offset_rpy: [0.0, 0.0, 0.0]
+# Fixed obstacles in base_link; include table and fixtures. No Gazebo table is copied.
+# Example shape only (replace with measured values):
+# obstacles:
+#   - {id: table, dimensions: [1.0, 1.0, 0.05], xyz: [0.5, 0.0, -0.10], rpy: [0.0, 0.0, 0.0]}
+obstacles: []

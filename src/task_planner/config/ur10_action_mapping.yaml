@@ -1,0 +1,7 @@
+# Exact grounded actions: changing an object or location needs an explicit mapping.
+# This profile controls one connector and the existing pick/place pose topics.
+actions:
+  "(move-a-b home pick)": "move_a_b(pick)"
+  "(pick red-connector pick)": "pick"
+  "(move-a-b pick place)": "move_a_b(place)"
+  "(place red-connector place)": "place"

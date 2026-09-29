@@ -1,0 +1,6 @@
+<library path="ur10_hardware_plugins">
+  <class name="ur10_hardware_primitives/GripperPrimitive" type="ur10_hardware_primitives::GripperPrimitive" base_class_type="primitive_manager::PrimitiveBase"><description>Physical 2F-140 via GripperCommand and measured object/fault feedback.</description></class>
+  <class name="ur10_hardware_primitives/MoveABPrimitive" type="ur10_hardware_primitives::MoveABPrimitive" base_class_type="primitive_manager::PrimitiveBase"><description>UR10 travel through MoveIt and the scaled trajectory controller.</description></class>
+  <class name="ur10_hardware_primitives/PickPrimitive" type="ur10_hardware_primitives::PickPrimitive" base_class_type="primitive_manager::PrimitiveBase"><description>Local descent, detected grasp, collision attachment, and retreat.</description></class>
+  <class name="ur10_hardware_primitives/PlacePrimitive" type="ur10_hardware_primitives::PlacePrimitive" base_class_type="primitive_manager::PrimitiveBase"><description>Local descent, measured release, collision detachment, and retreat.</description></class>
+</library>

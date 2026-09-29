@@ -1,0 +1,37 @@
+# Merged over the installed official UR driver's controller configuration.
+# Other UR status/safety controllers retain their upstream definitions.
+controller_manager:
+  ros__parameters:
+    update_rate: 125  # UR10 CB3
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+    scaled_joint_trajectory_controller:
+      type: ur_controllers/ScaledJointTrajectoryController
+    robotiq_gripper_controller:
+      type: position_controllers/GripperActionController
+scaled_joint_trajectory_controller:
+  ros__parameters:
+    joints: [shoulder_pan_joint, shoulder_lift_joint, elbow_joint, wrist_1_joint, wrist_2_joint, wrist_3_joint]
+    command_interfaces: [position]
+    state_interfaces: [position, velocity]
+    state_publish_rate: 100.0
+    action_monitor_rate: 20.0
+    allow_partial_joints_goal: false
+    speed_scaling_interface_name: speed_scaling/speed_scaling_factor
+    constraints:
+      stopped_velocity_tolerance: 0.2
+      goal_time: 0.0
+robotiq_gripper_controller:
+  ros__parameters:
+    joint: finger_joint
+    action_monitor_rate: 20.0
+    goal_tolerance: 0.01
+    allow_stalling: true
+    stall_velocity_threshold: 0.001
+    stall_timeout: 0.2
+    max_effort: 0.0  # Actual force/speed are configured in the Robotiq hardware.
+joint_state_broadcaster:
+  ros__parameters:
+    use_local_topics: false
+    # Publish all interfaces, including object_status and gripper_fault, on
+    # /dynamic_joint_states. Do not restrict this to position/velocity alone.

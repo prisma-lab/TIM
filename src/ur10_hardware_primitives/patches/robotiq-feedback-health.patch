@@ -1,0 +1,20 @@
+--- a/grippers/robotiq_driver/src/hardware_interface.cpp
++++ b/grippers/robotiq_driver/src/hardware_interface.cpp
+@@ -445,6 +445,17 @@
+       return hardware_interface::return_type::ERROR;
+    }
+ 
++   // TIM: never publish cached device state as healthy on a failed serial link.
++   // Keep the hardware active: deactivation resets the gripper and releases it.
++   // Consumers reject unknown fault/object feedback and stop arm motion.
++   if(gripper_->connectionState() != Robotiq::ConnectionState::Operational)
++   {
++      gripper_position_ = std::numeric_limits<double>::quiet_NaN();
++      gripper_object_status_ = 255.0;
++      gripper_fault_ = {255.0, 255.0};
++      return hardware_interface::return_type::OK;
++   }
++
+    const Robotiq::GripperStatus status = gripper_->getStatus();
+    gripper_position_ = jointPositionFromRegister(status.position, parameters_.closed_position);
+    // The status block carries no velocity — the gripper reports position and

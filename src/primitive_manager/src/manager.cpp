@@ -36,6 +36,7 @@ public:
     const auto status_topic = declare_parameter("status_topic", "/ur10/gripper/status");
     const auto state_topic = declare_parameter("seed_state_topic", "/seed_ur10/state");
     failure_fact_ = declare_parameter("failure_fact", "primitives.failed");
+    failure_aliases_ = declare_parameter("additional_failure_facts", std::vector<std::string>{});
     status_pub_ = create_publisher<std_msgs::msg::String>(status_topic, 100);
     state_pub_ = create_publisher<std_msgs::msg::String>(state_topic, 100);
     auto names = declare_parameter("primitives", std::vector<std::string>{});
@@ -50,8 +51,12 @@ public:
       plugins_.emplace(name, plugin);
       RCLCPP_INFO(get_logger(), "Loaded %s -> %s", name.c_str(), type.c_str());
     }
-    command_sub_ = create_subscription<std_msgs::msg::String>(command_topic, 10,
-      [this](std_msgs::msg::String::ConstSharedPtr msg) {on_command(msg->data);});
+    auto topics = declare_parameter("command_alias_topics", std::vector<std::string>{});
+    topics.push_back(command_topic);
+    for (const auto & topic : topics) {
+      command_subs_.push_back(create_subscription<std_msgs::msg::String>(topic, 10,
+        [this](std_msgs::msg::String::ConstSharedPtr msg) {on_command(msg->data);}));
+    }
     timer_ = create_wall_timer(std::chrono::milliseconds(50), [this]() {tick();});
     RCLCPP_INFO(get_logger(), "Listening on %s", command_topic.c_str());
   }
@@ -148,6 +153,7 @@ private:
   {
     std::map<std::string, bool> facts;
     facts[failure_fact_] = failed_;
+    for (const auto & fact : failure_aliases_) {facts[fact] = failed_;}
     for (const auto & item : plugins_) {
       for (const auto & observation : item.second->observe()) {
         facts[observation.fact] = !active_ && !failed_ && observation.value;
@@ -183,7 +189,8 @@ private:
   std::map<std::string, bool> last_facts_;
   Clock::time_point last_heartbeat_{};
   rclcpp::Publisher<std_msgs::msg::String>::SharedPtr status_pub_, state_pub_;
-  rclcpp::Subscription<std_msgs::msg::String>::SharedPtr command_sub_;
+  std::vector<std::string> failure_aliases_;
+  std::vector<rclcpp::Subscription<std_msgs::msg::String>::SharedPtr> command_subs_;
   rclcpp::TimerBase::SharedPtr timer_;
 };
 }  // namespace primitive_manager

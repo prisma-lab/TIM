@@ -125,7 +125,7 @@ putting coordinates into SEED.
 
 **Your `pick_place_demo` PDDL files**
 
-The files under `src/seed/BBS/inverse/domains` also work with Fast Downward.
+The files under `src/task_planner/pddl` also work with Fast Downward.
 The original example problem asks to move `object1` from `loc1` to `loc3`.
 Changing the problem can change the returned plan. The added
 [`pick_place_demo_action_mapping.yaml`](../src/task_planner/config/pick_place_demo_action_mapping.yaml)
@@ -143,12 +143,13 @@ With the simulation and SEED running, first inspect the plan:
 ```bash
 cd /home/user/ros2_ws
 ros2 run task_planner pddl_to_seed \
-  --domain src/seed/BBS/inverse/domains/pick_place_demo_domain.pddl \
-  --problem src/seed/BBS/inverse/domains/pick_place_demo_problem.pddl \
+  --domain src/task_planner/pddl/pick_place_demo_domain.pddl \
+  --problem src/task_planner/pddl/pick_place_demo_problem.pddl \
   --mapping src/task_planner/config/pick_place_demo_action_mapping.yaml
 ```
 
-Add `--execute` to that command to submit it. Fast Downward produces:
+Add `--execute` to that command to submit it. For the original placement-only
+goal, Fast Downward produces:
 
 ```text
 (move_a_b robot1 home loc1)
@@ -199,6 +200,17 @@ to stop after picking. With the existing mapping, the sequence becomes:
 ```text
 move_a_b(pick) → pick
 ```
+
+Your updated problem also asks for `(eeAt robot1 loc1)` after the placement.
+With the mapping for `(move_a_b robot1 loc3 loc1)`, the sequence is:
+
+```text
+move_a_b(pick) → pick → move_a_b(place) → place → move_a_b(pick)
+```
+
+This extra move comes from the changed PDDL goal; it is not added to the fixed
+`pick_place_demo` recipe. The connector remains at the place target while the
+empty gripper returns above the pick target.
 
 Changing the goal to the already true `(objectAt object1 loc1)` produces an
 empty plan. Changing a symbolic location name does not change its coordinates:

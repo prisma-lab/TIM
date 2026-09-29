@@ -1,5 +1,5 @@
 {
-  "timestamp": 1790260273,
+  "timestamp": 1790603569,
   "wm": [
     {
       "abstract": false,
@@ -121,7 +121,7 @@
       "schema": "requestStream",
       "sequentialReleaser": false,
       "sons": [
-        "pick_place_demo",
+        "hardSequence([move_a_b(pick),pick,move_a_b(place),place])",
         "gui"
       ],
       "teleological": false,
@@ -131,7 +131,7 @@
       }
     },
     {
-      "abstract": true,
+      "abstract": false,
       "amplified": true,
       "background": false,
       "contribution": {
@@ -148,51 +148,13 @@
       ],
       "id": 4,
       "in_sequence": false,
-      "is_awake": false,
-      "is_branch_released": false,
-      "is_sequential": false,
-      "is_working": false,
-      "name": "pick_place_demo",
-      "releaser": true,
-      "releaser_formulae": [],
-      "schema": "pick_place_demo",
-      "sequentialReleaser": false,
-      "sons": [
-        "hardSequence([move_a_b(pick),pick,move_a_b(place),place])"
-      ],
-      "teleological": true,
-      "truth": false,
-      "weights": {
-        "requestStream": 1.0
-      }
-    },
-    {
-      "abstract": false,
-      "amplified": true,
-      "background": false,
-      "contribution": {
-        "teleology": 1.0
-      },
-      "emphasis": 0.0,
-      "expanded": true,
-      "fading": 0.0,
-      "father": "pick_place_demo",
-      "goal": true,
-      "goalCount": 1.0,
-      "goal_formulae": [
-        "hardSequence([move_a_b(pick),pick,move_a_b(place),place]).done"
-      ],
-      "id": 5,
-      "in_sequence": false,
       "is_awake": true,
       "is_branch_released": false,
       "is_sequential": false,
       "is_working": false,
       "name": "hardSequence([move_a_b(pick),pick,move_a_b(place),place])",
       "releaser": true,
-      "releaser_formulae": [
-        "TRUE"
-      ],
+      "releaser_formulae": [],
       "schema": "hardSequence",
       "sequentialReleaser": false,
       "sons": [],
@@ -223,7 +185,7 @@
       "goal": false,
       "goalCount": 0.0,
       "goal_formulae": [],
-      "id": 14,
+      "id": 11,
       "in_sequence": false,
       "is_awake": true,
       "is_branch_released": true,

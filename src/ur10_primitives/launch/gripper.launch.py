@@ -1,3 +1,4 @@
+"""Gazebo-only Robotiq 2F-85 gripper primitive configuration."""
 from pathlib import Path
 
 from ament_index_python.packages import get_package_share_directory

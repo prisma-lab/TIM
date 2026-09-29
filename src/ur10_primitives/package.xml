@@ -2,7 +2,7 @@
 <package format="3">
   <name>ur10_primitives</name>
   <version>0.2.0</version>
-  <description>Controller-backed UR10 primitives loaded by primitive_manager.</description>
+  <description>Gazebo-only UR10 and Robotiq 2F-85 demonstration primitives. Use ur10_hardware_primitives for physical hardware.</description>
   <maintainer email="yigit.yildirim@bogazici.edu.tr">Yigit Yildirim</maintainer>
   <license>MIT</license>
   <buildtool_depend>ament_cmake</buildtool_depend>

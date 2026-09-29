@@ -1,3 +1,4 @@
+# Simulation only: Gazebo UR10 with Robotiq 2F-85.
 ur10_primitive_manager:
   ros__parameters:
     use_sim_time: true

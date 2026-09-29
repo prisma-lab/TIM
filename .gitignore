@@ -4,3 +4,7 @@ src/seed/.vscode
 .DS_Store
 .runtime/
 .vscode/
+
+src/ur10_hardware_primitives/config/*.local.yaml
+
+src/ur10_hardware_primitives/config/calibration/

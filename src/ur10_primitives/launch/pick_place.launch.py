@@ -1,4 +1,4 @@
-"""Copied assembly scene + MoveIt + plugin manager + replaceable target source."""
+"""Gazebo-only UR10 / Robotiq 2F-85 demo; not a hardware bringup."""
 from itertools import combinations
 from pathlib import Path
 import xml.etree.ElementTree as ET

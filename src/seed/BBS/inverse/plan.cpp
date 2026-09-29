@@ -266,7 +266,7 @@ std::string InvPlanBehavior::plan2exec(std::string plan_act){
 
 std::string InvPlanBehavior::create_plan_domain(){
     //TBD, for now I would take it from file
-    std::ifstream file(SEED_HOME_PATH + "/BBS/inverse/domains/example_blocksworld_domain.pddl");
+    std::ifstream file(SEED_HOME_PATH + "/BBS/inverse/domains/pick_place_demo_domain.pddl");
     
     if (!file) {
         std::cout<<"Unable to open DOMAIN file"<<std::endl;
@@ -282,7 +282,7 @@ std::string InvPlanBehavior::create_plan_domain(){
 std::string InvPlanBehavior::create_plan_problem(){
     //TBD, for now I would take it from file
 
-    std::ifstream file(SEED_HOME_PATH + "/BBS/inverse/domains/example_blocksworld_problem.pddl");
+    std::ifstream file(SEED_HOME_PATH + "/BBS/inverse/domains/pick_place_demo_problem.pddl");
     
     if (!file) {
         std::cout<<"Unable to open PROBLEM file"<<std::endl;

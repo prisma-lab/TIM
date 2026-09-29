@@ -249,6 +249,15 @@ rerun `./docker_sim_build.sh` and create a new container to pick up the changes.
 See the [pick-and-place guide](docs/pick-place-design.md) for
 changing targets and running individual primitives.
 
+### Physical UR10 CB3 + Robotiq 2F-140
+
+The Gazebo plugins are in `ur10_primitives`; the physical counterparts are in
+[`ur10_hardware_primitives`](src/ur10_hardware_primitives). The hardware package
+includes the combined model, scaled arm-controller/MoveIt configuration, USB
+Robotiq support, and the same SEED commands. Follow the
+[hardware setup guide](docs/ur10-hardware.md) for the separate hardware image and
+measured TCP/workcell configuration. Physical commissioning is still required.
+
 ### Learning guides
 
 Start with [SEED explained using pick and place](docs/seed-explained.md) for a

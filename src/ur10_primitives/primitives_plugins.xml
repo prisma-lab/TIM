@@ -2,18 +2,18 @@
   <class name="ur10_primitives/GripperPrimitive"
          type="ur10_primitives::GripperPrimitive"
          base_class_type="primitive_manager::PrimitiveBase">
-    <description>Robotiq trajectory with measured completion and monitored cancellation.</description>
+    <description>Simulation only: Robotiq 2F-85 trajectory with measured completion and monitored cancellation.</description>
   </class>
   <class name="ur10_primitives/MoveABPrimitive" type="ur10_primitives::MoveABPrimitive"
          base_class_type="primitive_manager::PrimitiveBase">
-    <description>Move from the current pose to a named external approach pose.</description>
+    <description>Simulation configuration: move from the current pose to a named external approach pose.</description>
   </class>
   <class name="ur10_primitives/PickPrimitive" type="ur10_primitives::PickPrimitive"
          base_class_type="primitive_manager::PrimitiveBase">
-    <description>Local descent, grasp, and lift at the pick location.</description>
+    <description>Gazebo only: descent, simulated attachment, and lift at the pick location.</description>
   </class>
   <class name="ur10_primitives/PlacePrimitive" type="ur10_primitives::PlacePrimitive"
          base_class_type="primitive_manager::PrimitiveBase">
-    <description>Local descent, release, and retreat at the place location.</description>
+    <description>Gazebo only: descent, simulated detachment, and retreat at the place location.</description>
   </class>
 </library>

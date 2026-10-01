@@ -24,6 +24,7 @@ setup(
         'console_scripts': [
             'planner_node = task_planner.planner_node:main',
             'pddl_to_seed = task_planner.pddl_to_seed:main',
+            'pddl_to_seed_two_objects = task_planner.two_objects_to_seed:main',
         ],
     },
 )

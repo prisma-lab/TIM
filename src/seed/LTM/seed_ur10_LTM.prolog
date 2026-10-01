@@ -32,6 +32,6 @@ schema(place, [
 
 % SEED has a plan behavior, too. Given domain&problem.pddl, it automatically generates this hardSequence
 % Assuming that the components are already implemented as schemas, like above, the rest just executes.
-schema(pick_place_demo, [
-    [hardSequence([move_a_b(pick),pick,move_a_b(place),place]),0,["TRUE"]]
-], [hardSequence([move_a_b(pick),pick,move_a_b(place),place]).done], []).
+% schema(pick_place_demo, [
+%     [hardSequence([move_a_b(pick),pick,move_a_b(place),place]),0,["TRUE"]]
+% ], [hardSequence([move_a_b(pick),pick,move_a_b(place),place]).done], []).

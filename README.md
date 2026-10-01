@@ -249,6 +249,16 @@ rerun `./docker_sim_build.sh` and create a new container to pick up the changes.
 See the [pick-and-place guide](docs/pick-place-design.md) for
 changing targets and running individual primitives.
 
+### Two-object simulation experiment
+
+The separate [two-object example](docs/two-object-pick-place.md) places the red
+connector, then the blue peg. It demonstrates `pick(Object,Location)` and
+`place(Object,Location)` schemas with object-specific completion facts, using
+either a named SEED task or its own Fast Downward PDDL files.
+Start it with `ros2 launch ur10_primitives two_objects.launch.py` and
+`ros2 run seed seed ur10_two_objects`; enter `two_objects_demo` at the SEED prompt.
+See the guide for rebuilding an existing container and the PDDL command.
+
 ### Physical UR10 CB3 + Robotiq 2F-140
 
 The Gazebo plugins are in `ur10_primitives`; the physical counterparts are in

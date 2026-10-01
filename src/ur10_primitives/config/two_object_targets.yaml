@@ -1,0 +1,11 @@
+# [x, y, z, qx, qy, qz, qw], metres in world.
+# Blue tilts the tool 30 degrees toward +X to clear the assembly fixtures.
+two_object_targets:
+  ros__parameters:
+    use_sim_time: true
+    frame_id: world
+    locations: [red_pick, red_place, blue_pick, blue_place]
+    red_pick: [0.55, 0.0, 0.825, 1.0, 0.0, 0.0, 0.0]
+    red_place: [0.5, 0.35, 0.835, 1.0, 0.0, 0.0, 0.0]
+    blue_pick: [0.7, -0.4, 0.835, 0.9659258262890683, 0.0, 0.25881904510252074, 0.0]
+    blue_place: [0.5, -0.35, 0.835, 0.9659258262890683, 0.0, 0.25881904510252074, 0.0]

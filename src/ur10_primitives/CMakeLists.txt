@@ -17,7 +17,8 @@ find_package(tf2_geometry_msgs REQUIRED)
 find_package(shape_msgs REQUIRED)
 
 add_library(ur10_gripper_plugins SHARED src/gripper_primitive.cpp
-  src/manipulation_primitive.cpp src/move_a_b_primitive.cpp src/pick_primitive.cpp src/place_primitive.cpp)
+  src/manipulation_primitive.cpp src/move_a_b_primitive.cpp src/pick_primitive.cpp src/place_primitive.cpp
+  src/parameterized_primitive.cpp src/parameterized_plugins.cpp)
 target_compile_features(ur10_gripper_plugins PUBLIC cxx_std_17)
 target_compile_options(ur10_gripper_plugins PRIVATE -Wall -Wextra -Wpedantic)
 target_include_directories(ur10_gripper_plugins PRIVATE include)
@@ -26,13 +27,17 @@ ament_target_dependencies(ur10_gripper_plugins moveit_msgs std_srvs std_msgs geo
 pluginlib_export_plugin_description_file(primitive_manager primitives_plugins.xml)
 install(TARGETS ur10_gripper_plugins DESTINATION lib)
 install(DIRECTORY launch config DESTINATION share/${PROJECT_NAME})
-install(PROGRAMS scripts/target_publisher.py DESTINATION lib/${PROJECT_NAME})
+install(PROGRAMS scripts/target_publisher.py scripts/two_object_targets.py DESTINATION lib/${PROJECT_NAME})
 if(BUILD_TESTING)
   find_package(ament_cmake_pytest REQUIRED)
   ament_add_pytest_test(gripper_protocol test/test_gripper_protocol.py TIMEOUT 180
     APPEND_ENV ROS_DOMAIN_ID=122 PYTHONDONTWRITEBYTECODE=1)
   ament_add_pytest_test(pick_place_protocol test/test_pick_place_protocol.py TIMEOUT 180
     APPEND_ENV ROS_DOMAIN_ID=123 PYTHONDONTWRITEBYTECODE=1)
+  ament_add_pytest_test(two_objects_protocol test/test_two_objects_protocol.py TIMEOUT 180
+    APPEND_ENV ROS_DOMAIN_ID=138 PYTHONDONTWRITEBYTECODE=1)
+  ament_add_pytest_test(two_object_targets test/test_two_object_targets.py TIMEOUT 30
+    APPEND_ENV ROS_DOMAIN_ID=139 PYTHONDONTWRITEBYTECODE=1)
   ament_add_pytest_test(target_publisher test/test_target_publisher.py TIMEOUT 30
     APPEND_ENV ROS_DOMAIN_ID=124 PYTHONDONTWRITEBYTECODE=1)
 endif()

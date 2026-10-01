@@ -51,6 +51,7 @@ COPY --chown=user:user src/primitive_manager src/primitive_manager
 COPY --chown=user:user src/ur10_sim_support src/ur10_sim_support
 COPY --chown=user:user src/ur10_primitives src/ur10_primitives
 COPY --chown=user:user src/seed/LTM/seed_ur10_LTM.prolog src/seed/LTM/seed_ur10_LTM.prolog
+COPY --chown=user:user src/seed/LTM/seed_ur10_two_objects_LTM.prolog src/seed/LTM/seed_ur10_two_objects_LTM.prolog
 RUN source /opt/ros/humble/setup.bash && \
     source /home/user/ros2_ws/install/local_setup.bash && \
     MAKEFLAGS=-j2 CMAKE_BUILD_PARALLEL_LEVEL=2 \

@@ -1,0 +1,12 @@
+# Exact grounded actions for the separate two-object experiment.
+actions:
+  (move_a_b home red_pick): move_a_b(red_pick)
+  (pick red_connector red_pick): pick(red_connector,red_pick)
+  (move_a_b red_pick red_place): move_a_b(red_place)
+  (place red_connector red_place): place(red_connector,red_place)
+  (move_a_b red_place blue_pick): move_a_b(blue_pick)
+  (pick blue_peg blue_pick): pick(blue_peg,blue_pick)
+  (move_a_b blue_pick blue_place): move_a_b(blue_place)
+  (place blue_peg blue_place): place(blue_peg,blue_place)
+  (move_a_b blue_place home): move_a_b(home)
+  

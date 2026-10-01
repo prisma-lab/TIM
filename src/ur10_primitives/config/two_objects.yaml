@@ -1,0 +1,59 @@
+# Separate Gazebo-only experiment: all coordinates remain outside SEED.
+ur10_two_object_manager:
+  ros__parameters:
+    use_sim_time: true
+    command_topic: /ur10/two_objects/command
+    status_topic: /ur10/two_objects/status
+    seed_state_topic: /seed_ur10_two_objects/state
+    failure_fact: manipulation.failed
+    primitives:
+    - move_a_b
+    - pick
+    - place
+    move_a_b:
+      plugin: ur10_primitives/ParameterizedMoveABPrimitive
+    pick:
+      plugin: ur10_primitives/ParameterizedPickPrimitive
+    place:
+      plugin: ur10_primitives/ParameterizedPlacePrimitive
+    manipulation:
+      objects:
+      - red_connector
+      - blue_peg
+      targets:
+      - red_pick
+      - red_place
+      - blue_pick
+      - blue_place
+      frame: world
+      group: ur_manipulator
+      tool_link: tool0
+      tcp_offset: 0.15
+      approach_height: 0.1
+      target_timeout: 2.0
+      execution_timeout: 90.0
+      velocity_scale: 0.25
+      open:
+        target_position: 0.0
+        state_fact: internal.open
+    objects:
+      red_connector:
+        dimensions:
+        - 0.05
+        - 0.095
+        - 0.04
+        grasp:
+          target_position: 0.25
+          state_fact: internal.grasp(red_connector)
+      blue_peg:
+        dimensions:
+        - 0.04
+        - 0.11
+        - 0.04
+        grasp:
+          target_position: 0.25
+          state_fact: internal.grasp(blue_peg)
+    gripper:
+      motion_duration: 1.0
+      feedback_timeout: 2.0
+      execution_timeout: 15.0

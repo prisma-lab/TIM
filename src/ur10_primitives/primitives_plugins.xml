@@ -16,4 +16,16 @@
          base_class_type="primitive_manager::PrimitiveBase">
     <description>Gazebo only: descent, simulated detachment, and retreat at the place location.</description>
   </class>
+  <class name="ur10_primitives/ParameterizedMoveABPrimitive" type="ur10_primitives::ParameterizedMoveABPrimitive"
+         base_class_type="primitive_manager::PrimitiveBase">
+    <description>Separate multi-object simulation experiment: parameterized MoveAB.</description>
+  </class>
+  <class name="ur10_primitives/ParameterizedPickPrimitive" type="ur10_primitives::ParameterizedPickPrimitive"
+         base_class_type="primitive_manager::PrimitiveBase">
+    <description>Separate multi-object simulation experiment: parameterized Pick.</description>
+  </class>
+  <class name="ur10_primitives/ParameterizedPlacePrimitive" type="ur10_primitives::ParameterizedPlacePrimitive"
+         base_class_type="primitive_manager::PrimitiveBase">
+    <description>Separate multi-object simulation experiment: parameterized Place.</description>
+  </class>
 </library>

@@ -1,0 +1,33 @@
+<sdf version="1.6">
+  <world name="default">
+    <!-- Inline assets keep this world independent of Gazebo's model cache. -->
+    <light name="sun" type="directional">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation><range>1000</range><constant>0.9</constant><linear>0.01</linear><quadratic>0.001</quadratic></attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry><plane><normal>0 0 1</normal><size>100 100</size></plane></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><plane><normal>0 0 1</normal><size>100 100</size></plane></geometry>
+          <material><ambient>0.7 0.7 0.7 1</ambient><diffuse>0.7 0.7 0.7 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+    <physics type="ode"><max_step_size>0.001</max_step_size><real_time_update_rate>1000</real_time_update_rate></physics>
+    <plugin name="tim_two_object_grasp" filename="libtim_two_object_grasp.so">
+      <robot_model>ur10_peg_task</robot_model><robot_link>wrist_3_link</robot_link>
+      <tcp_offset>0 0 0.15</tcp_offset><attach_distance>0.04</attach_distance>
+      <topic_prefix>/ur10/two_objects/objects</topic_prefix>
+      <object><id>red_connector</id><model>red_connector</model><link>connector_link</link></object>
+      <object><id>blue_peg</id><model>blue_peg</model><link>peg_link</link></object>
+    </plugin>
+  </world>
+</sdf>

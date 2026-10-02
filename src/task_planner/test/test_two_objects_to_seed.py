@@ -65,7 +65,9 @@ def test_uses_separate_seed_topic_only_when_requested(monkeypatch, execute):
 @pytest.mark.skipif(not shutil.which('fast-downward.py'), reason='Fast Downward unavailable')
 def test_actual_planner_orders_red_before_blue_and_obeys_changed_order():
     domain, problem = DOMAIN.read_text(), PROBLEM.read_text()
-    assert run_fast_downward(domain, problem, search='astar(blind())') == ACTIONS
+    # The problem also requires the arm to return home after both placements.
+    assert run_fast_downward(domain, problem, search='astar(blind())') == (
+        ACTIONS + ['(move_a_b blue_place home)'])
     reverse = problem.replace('(before red_connector blue_peg)', '(before blue_peg red_connector)')
     actions = run_fast_downward(domain, reverse, search='astar(blind())')
     assert actions.index('(place blue_peg blue_place)') < actions.index('(pick red_connector red_pick)')

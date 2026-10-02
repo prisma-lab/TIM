@@ -1,0 +1,7 @@
+The image shows the connection bar assembly area of a battery pack assembly task.
+The connection bar installation proceeds as follows:
+1. The connection bar is placed to the relevant location
+2. The connection bar is tightened with screws from both sides
+3. Protective hood is placed on both sides of the connection bar.
+
+The connection bar is assumed installed when both sides of the bar is tightened, and covered with protective hoods.

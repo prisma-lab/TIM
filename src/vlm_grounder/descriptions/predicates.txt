@@ -1,0 +1,5 @@
+- eeAt: location of the end effector.
+- objectAt: location of an object.
+- gripperHolding: the robot holds an object.
+- gripperEmpty: the robot's gripper is empty.
+- clearLoc: no objects are at this location. If objectAt is true for a location, clearLoc cannot be true for that location.

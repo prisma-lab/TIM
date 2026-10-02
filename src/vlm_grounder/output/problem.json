@@ -1,0 +1,92 @@
+{
+  "objects": [
+    {
+      "name": "robot",
+      "type": "robot"
+    },
+    {
+      "name": "blue_object",
+      "type": "object"
+    },
+    {
+      "name": "red_object",
+      "type": "object"
+    },
+    {
+      "name": "home",
+      "type": "location"
+    },
+    {
+      "name": "blue_initial",
+      "type": "location"
+    },
+    {
+      "name": "red_initial",
+      "type": "location"
+    },
+    {
+      "name": "right_corner",
+      "type": "location"
+    },
+    {
+      "name": "left_corner",
+      "type": "location"
+    }
+  ],
+  "init": [
+    {
+      "predicate": "eeAt",
+      "args": [
+        "robot",
+        "home"
+      ]
+    },
+    {
+      "predicate": "objectAt",
+      "args": [
+        "blue_object",
+        "blue_initial"
+      ]
+    },
+    {
+      "predicate": "objectAt",
+      "args": [
+        "red_object",
+        "red_initial"
+      ]
+    },
+    {
+      "predicate": "gripperEmpty",
+      "args": [
+        "robot"
+      ]
+    },
+    {
+      "predicate": "clearLoc",
+      "args": [
+        "home"
+      ]
+    },
+    {
+      "predicate": "clearLoc",
+      "args": [
+        "right_corner"
+      ]
+    },
+    {
+      "predicate": "clearLoc",
+      "args": [
+        "left_corner"
+      ]
+    }
+  ],
+  "goal": [
+    {
+      "predicate": "objectAt",
+      "args": [
+        "blue_object",
+        "right_corner"
+      ]
+    }
+  ]
+}

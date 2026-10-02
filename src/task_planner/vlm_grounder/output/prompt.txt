@@ -1,0 +1,117 @@
+Follow the instructions below to ground the attached initial-state image into a symbolic planning problem.
+
+<domain>
+(define (domain manipulator-pick-place)
+
+  (:requirements
+    :strips
+    :typing
+  )
+
+  (:types
+    robot
+    object
+    location
+  )
+
+  (:predicates
+    (eeAt ?r - robot ?l - location)
+    (objectAt ?o - object ?l - location)
+    (gripperHolding ?r - robot ?o - object)
+    (gripperEmpty ?r - robot)
+    (clearLoc ?l - location)
+  )
+
+  (:action move_a_b
+    :parameters (
+      ?r - robot
+      ?from - location
+      ?to - location
+    )
+
+    :precondition (and
+      (eeAt ?r ?from)
+    )
+
+    :effect (and
+      (eeAt ?r ?to)
+      (not (eeAt ?r ?from))
+    )
+  )
+
+  (:action pick
+    :parameters (
+      ?r - robot
+      ?o - object
+      ?l - location
+    )
+
+    :precondition (and
+      (eeAt ?r ?l)
+      (objectAt ?o ?l)
+      (gripperEmpty ?r)
+    )
+
+    :effect (and
+      (gripperHolding ?r ?o)
+      (clearLoc ?l)
+      (not (objectAt ?o ?l))
+      (not (gripperEmpty ?r))
+    )
+  )
+
+  (:action place
+    :parameters (
+      ?r - robot
+      ?o - object
+      ?l - location
+    )
+
+    :precondition (and
+      (eeAt ?r ?l)
+      (gripperHolding ?r ?o)
+      (clearLoc ?l)
+    )
+
+    :effect (and
+      (objectAt ?o ?l)
+      (gripperEmpty ?r)
+      (not (gripperHolding ?r ?o))
+      (not (clearLoc ?l))
+    )
+  )
+)
+</domain>
+
+Predicate definitions:
+- eeAt: location of the end effector.
+- objectAt: location of an object.
+- gripperHolding: the robot holds an object.
+- gripperEmpty: the robot's gripper is empty.
+- clearLoc: no objects are at this location. If objectAt is true for a location, clearLoc cannot be true for that location.
+
+
+Scene description:
+The scene contains two movable objects: blue_peg and red_connector
+There are five task locations:
+- home: the home position for the robot and end effector,
+- loc1: the initial position of the blue object,
+- loc2: the initial position of the red object,
+- loc3: the right corner of the table near the robot,
+- loc4: the left corner of the table near the robot
+
+Goal description:
+Bring red connector to the left corner and blue peg to the right corner of the table.
+
+Return JSON with:
+        - objects: all named entities, each with a name and a type from the domain.
+        - init: positive facts true in the initial state.
+        - goal: positive facts that must all hold in the goal state.
+
+Each fact has a predicate and an ordered args array.
+Use consistent entity names throughout and valid PDDL names beginning with a letter.
+Every argument must reference an entity declared in objects.
+Return only JSON, without explanations or Markdown.
+
+Required JSON schema:
+{"type": "object", "properties": {"objects": {"type": "array", "items": {"type": "object", "properties": {"name": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"}, "type": {"type": "string", "enum": ["robot", "object", "location"]}}, "required": ["name", "type"], "additionalProperties": false}}, "init": {"type": "array", "items": {"type": "object", "properties": {"predicate": {"type": "string", "enum": ["eeAt", "objectAt", "gripperHolding", "gripperEmpty", "clearLoc"]}, "args": {"type": "array", "items": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"}, "minItems": 1, "maxItems": 2}}, "required": ["predicate", "args"], "additionalProperties": false}}, "goal": {"type": "array", "items": {"type": "object", "properties": {"predicate": {"type": "string", "enum": ["eeAt", "objectAt", "gripperHolding", "gripperEmpty", "clearLoc"]}, "args": {"type": "array", "items": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"}, "minItems": 1, "maxItems": 2}}, "required": ["predicate", "args"], "additionalProperties": false}, "minItems": 1}}, "required": ["objects", "init", "goal"], "additionalProperties": false}

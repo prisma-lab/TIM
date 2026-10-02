@@ -1,0 +1,7 @@
+The scene contains two movable objects: blue and red.
+There are five task locations:
+- the home position for the robot and end effector,
+- the initial position of the blue object,
+- the initial position of the red object,
+- the right corner of the table near the robot,
+- the left corner of the table near the robot

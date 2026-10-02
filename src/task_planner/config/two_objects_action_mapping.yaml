@@ -9,4 +9,9 @@ actions:
   (move_a_b blue_pick blue_place): move_a_b(blue_place)
   (place blue_peg blue_place): place(blue_peg,blue_place)
   (move_a_b blue_place home): move_a_b(home)
+  (move_a_b red_pick blue_place): move_a_b(blue_place)
+  (place red_connector blue_place): place(red_connector,blue_place)
+  (move_a_b blue_place blue_pick): move_a_b(blue_pick)
+  (move_a_b blue_pick red_place): move_a_b(red_place)
+  (place blue_peg red_place): place(blue_peg,red_place)
   

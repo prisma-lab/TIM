@@ -1,0 +1,6 @@
+- available: Part is available for use. Cannot be true if the part is already placed/used.
+- free: Location is unoccupied.
+- at: Part has been placed at location, but its assembly is not necessarily complete.
+- tightened: The screw is tightened.
+- installedAt: Part is fully assembled at location, including its protective hoods.
+- connected: Static predicate indicating linking hood and screw locations as each screw is covered by a hood.

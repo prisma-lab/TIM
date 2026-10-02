@@ -1,0 +1,1 @@
+Switch the places of red connector and blue peg.

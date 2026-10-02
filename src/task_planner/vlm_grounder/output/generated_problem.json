@@ -1,0 +1,86 @@
+{
+  "objects": [
+    {
+      "name": "blue_peg",
+      "type": "object"
+    },
+    {
+      "name": "red_connector",
+      "type": "object"
+    },
+    {
+      "name": "home",
+      "type": "location"
+    },
+    {
+      "name": "loc1",
+      "type": "location"
+    },
+    {
+      "name": "loc2",
+      "type": "location"
+    },
+    {
+      "name": "loc3",
+      "type": "location"
+    },
+    {
+      "name": "loc4",
+      "type": "location"
+    }
+  ],
+  "init": [
+    {
+      "predicate": "eeAt",
+      "args": [
+        "home"
+      ]
+    },
+    {
+      "predicate": "objectAt",
+      "args": [
+        "blue_peg",
+        "loc1"
+      ]
+    },
+    {
+      "predicate": "objectAt",
+      "args": [
+        "red_connector",
+        "loc2"
+      ]
+    },
+    {
+      "predicate": "gripperEmpty",
+      "args": []
+    },
+    {
+      "predicate": "clearLoc",
+      "args": [
+        "loc3"
+      ]
+    },
+    {
+      "predicate": "clearLoc",
+      "args": [
+        "loc4"
+      ]
+    }
+  ],
+  "goal": [
+    {
+      "predicate": "objectAt",
+      "args": [
+        "red_connector",
+        "loc4"
+      ]
+    },
+    {
+      "predicate": "objectAt",
+      "args": [
+        "blue_peg",
+        "loc3"
+      ]
+    }
+  ]
+}

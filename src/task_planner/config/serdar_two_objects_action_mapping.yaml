@@ -1,0 +1,48 @@
+# Exact grounded actions for the separate two-object experiment.
+actions:
+  
+  (move_a_b home loc1): move_a_b(blue_pick)
+  (move_a_b loc2 loc1): move_a_b(blue_pick)
+  (move_a_b loc3 loc1): move_a_b(blue_pick)
+  (move_a_b loc4 loc1): move_a_b(blue_pick)
+
+  (move_a_b home loc2): move_a_b(red_pick)
+  (move_a_b loc1 loc2): move_a_b(red_pick)
+  (move_a_b loc3 loc2): move_a_b(red_pick)
+  (move_a_b loc4 loc2): move_a_b(red_pick)
+
+  (move_a_b home loc4): move_a_b(red_place)
+  (move_a_b loc1 loc4): move_a_b(red_place)
+  (move_a_b loc2 loc4): move_a_b(red_place)
+  (move_a_b loc3 loc4): move_a_b(red_place)
+
+  (move_a_b home loc3): move_a_b(blue_place)
+  (move_a_b loc1 loc3): move_a_b(blue_place)
+  (move_a_b loc2 loc3): move_a_b(blue_place)
+  (move_a_b loc4 loc3): move_a_b(blue_place)
+
+  (move_a_b loc1 home): move_a_b(home)
+  (move_a_b loc2 home): move_a_b(home)
+  (move_a_b loc3 home): move_a_b(home)
+  (move_a_b loc4 home): move_a_b(home)
+
+  (pick red_connector loc1): pick(red_connector,blue_pick)
+  (pick red_connector loc2): pick(red_connector,red_pick)
+  (pick red_connector loc3): pick(red_connector,blue_place)
+  (pick red_connector loc4): pick(red_connector,red_place)
+
+  (pick blue_peg loc1): pick(blue_peg,blue_pick)
+  (pick blue_peg loc2): pick(blue_peg,red_pick)
+  (pick blue_peg loc3): pick(blue_peg,blue_place)
+  (pick blue_peg loc4): pick(blue_peg,red_place)
+
+  (place red_connector loc1): place(red_connector,blue_pick)
+  (place red_connector loc2): place(red_connector,red_pick)
+  (place red_connector loc3): place(red_connector,blue_place)
+  (place red_connector loc4): place(red_connector,red_place)
+
+  (place blue_peg loc1): place(blue_peg,blue_pick)
+  (place blue_peg loc2): place(blue_peg,red_pick)
+  (place blue_peg loc3): place(blue_peg,blue_place)
+  (place blue_peg loc4): place(blue_peg,red_place)
+  

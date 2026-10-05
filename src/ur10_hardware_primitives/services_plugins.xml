@@ -1,0 +1,17 @@
+<library path="ur10_service_plugins">
+  <class name="ur10_hardware_primitives/MoveServicePrimitive"
+         type="ur10_hardware_primitives::services::MoveServicePrimitive"
+         base_class_type="primitive_manager::PrimitiveBase">
+    <description>Hardware service adapter: measured y0 to an external target, with motion-ID completion.</description>
+  </class>
+  <class name="ur10_hardware_primitives/PickServicePrimitive"
+         type="ur10_hardware_primitives::services::PickServicePrimitive"
+         base_class_type="primitive_manager::PrimitiveBase">
+    <description>Hardware service adapter: close the gripper; no arm motion.</description>
+  </class>
+  <class name="ur10_hardware_primitives/PlaceServicePrimitive"
+         type="ur10_hardware_primitives::services::PlaceServicePrimitive"
+         base_class_type="primitive_manager::PrimitiveBase">
+    <description>Hardware service adapter: open the gripper; no arm motion.</description>
+  </class>
+</library>

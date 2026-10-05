@@ -25,14 +25,16 @@ RUN source /opt/ros/humble/setup.bash && MAKEFLAGS=-j2 CMAKE_BUILD_PARALLEL_LEVE
       --packages-select robotiq_description robotiq_driver robotiq_msgs robotiq_controllers --cmake-args -DBUILD_TESTING=OFF
 WORKDIR /home/user/ros2_ws
 COPY --chown=user:user src/primitive_manager src/primitive_manager
+COPY --chown=user:user src/inverse_msgs src/inverse_msgs
 COPY --chown=user:user src/ur10_hardware_primitives src/ur10_hardware_primitives
 COPY --chown=user:user src/task_planner src/task_planner
 COPY --chown=user:user src/seed/BBS/std/ros_behaviors.h src/seed/BBS/std/ros_behaviors.h
 COPY --chown=user:user src/seed/LTM/seed_ur10_LTM.prolog src/seed/LTM/seed_ur10_LTM.prolog
+COPY --chown=user:user src/seed/LTM/seed_ur10_services_LTM.prolog src/seed/LTM/seed_ur10_services_LTM.prolog
 RUN source /opt/ros/humble/setup.bash && source /home/user/hardware_ws/install/local_setup.bash && \
     source install/local_setup.bash && MAKEFLAGS=-j2 CMAKE_BUILD_PARALLEL_LEVEL=2 \
     colcon build --symlink-install --executor sequential \
-      --packages-select seed task_planner primitive_manager ur10_hardware_primitives \
+      --packages-select inverse_msgs seed task_planner primitive_manager ur10_hardware_primitives \
       --cmake-args -DBUILD_TESTING=OFF -DCMAKE_CXX_FLAGS="-w"
 RUN echo 'source /home/user/hardware_ws/install/local_setup.bash' >> /home/user/.bashrc && \
     echo 'source /home/user/ros2_ws/install/local_setup.bash' >> /home/user/.bashrc

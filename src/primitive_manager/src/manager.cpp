@@ -113,6 +113,7 @@ private:
     active_ = found->second;
     active_command_ = command.text;
     published_status_ = Status::IDLE;
+    published_feedback_.clear();
     execution_[command.text] = Status::IDLE;
     active_->reset();
     report(command.text, "accepted", "Dispatching to plugin " + command.name);
@@ -129,10 +130,11 @@ private:
     if (!active_) {return;}
     const auto status = active_->status();
     if (status == Status::FAILED) {failed_ = true;}
-    if (status != published_status_) {
+    if (status != published_status_ || active_->feedback() != published_feedback_) {
       execution_[active_command_] = status;
       report(active_command_, status_name(status), active_->feedback());
       published_status_ = status;
+      published_feedback_ = active_->feedback();
     }
     if (!active_->busy() && (status == Status::SUCCEEDED || status == Status::FAILED || status == Status::CANCELLED)) {
       last_command_ = active_command_;
@@ -184,6 +186,7 @@ private:
   std::shared_ptr<PrimitiveBase> active_;
   std::string active_command_, last_command_, failure_fact_;
   Status published_status_{Status::IDLE}, last_status_{Status::IDLE};
+  std::string published_feedback_;
   bool failed_{false};
   std::map<std::string, Status> execution_;
   std::map<std::string, bool> last_facts_;

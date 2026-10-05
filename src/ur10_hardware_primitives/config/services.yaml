@@ -1,0 +1,34 @@
+# Service adapters only. The external provider owns robot/gripper execution.
+ur10_service_manager:
+  ros__parameters:
+    use_sim_time: false
+    command_topic: /ur10/hardware/primitives/command
+    status_topic: /ur10/hardware/primitives/status
+    seed_state_topic: /seed_ur10_services/state
+    failure_fact: manipulation.failed
+    primitives: [move_a_b, pick, place]
+    services:
+      start_topic: /motion_start
+      end_topic: /motion_end
+      response_timeout: 5.0
+      execution_timeout: 180.0
+      # Supplied by the launch argument; must match the TCP of your targets.
+      tcp_frame: ""
+      objects: [workpiece]
+      locations: [pick_approach, pick, place_approach, place]
+    move_a_b:
+      plugin: ur10_hardware_primitives/MoveServicePrimitive
+      service: /point_to_point_motion
+      max_velocity: 0.05  # m/s, forwarded as max_vel
+      pose_timeout: 2.0
+      target_topics:
+        pick_approach: /ur10/hardware/targets/pick_approach
+        pick: /ur10/hardware/targets/pick
+        place_approach: /ur10/hardware/targets/place_approach
+        place: /ur10/hardware/targets/place
+    pick:
+      plugin: ur10_hardware_primitives/PickServicePrimitive
+      service: /pick
+    place:
+      plugin: ur10_hardware_primitives/PlaceServicePrimitive
+      service: /place

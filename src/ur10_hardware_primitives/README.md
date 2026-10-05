@@ -1,5 +1,13 @@
 # UR10 hardware primitives
 
+For hardware primitives supplied as ROS 2 services, use the separate
+[service adapter backend](../../docs/hardware-service-primitives.md):
+`services.launch.py`, `MoveServicePrimitive`, `PickServicePrimitive`, and
+`PlaceServicePrimitive`. This backend tracks `/motion_start` and `/motion_end`
+IDs; its pick/place operations only close/open the gripper.
+
+The original direct-control backend below is retained.
+
 Physical UR10 CB3 + Robotiq 2F-140 over USB/RS-485, using the official UR driver
 and `scaled_joint_trajectory_controller`. This package has no Gazebo dependency.
 

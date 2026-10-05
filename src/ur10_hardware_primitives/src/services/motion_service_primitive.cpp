@@ -79,6 +79,9 @@ bool MotionServicePrimitive::execute(const std::vector<std::string> & args)
 
 void MotionServicePrimitive::begin_request()
 {
+  if (start_sub_->get_publisher_count() == 0 || end_sub_->get_publisher_count() == 0) {
+    throw std::runtime_error("Discover compatible motion_start/motion_end publishers before dispatch");
+  }
   starts_.clear();
   ends_.clear();
   active_ = true;

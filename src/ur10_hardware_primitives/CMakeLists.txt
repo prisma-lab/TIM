@@ -33,5 +33,7 @@ if(BUILD_TESTING)
   ament_add_pytest_test(hardware_protocol test/test_hardware_protocol.py TIMEOUT 240
     APPEND_ENV ROS_DOMAIN_ID=128 PYTHONDONTWRITEBYTECODE=1)
   ament_add_pytest_test(hardware_configuration test/test_configuration.py TIMEOUT 60)
+  ament_add_pytest_test(service_protocol test/test_service_protocol.py TIMEOUT 180
+    APPEND_ENV ROS_DOMAIN_ID=146 PYTHONDONTWRITEBYTECODE=1)
 endif()
 ament_package()

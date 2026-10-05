@@ -13,8 +13,8 @@ def generate_launch_description():
     share = Path(get_package_share_directory('task_planner'))
     defaults = {
         'image': str(share / 'resource/example_problem_image.png'),
-        'domain': str(share / 'pddl/serdar_two_objects_domain.pddl'),
-        'mapping': str(share / 'config/serdar_two_objects_action_mapping.yaml'),
+        'domain': str(share / 'pddl/two_objects_domain_v1.pddl'),
+        'mapping': str(share / 'config/two_objects_action_mapping_v1.yaml'),
         'scene': str(share / 'resource/descriptions/scene.txt'),
         'goal': str(share / 'resource/descriptions/goal.txt'),
         'predicate_definitions': str(share / 'resource/descriptions/predicates.txt'),

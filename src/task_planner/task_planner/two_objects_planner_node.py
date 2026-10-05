@@ -32,7 +32,7 @@ class TwoObjectsPlanner(PipelineWorker):
         super().__init__('two_objects_planner', '/two_objects_planner/status')
         share = Path(get_package_share_directory('task_planner'))
         defaults = {
-            'mapping': str(share / 'config/serdar_two_objects_action_mapping.yaml'),
+            'mapping': str(share / 'config/two_objects_action_mapping_v1.yaml'),
             'planner_executable': 'fast-downward.py', 'planner_build': '',
             'planner_search': 'astar(blind())', 'planner_timeout': 30.0,
             'execute': False, 'seed_topic': '/seed_ur10_two_objects/stream',

@@ -162,7 +162,6 @@ def validate_problem(problem, domain=None):
             if occupied & clear:
                 raise ValueError(f"{section}: locations cannot be occupied and clear: {sorted(occupied & clear)}")
             if len(signatures.get("gripperempty", ())) == 0:
-                # Serdar's single-gripper domain has no robot parameter.
                 if (("gripperempty", ()) in facts
                         and any(predicate == "gripperholding" for predicate, _ in facts)):
                     raise ValueError(f"{section}: gripper cannot hold an object and be empty")

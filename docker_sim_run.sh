@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 set -euo pipefail
 
 repo_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
@@ -17,7 +16,8 @@ else
         --mount "type=bind,source=$auth_dir,target=/run/tim,readonly" \
         --mount 'type=bind,source=/tmp/.X11-unix,target=/tmp/.X11-unix,readonly' \
         --mount "type=bind,source=$repo_dir/src,target=/home/user/ros2_ws/src" \
-        tim_ur10_img bash >/dev/null /
+        --network host \
+        tim_ur10_img bash >/dev/null
 fi
 
 exec docker exec -it --env "DISPLAY=$DISPLAY" --env XAUTHORITY=/run/tim/Xauthority "$container_name" bash

@@ -1,9 +1,0 @@
-# Adapter for src/task_planner/pddl/pick_place_demo_{domain,problem}.pddl.
-# For this demo: object1 = red connector, loc1 = pick target, loc3 = place target.
-# object2 and other locations are not implemented by this single-connector profile.
-actions:
-  "(move_a_b robot1 home loc1)": "move_a_b(pick)"
-  "(pick robot1 object1 loc1)": "pick"
-  "(move_a_b robot1 loc1 loc3)": "move_a_b(place)"
-  "(move_a_b robot1 loc3 loc1)": "move_a_b(pick)"
-  "(place robot1 object1 loc3)": "place"

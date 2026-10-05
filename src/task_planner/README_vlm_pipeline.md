@@ -16,7 +16,7 @@ supplied through `planner_executable`. No build is needed for a new image.
 ros2 launch task_planner vlm_two_objects.launch.py image:=/absolute/path/to/image.png
 ```
 
-Defaults use the installed Serdar domain, mapping, and descriptions, `full`
+Defaults use the installed two object domain, mapping, and descriptions, `full`
 generation, and `astar(blind())` planning. The sequence is logged and published
 as a JSON result. Add `execute:=true` to submit to an already-running SEED
 instance. Submission does not mean completed execution. Start simulation and
@@ -59,7 +59,7 @@ Launch overrides: `domain`, `mapping`, `scene`, `goal`, `predicate_definitions`,
 
 For scene-only grounding, supply `mode:=init-only context:=/path/to/context.json`
 (or PDDL). Context must match domain types/names/predicates. The existing
-`serdar_two_objects_problem.pddl` has an undeclared `robot` type and placement
+`two_objects_problem_v1.pddl` has an undeclared `robot` type and placement
 goals different from the current description file; do not use it unchanged as
 context. Structural validation does not verify visual accuracy. Unmapped plan
 actions fail the entire request before SEED submission. An already-satisfied

@@ -68,7 +68,7 @@ class VLMGrounder(PipelineWorker):
         share = Path(get_package_share_directory('task_planner'))
         descriptions = share / 'resource/descriptions'
         defaults = {
-            'domain': str(share / 'pddl/serdar_two_objects_domain.pddl'),
+            'domain': str(share / 'pddl/two_objects_domain_v1.pddl'),
             'scene': str(descriptions / 'scene.txt'),
             'goal': str(descriptions / 'goal.txt'),
             'predicate_definitions': str(descriptions / 'predicates.txt'),

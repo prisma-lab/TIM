@@ -50,7 +50,7 @@ ENV HOME=/home/user
 ENV ROS_DISTRO=$ROS_DISTRO
 
 #Set ROS2 domain (fixed for now)
-ENV ROS_DOMAIN_ID=101
+ENV ROS_DOMAIN_ID=11
 # set DDS to cyclone! default version of DDS is bugged!
 # DDS cyclone guide: https://docs.ros.org/en/humble/Installation/DDS-Implementations/Working-with-Eclipse-CycloneDDS.html
 ENV RMW_IMPLEMENTATION=rmw_cyclonedds_cpp

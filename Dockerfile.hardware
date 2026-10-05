@@ -36,5 +36,5 @@ RUN source /opt/ros/humble/setup.bash && source /home/user/hardware_ws/install/l
       --cmake-args -DBUILD_TESTING=OFF -DCMAKE_CXX_FLAGS="-w"
 RUN echo 'source /home/user/hardware_ws/install/local_setup.bash' >> /home/user/.bashrc && \
     echo 'source /home/user/ros2_ws/install/local_setup.bash' >> /home/user/.bashrc
-ENV ROS_DOMAIN_ID=120
+ENV ROS_DOMAIN_ID=11
 CMD ["bash"]

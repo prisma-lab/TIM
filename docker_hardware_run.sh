@@ -29,5 +29,5 @@ exec docker run -it --init --net=host --ipc=host "${display_args[@]}" \
     --device "$serial_device:/dev/robotiq" \
     --group-add "$(stat -c '%g' "$serial_device")" \
     --mount "type=bind,source=$repo_dir/src,target=/home/user/ros2_ws/src" \
-    -e ROS_DOMAIN_ID=120 \
+    -e ROS_DOMAIN_ID=11 \
     tim_ur10_hardware_img bash

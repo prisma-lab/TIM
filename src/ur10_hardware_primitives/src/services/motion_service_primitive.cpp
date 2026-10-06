@@ -1,5 +1,8 @@
 #include "ur10_hardware_primitives/services/motion_service_primitive.hpp"
 
+#include <std_msgs/msg/int64.hpp>
+#include <std_msgs/msg/string.hpp>
+
 #include <charconv>
 #include <cmath>
 #include <stdexcept>
@@ -21,14 +24,31 @@ void MotionServicePrimitive::initialize(rclcpp::Node & node, const std::string &
   }
   const auto start_topic = parameter<std::string>(node, "services.start_topic", "/motion_start");
   const auto end_topic = parameter<std::string>(node, "services.end_topic", "/motion_end");
+  const auto message_type = parameter<std::string>(
+    node, "services.event_message_type", "std_msgs/msg/Int64");
   // Subscribe before any request. Volatile events are associated by unique ID,
   // never by which topic happened to publish most recently.
-  const auto qos = rclcpp::QoS(1000).reliable().durability_volatile();
-  start_sub_ = node.create_subscription<std_msgs::msg::String>(start_topic, qos,
-    [this](std_msgs::msg::String::ConstSharedPtr msg) {receive_event(msg->data, true);});
-  end_sub_ = node.create_subscription<std_msgs::msg::String>(end_topic, qos,
-    [this](std_msgs::msg::String::ConstSharedPtr msg) {receive_event(msg->data, false);});
+  start_sub_ = subscribe_to_events(start_topic, message_type, true);
+  end_sub_ = subscribe_to_events(end_topic, message_type, false);
   configure();
+}
+
+rclcpp::SubscriptionBase::SharedPtr MotionServicePrimitive::subscribe_to_events(
+  const std::string & topic, const std::string & message_type, bool start)
+{
+  const auto qos = rclcpp::QoS(1000).reliable().durability_volatile();
+  if (message_type == "std_msgs/msg/Int64") {
+    return node_->create_subscription<std_msgs::msg::Int64>(topic, qos,
+      [this, start](std_msgs::msg::Int64::ConstSharedPtr msg) {
+        // Responses use uint64; negative signed events cannot identify a motion.
+        if (msg->data >= 0) {receive_event(static_cast<std::uint64_t>(msg->data), start);}
+      });
+  }
+  if (message_type == "std_msgs/msg/String") {
+    return node_->create_subscription<std_msgs::msg::String>(topic, qos,
+      [this, start](std_msgs::msg::String::ConstSharedPtr msg) {receive_string_event(msg->data, start);});
+  }
+  throw std::invalid_argument("services.event_message_type must be std_msgs/msg/Int64 or std_msgs/msg/String");
 }
 
 bool MotionServicePrimitive::execute(const std::vector<std::string> & args)
@@ -83,12 +103,17 @@ void MotionServicePrimitive::receive_response(bool accepted, const std::vector<s
   update_execution();
 }
 
-void MotionServicePrimitive::receive_event(const std::string & text, bool start)
+void MotionServicePrimitive::receive_string_event(const std::string & text, bool start)
 {
-  if (!active_) {return;}
   std::uint64_t id;
   const auto parsed = std::from_chars(text.data(), text.data() + text.size(), id);
   if (parsed.ec != std::errc{} || parsed.ptr != text.data() + text.size()) {return;}
+  receive_event(id, start);
+}
+
+void MotionServicePrimitive::receive_event(std::uint64_t id, bool start)
+{
+  if (!active_) {return;}
   if (ids_known_ && id != (start ? first_id_ : last_id_)) {return;}
 
   auto & events = start ? starts_ : ends_;

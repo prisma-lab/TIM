@@ -1,4 +1,4 @@
-; Hardware services: move takes a source and destination; pick/place only close/open the gripper.
+; Hardware services: move takes a destination; pick/place only close/open the gripper.
 (define (domain hardware-pick-place)
   (:requirements :adl :typing)
   (:types location)
@@ -12,26 +12,27 @@
     (placed))
 
   (:action move
-    :parameters (?from ?to - location)
+    :parameters (?to - location)
     :precondition (and
-      (arm-at ?from)
       (not (arm-at ?to))
-      (connected ?from ?to))
+      (exists (?from - location)
+        (and (arm-at ?from) (connected ?from ?to))))
     :effect (and
-      (not (arm-at ?from))
+      (forall (?from - location)
+        (when (arm-at ?from) (not (arm-at ?from))))
       (arm-at ?to)))
 
   (:action pick
-    :parameters (?where - location)
+    :parameters ()
     :precondition (and (hand-empty) (not (placed))
-      (arm-at ?where)
-      (pick-location ?where))
+      (exists (?where - location)
+        (and (arm-at ?where) (pick-location ?where))))
     :effect (and (holding) (not (hand-empty))))
 
   (:action place
-    :parameters (?where - location)
+    :parameters ()
     :precondition (and (holding)
-      (arm-at ?where)
-      (place-location ?where))
+      (exists (?where - location)
+        (and (arm-at ?where) (place-location ?where))))
     :effect (and (placed) (hand-empty) (not (holding))))
 )

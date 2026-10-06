@@ -38,7 +38,7 @@ private:
   void configure() override
   {
     position_ = gripper_position_for(*node_);
-    const auto endpoint = parameter<std::string>(*node_, "pick.service", "/motion_planner/pick");
+    const auto endpoint = parameter<std::string>(*node_, "pick.service", "/pick");
     client_ = node_->create_client<EnqueueTrigger>(endpoint);
   }
 
@@ -67,7 +67,7 @@ private:
   void configure() override
   {
     position_ = gripper_position_for(*node_);
-    const auto endpoint = parameter<std::string>(*node_, "place.service", "/motion_planner/place");
+    const auto endpoint = parameter<std::string>(*node_, "place.service", "/place");
     client_ = node_->create_client<EnqueueTrigger>(endpoint);
   }
 

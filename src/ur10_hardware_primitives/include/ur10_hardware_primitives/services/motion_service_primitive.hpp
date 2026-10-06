@@ -1,7 +1,6 @@
 #pragma once
 
 #include <primitive_manager/primitive_base.hpp>
-#include <std_msgs/msg/string.hpp>
 
 #include <chrono>
 #include <cstdint>
@@ -64,9 +63,12 @@ protected:
 
 private:
   using Clock = std::chrono::steady_clock;
+  rclcpp::SubscriptionBase::SharedPtr subscribe_to_events(
+    const std::string & topic, const std::string & message_type, bool start);
   void begin_request();
   void receive_response(bool accepted, const std::vector<std::uint64_t> & ids);
-  void receive_event(const std::string & text, bool start);
+  void receive_string_event(const std::string & text, bool start);
+  void receive_event(std::uint64_t id, bool start);
   void update_execution();
   void fail(const std::string & reason);
 
@@ -78,6 +80,6 @@ private:
   double response_timeout_{5.0}, execution_timeout_{180.0};
   Clock::time_point requested_at_{};
   std::set<std::uint64_t> starts_, ends_;
-  rclcpp::Subscription<std_msgs::msg::String>::SharedPtr start_sub_, end_sub_;
+  rclcpp::SubscriptionBase::SharedPtr start_sub_, end_sub_;
 };
 }  // namespace ur10_hardware_primitives::services

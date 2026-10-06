@@ -29,6 +29,8 @@ def make_targets(tcp_pose, spacing):
         pose.pose.position.z += dz
         targets.names.append(name)
         targets.poses.append(pose)
+
+        # print(pose)
     return targets
 
 
@@ -53,6 +55,7 @@ class HardwareTargetPublisher(Node):
             return  # Targets stay fixed after capture, even when the TCP moves.
 
         position = message.pose.position
+        # print(position)
         orientation = message.pose.orientation
         values = (position.x, position.y, position.z,
                   orientation.x, orientation.y, orientation.z, orientation.w)

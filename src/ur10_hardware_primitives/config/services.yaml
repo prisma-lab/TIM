@@ -10,18 +10,19 @@ ur10_service_manager:
     services:
       start_topic: /motion_start
       end_topic: /motion_end
+      event_message_type: std_msgs/msg/Int64
       response_timeout: 5.0
       execution_timeout: 180.0
     move:
       plugin: ur10_hardware_primitives/MoveServicePrimitive
-      service: /motion_planner/reach_position
+      service: /reach_position
       max_velocity: 0.05  # m/s, forwarded as max_vel
       pose_timeout: 2.0
       # One complete named pose set; each pose keeps its own header.frame_id.
       target_topic: /target_poses
     pick:
       plugin: ur10_hardware_primitives/PickServicePrimitive
-      service: /motion_planner/pick  # inverse_msgs/srv/EnqueueTrigger
+      service: /pick  # inverse_msgs/srv/EnqueueTrigger
     place:
       plugin: ur10_hardware_primitives/PlaceServicePrimitive
-      service: /motion_planner/place  # inverse_msgs/srv/EnqueueTrigger
+      service: /place  # inverse_msgs/srv/EnqueueTrigger

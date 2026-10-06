@@ -40,7 +40,7 @@ private:
     const auto topic = parameter<std::string>(*node_, "move.target_topic", "/target_poses");
     targets_sub_ = node_->create_subscription<TargetPoses>(topic, rclcpp::QoS(1).reliable(),
       [this](TargetPoses::ConstSharedPtr message) {receive_targets(*message);});
-    const auto service = parameter<std::string>(*node_, "move.service", "/motion_planner/reach_position");
+    const auto service = parameter<std::string>(*node_, "move.service", "/reach_position");
     client_ = node_->create_client<ReachPosition>(service);
   }
 

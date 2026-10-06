@@ -19,7 +19,7 @@ import rclpy
 from rclpy.callback_groups import ReentrantCallbackGroup
 from rclpy.executors import MultiThreadedExecutor
 from rclpy.node import Node
-from std_msgs.msg import String
+from std_msgs.msg import Int64, String
 import yaml
 
 
@@ -33,10 +33,11 @@ def wait_for(predicate, timeout=6):
 
 
 class Provider(Node):
-    def __init__(self):
+    def __init__(self, event_type=String):
         super().__init__('mock_motion_service_provider')
         self.requests = []
-        self.next_id = 9223372036854775808  # Exercises uint64 IDs above the signed range.
+        self.event_type = event_type
+        self.next_id = 9223372036854775808 if event_type is String else 9223372036854775700
         self.response_ids = None
         self.accept = True
         self.automatic = False
@@ -51,8 +52,8 @@ class Provider(Node):
             'place_approach': [.5, .2, .3], 'place': [.5, .2, .2],
         }
         self.target_publisher = self.create_publisher(TargetPoseArray, '/service_test/target_poses', 1)
-        self.start_pub = self.create_publisher(String, '/service_test/start', 100)
-        self.end_pub = self.create_publisher(String, '/service_test/end', 100)
+        self.start_pub = self.create_publisher(event_type, '/service_test/start', 100)
+        self.end_pub = self.create_publisher(event_type, '/service_test/end', 100)
         callbacks = ReentrantCallbackGroup()
         self.service_servers = [self.create_service(
             ReachPosition, '/service_test/move',
@@ -98,15 +99,18 @@ class Provider(Node):
         return response
 
     def start(self, motion_id):
-        self.start_pub.publish(String(data=str(motion_id)))
+        data = str(motion_id) if self.event_type is String else motion_id
+        self.start_pub.publish(self.event_type(data=data))
 
     def end(self, motion_id):
-        self.end_pub.publish(String(data=str(motion_id)))
+        data = str(motion_id) if self.event_type is String else motion_id
+        self.end_pub.publish(self.event_type(data=data))
 
 
 class Rig:
-    def __init__(self, full=False, response_timeout=2., execution_timeout=4.):
-        self.provider = Provider()
+    def __init__(self, full=False, response_timeout=2., execution_timeout=4.,
+                 event_message_type='std_msgs/msg/String'):
+        self.provider = Provider(Int64 if event_message_type == 'std_msgs/msg/Int64' else String)
         self.observer = Node('service_adapter_observer')
         self.statuses = []
         self.facts = {}
@@ -122,7 +126,8 @@ class Rig:
                       seed_state_topic='/service_test/state', primitives=['move', 'pick', 'place'] if full else ['move'])
         config['services'].update(start_topic='/service_test/start',
                                   end_topic='/service_test/end', response_timeout=response_timeout,
-                                  execution_timeout=execution_timeout)
+                                  execution_timeout=execution_timeout,
+                                  event_message_type=event_message_type)
         config['move']['service'] = '/service_test/move'
         config['move']['pose_timeout'] = .3
         config['move']['target_topic'] = '/service_test/target_poses'
@@ -359,6 +364,25 @@ def test_bad_target_pose_cannot_start_motion(rig, bad_target):
 SEQUENCE = ['move(pick_approach)', 'move(pick)', 'pick',
             'move(pick_approach)', 'move(place_approach)', 'move(place)',
             'place', 'move(place_approach)']
+
+
+@pytest.mark.parametrize('rig', [{'full': True, 'event_message_type': 'std_msgs/msg/Int64'}], indirect=True)
+def test_hardware_int64_events_complete_move_pick_and_place(rig):
+    rig.send('move(pick_approach)')
+    wait_for(lambda: len(rig.provider.requests) == 1)
+    ids = rig.provider.requests[0][2]
+    rig.provider.end(-1)
+    rig.provider.start(ids[0])
+    rig.provider.end(ids[1])
+    time.sleep(.1)
+    assert not rig.saw('move(pick_approach)', 'succeeded')
+    rig.provider.end(ids[-1])
+    wait_for(lambda: rig.facts.get('arm.at(pick_approach)') is True)
+    rig.provider.automatic = True
+    for command in SEQUENCE[1:]:
+        rig.run(command)
+    assert len(rig.provider.requests) == 8
+    wait_for(lambda: rig.facts.get('gripper.open') is True)
 
 
 @pytest.mark.parametrize('rig', [{'full': True}], indirect=True)

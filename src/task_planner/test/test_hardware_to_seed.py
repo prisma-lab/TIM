@@ -11,9 +11,9 @@ from task_planner.fast_downward import PlanningError, run_fast_downward
 PDDL = Path(__file__).resolve().parents[1] / 'pddl/hardware'
 ACTIONS = ['(move pick_approach)', '(move pick)', '(pick)',
            '(move pick_approach)', '(move place_approach)', '(move place)',
-           '(place)', '(move place_approach)']
+           '(place)']
 SEQUENCE = ('hardSequence([move(pick_approach),move(pick),pick,move(pick_approach),'
-            'move(place_approach),move(place),place,move(place_approach)])')
+            'move(place_approach),move(place),place])')
 
 
 def test_requested_hardware_sequence():
@@ -74,5 +74,5 @@ def test_fast_downward_example_and_changed_goal():
     domain = (PDDL / 'domain.pddl').read_text()
     problem = (PDDL / 'problem.pddl').read_text()
     assert run_fast_downward(domain, problem, search='astar(blind())') == ACTIONS
-    changed = problem.replace('(and (placed) (hand-empty) (arm-at place_approach))', '(holding)')
+    changed = problem.replace('(:goal (placed))', '(:goal (holding))')
     assert run_fast_downward(domain, changed, search='astar(blind())') == ACTIONS[:3]

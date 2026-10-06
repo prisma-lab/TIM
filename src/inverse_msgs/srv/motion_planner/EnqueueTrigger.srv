@@ -1,0 +1,5 @@
+# Enqueue a parameterless primitive. Success means queued, not executed.
+---
+bool success
+string message
+uint64[] motion_ids

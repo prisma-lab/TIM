@@ -3,3 +3,4 @@
 float64 wait_sec 5.0                     # amount, in seconds, for which the position is hold
 ---
 bool success
+uint64[] motion_ids

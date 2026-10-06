@@ -4,3 +4,4 @@ geometry_msgs/Transform relative_motion # motion to execute
 float64 max_vel 0.25
 ---
 bool success
+uint64[] motion_ids

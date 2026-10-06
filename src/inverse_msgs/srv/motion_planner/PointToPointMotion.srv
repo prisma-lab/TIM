@@ -7,6 +7,4 @@ float64 max_vel 0.25                   # maximum velocity in m/s
 bool plan_y0_motion false              # wether a motion to reach y0 shall be preplanned or not
 ---
 bool success
-# Execution order. IDs are unique across requests; the first starts this motion
-# and the last finishes it on /motion_start and /motion_end (decimal strings).
-int64[] motion_ids
+uint64[] motion_ids

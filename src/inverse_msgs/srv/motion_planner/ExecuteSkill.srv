@@ -6,3 +6,4 @@ geometry_msgs/PoseStamped final_pose
 float64 max_vel 0.05
 ---
 bool success
+uint64[] motion_ids

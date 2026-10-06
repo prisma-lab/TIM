@@ -1,5 +1,9 @@
 **UR10 CB3 and Robotiq 2F-140 hardware primitives**
 
+This guide describes the original direct-control backend. If your hardware team
+provides motion/gripper services, use the separate
+[service adapters guide](hardware-service-primitives.md) and `services.launch.py`.
+
 `ur10_primitives` is the Gazebo UR10/2F-85 demo. The separate
 `ur10_hardware_primitives` package implements the physical UR10 CB3 and USB/RS-485
 Robotiq 2F-140. Both use the same SEED tasks and primitive commands.

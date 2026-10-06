@@ -1,4 +1,0 @@
-# Test fixture only: the provider will supply the production interface.
----
-bool success
-int64[] motion_ids

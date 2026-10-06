@@ -1,52 +1,81 @@
 #include "ur10_hardware_primitives/services/motion_service_primitive.hpp"
 
 #include <geometry_msgs/msg/pose_stamped.hpp>
-#include <inverse_msgs/srv/point_to_point_motion.hpp>
+#include <inverse_msgs/msg/target_pose_array.hpp>
+#include <inverse_msgs/srv/reach_position.hpp>
 #include <pluginlib/class_list_macros.hpp>
-#include <tf2_ros/buffer.h>
-#include <tf2_ros/transform_listener.h>
 
 #include <cmath>
-#include <optional>
+#include <map>
+#include <set>
 
 namespace ur10_hardware_primitives::services
 {
 using Pose = geometry_msgs::msg::PoseStamped;
-using PointToPoint = inverse_msgs::srv::PointToPointMotion;
+using TargetPoses = inverse_msgs::msg::TargetPoseArray;
+using ReachPosition = inverse_msgs::srv::ReachPosition;
 
 class MoveServicePrimitive : public MotionServicePrimitive
 {
+public:
+  std::vector<primitive_manager::Observation> observe() const override
+  {
+    std::vector<primitive_manager::Observation> facts;
+    for (const auto & location : known_locations_) {
+      facts.push_back({"arm.at(" + location + ")", current_location_ == location});
+    }
+    return facts;
+  }
+
 private:
   void configure() override
   {
-    tcp_frame_ = parameter<std::string>(*node_, "services.tcp_frame", "");
-    if (tcp_frame_.empty() || tcp_frame_ == "base_link") {
-      throw std::invalid_argument("Set services.tcp_frame to the TCP used by the external poses");
-    }
-    max_velocity_ = parameter(*node_, "move_a_b.max_velocity", 0.05);
-    pose_timeout_ = parameter(*node_, "move_a_b.pose_timeout", 2.0);
+    max_velocity_ = parameter(*node_, "move.max_velocity", 0.05);
+    pose_timeout_ = parameter(*node_, "move.pose_timeout", 2.0);
     for (double value : {max_velocity_, pose_timeout_}) {
       if (!std::isfinite(value) || value <= 0) {
         throw std::invalid_argument("Move velocity and pose timeout must be positive and finite");
       }
     }
-    buffer_ = std::make_unique<tf2_ros::Buffer>(node_->get_clock());
-    listener_ = std::make_shared<tf2_ros::TransformListener>(*buffer_, node_, false);
-    for (const auto & location : locations_) {
-      targets_[location] = std::nullopt;
-      const auto topic = parameter<std::string>(*node_, "move_a_b.target_topics." + location,
-        "/ur10/hardware/targets/" + location);
-      subscriptions_.push_back(node_->create_subscription<Pose>(topic, 10,
-        [this, location](Pose::ConstSharedPtr pose) {targets_.at(location) = *pose;}));
+    const auto topic = parameter<std::string>(*node_, "move.target_topic", "/target_poses");
+    targets_sub_ = node_->create_subscription<TargetPoses>(topic, rclcpp::QoS(1).reliable(),
+      [this](TargetPoses::ConstSharedPtr message) {receive_targets(*message);});
+    const auto service = parameter<std::string>(*node_, "move.service", "/motion_planner/reach_position");
+    client_ = node_->create_client<ReachPosition>(service);
+  }
+
+  void receive_targets(const TargetPoses & message)
+  {
+    // Each publication replaces the complete set. Never reuse an older set
+    // after an invalid update, since it may refer to targets that were removed.
+    targets_.clear();
+    target_error_.clear();
+    if (message.names.size() != message.poses.size()) {
+      target_error_ = "TargetPoseArray names and poses must have equal lengths";
+    } else {
+      for (size_t i = 0; i < message.names.size(); ++i) {
+        const auto & name = message.names[i];
+        const bool valid_name = !name.empty() && name.front() >= 'a' && name.front() <= 'z' &&
+          name.find_first_not_of("abcdefghijklmnopqrstuvwxyz0123456789_") == std::string::npos;
+        if (!valid_name || !targets_.emplace(name, message.poses[i]).second) {
+          target_error_ = "TargetPoseArray needs unique names using lowercase letters, digits and underscores";
+          break;
+        }
+      }
     }
-    const auto service = parameter<std::string>(*node_, "move_a_b.service", "/point_to_point_motion");
-    client_ = node_->create_client<PointToPoint>(service);
+    if (!target_error_.empty()) {
+      targets_.clear();
+      RCLCPP_WARN(node_->get_logger(), "%s", target_error_.c_str());
+      return;
+    }
+    // Remember old names too, so SEED can receive false for earlier locations.
+    for (const auto & target : targets_) {known_locations_.insert(target.first);}
   }
 
   void validate_pose(const Pose & pose) const
   {
-    if (pose.header.frame_id != "base_link") {
-      throw std::invalid_argument("Motion poses must use base_link");
+    if (pose.header.frame_id.empty()) {
+      throw std::invalid_argument("Target pose needs a reference frame in header.frame_id");
     }
     const auto & p = pose.pose.position;
     const auto & q = pose.pose.orientation;
@@ -63,46 +92,33 @@ private:
     }
   }
 
-  Pose current_pose() const
-  {
-    const auto transform = buffer_->lookupTransform("base_link", tcp_frame_, tf2::TimePointZero);
-    Pose pose;
-    pose.header = transform.header;
-    pose.pose.position.x = transform.transform.translation.x;
-    pose.pose.position.y = transform.transform.translation.y;
-    pose.pose.position.z = transform.transform.translation.z;
-    pose.pose.orientation = transform.transform.rotation;
-    validate_pose(pose);
-    return pose;
-  }
-
   void dispatch(const std::vector<std::string> & args) override
   {
-    if (args.size() != 1) {throw std::invalid_argument("Use move_a_b(Location)");}
-    require_location(args[0]);
-    const auto & target = targets_.at(args[0]);
-    if (!target) {throw std::runtime_error("No external target for " + args[0]);}
-    validate_pose(*target);
+    if (args.size() != 1) {throw std::invalid_argument("Use move(Location)");}
+    if (!target_error_.empty()) {throw std::runtime_error(target_error_);}
+    const auto target = targets_.find(args[0]);
+    if (target == targets_.end()) {throw std::runtime_error("No target pose named " + args[0]);}
+    validate_pose(target->second);
 
-    auto request = std::make_shared<PointToPoint::Request>();
-    request->y0 = current_pose();
-    request->g = *target;  // Snapshot: later publications cannot redirect this call.
+    auto request = std::make_shared<ReachPosition::Request>();
+    // The provider moves target_link. Keep the pose's reference frame and stamp
+    // unchanged; updates to /target_poses cannot redirect this invocation.
+    request->desired_pos = target->second;
     request->max_vel = max_velocity_;
-    request->plan_y0_motion = false;
+    request->immediate_execution = false;
     destination_ = args[0];
-    send_request<PointToPoint>(client_, request);
-    task_->arm_location.clear();
+    send_request<ReachPosition>(client_, request);
+    current_location_.clear();
   }
 
-  void record_completion() override {task_->arm_location = destination_;}
+  void record_completion() override {current_location_ = destination_;}
 
-  std::string tcp_frame_, destination_;
   double max_velocity_{0.05}, pose_timeout_{2.0};
-  std::map<std::string, std::optional<Pose>> targets_;
-  std::vector<rclcpp::Subscription<Pose>::SharedPtr> subscriptions_;
-  std::unique_ptr<tf2_ros::Buffer> buffer_;
-  std::shared_ptr<tf2_ros::TransformListener> listener_;
-  rclcpp::Client<PointToPoint>::SharedPtr client_;
+  std::map<std::string, Pose> targets_;
+  std::set<std::string> known_locations_;
+  std::string destination_, current_location_, target_error_;
+  rclcpp::Subscription<TargetPoses>::SharedPtr targets_sub_;
+  rclcpp::Client<ReachPosition>::SharedPtr client_;
 };
 }  // namespace ur10_hardware_primitives::services
 

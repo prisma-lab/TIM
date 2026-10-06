@@ -1,6 +1,5 @@
 #include "ur10_hardware_primitives/services/motion_service_primitive.hpp"
 
-#include <algorithm>
 #include <charconv>
 #include <cmath>
 #include <stdexcept>
@@ -9,43 +8,10 @@ namespace ur10_hardware_primitives::services
 {
 using primitive_manager::Status;
 
-namespace
-{
-std::shared_ptr<TaskState> task_state_for(rclcpp::Node & node)
-{
-  // Plugins initialize and run on the manager's single-threaded executor.
-  static std::map<rclcpp::Node *, std::weak_ptr<TaskState>> managers;
-  auto state = managers[&node].lock();
-  if (!state) {
-    state = std::make_shared<TaskState>();
-    managers[&node] = state;
-  }
-  return state;
-}
-
-void validate_names(const std::vector<std::string> & names, const std::string & parameter_name)
-{
-  std::set<std::string> unique;
-  for (const auto & name : names) {
-    const bool valid = !name.empty() && name.front() >= 'a' && name.front() <= 'z' &&
-      name.find_first_not_of("abcdefghijklmnopqrstuvwxyz0123456789_") == std::string::npos;
-    if (!valid || !unique.insert(name).second) {
-      throw std::invalid_argument(parameter_name + " must contain unique symbolic names");
-    }
-  }
-  if (names.empty()) {throw std::invalid_argument(parameter_name + " must not be empty");}
-}
-}  // namespace
-
 void MotionServicePrimitive::initialize(rclcpp::Node & node, const std::string & name)
 {
   node_ = &node;
   name_ = name;
-  task_ = task_state_for(node);
-  locations_ = parameter(node, "services.locations", std::vector<std::string>{});
-  objects_ = parameter(node, "services.objects", std::vector<std::string>{"workpiece"});
-  validate_names(locations_, "services.locations");
-  validate_names(objects_, "services.objects");
   response_timeout_ = parameter(node, "services.response_timeout", 5.0);
   execution_timeout_ = parameter(node, "services.execution_timeout", 180.0);
   for (double timeout : {response_timeout_, execution_timeout_}) {
@@ -91,7 +57,7 @@ void MotionServicePrimitive::begin_request()
   feedback_ = "Waiting for service response and motion IDs";
 }
 
-void MotionServicePrimitive::receive_response(bool accepted, const std::vector<int64_t> & ids)
+void MotionServicePrimitive::receive_response(bool accepted, const std::vector<std::uint64_t> & ids)
 {
   response_received_ = true;
   if (!accepted) {
@@ -99,7 +65,7 @@ void MotionServicePrimitive::receive_response(bool accepted, const std::vector<i
     fail("Service rejected the request");
     return;
   }
-  const std::set<int64_t> unique(ids.begin(), ids.end());
+  const std::set<std::uint64_t> unique(ids.begin(), ids.end());
   if (ids.empty() || unique.size() != ids.size()) {
     // It may have started. Do not release the manager's execution slot.
     fail("Accepted request returned empty or duplicate motion_ids; execution is unknown");
@@ -120,7 +86,7 @@ void MotionServicePrimitive::receive_response(bool accepted, const std::vector<i
 void MotionServicePrimitive::receive_event(const std::string & text, bool start)
 {
   if (!active_) {return;}
-  int64_t id;
+  std::uint64_t id;
   const auto parsed = std::from_chars(text.data(), text.data() + text.size(), id);
   if (parsed.ec != std::errc{} || parsed.ptr != text.data() + text.size()) {return;}
   if (ids_known_ && id != (start ? first_id_ : last_id_)) {return;}
@@ -187,37 +153,5 @@ void MotionServicePrimitive::reset()
   faulted_ = response_received_ = ids_known_ = false;
   starts_.clear();
   ends_.clear();
-  // Preserve completed task effects across the manager's per-command resets.
-}
-
-void MotionServicePrimitive::require_location(const std::string & location) const
-{
-  if (std::find(locations_.begin(), locations_.end(), location) == locations_.end()) {
-    throw std::invalid_argument("Unknown location: " + location);
-  }
-}
-
-void MotionServicePrimitive::require_object(const std::string & object) const
-{
-  if (std::find(objects_.begin(), objects_.end(), object) == objects_.end()) {
-    throw std::invalid_argument("Unknown object: " + object);
-  }
-}
-
-std::vector<primitive_manager::Observation> MotionServicePrimitive::observe() const
-{
-  std::vector<primitive_manager::Observation> facts;
-  for (const auto & location : locations_) {
-    facts.push_back({"arm.at(" + location + ")", task_->arm_location == location});
-  }
-  for (const auto & object : objects_) {
-    facts.push_back({"object.held(" + object + ")", task_->held_object == object});
-    const auto placed = task_->placements.find(object);
-    for (const auto & location : locations_) {
-      facts.push_back({"object.placed(" + object + "," + location + ")",
-        placed != task_->placements.end() && placed->second == location});
-    }
-  }
-  return facts;
 }
 }  // namespace ur10_hardware_primitives::services

@@ -13,7 +13,8 @@ class PlanningError(RuntimeError):
     """The planner did not return a usable plan."""
 
 
-_ACTION = re.compile(r'\([a-z][a-z0-9_-]*(?:\s+[a-z0-9_][a-z0-9_-]*)*\)', re.IGNORECASE)
+# Fast Downward prints a space before ')' for parameterless actions, e.g. '(pick )'.
+_ACTION = re.compile(r'\(\s*[a-z][a-z0-9_-]*(?:\s+[a-z0-9_][a-z0-9_-]*)*\s*\)', re.IGNORECASE)
 
 
 def canonical_action(text):

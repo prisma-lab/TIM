@@ -1,107 +1,87 @@
 #include "ur10_hardware_primitives/services/motion_service_primitive.hpp"
 
+#include <inverse_msgs/srv/enqueue_trigger.hpp>
 #include <pluginlib/class_list_macros.hpp>
-
-// The service provider owns these definitions. Keep the move adapter buildable
-// before they arrive, without inventing production gripper interfaces.
-#if __has_include(<inverse_msgs/srv/pick.hpp>) && __has_include(<inverse_msgs/srv/place.hpp>)
-#include <inverse_msgs/srv/pick.hpp>
-#include <inverse_msgs/srv/place.hpp>
-#define TIM_HAS_GRIPPER_SERVICES 1
-#else
-#define TIM_HAS_GRIPPER_SERVICES 0
-#endif
+#include <map>
 
 namespace ur10_hardware_primitives::services
 {
-// Only object/location bookkeeping is shared. No descent, retreat, MoveIt, or
-// direct gripper-controller commands belong in these adapters.
-class GripperServicePrimitive : public MotionServicePrimitive
+using EnqueueTrigger = inverse_msgs::srv::EnqueueTrigger;
+
+namespace
 {
-protected:
-  void select_target(const std::vector<std::string> & args)
+// Completion of an open/close request, not a measurement or object detection.
+// Sharing this value lets a completed place invalidate the earlier pick goal.
+enum class GripperPosition {UNKNOWN, OPEN, CLOSED};
+
+std::shared_ptr<GripperPosition> gripper_position_for(rclcpp::Node & node)
+{
+  static std::map<rclcpp::Node *, std::weak_ptr<GripperPosition>> managers;
+  auto position = managers[&node].lock();
+  if (!position) {
+    position = std::make_shared<GripperPosition>(GripperPosition::UNKNOWN);
+    managers[&node] = position;
+  }
+  return position;
+}
+}  // namespace
+
+class PickServicePrimitive : public MotionServicePrimitive
+{
+public:
+  std::vector<primitive_manager::Observation> observe() const override
   {
-    if (args.size() != 2) {throw std::invalid_argument("Use " + name_ + "(Object,Location)");}
-    require_object(args[0]);
-    require_location(args[1]);
-    if (task_->arm_location != args[1]) {
-      throw std::runtime_error("Complete move_a_b(" + args[1] + ") before " + name_);
-    }
-    object_ = args[0];
-    location_ = args[1];
+    return {{"gripper.closed", *position_ == GripperPosition::CLOSED}};
   }
 
-  std::string object_, location_;
-};
-
-class PickServicePrimitive : public GripperServicePrimitive
-{
 private:
   void configure() override
   {
-#if TIM_HAS_GRIPPER_SERVICES
-    const auto endpoint = parameter<std::string>(*node_, "pick.service", "/pick");
-    client_ = node_->create_client<inverse_msgs::srv::Pick>(endpoint);
-#else
-    throw std::runtime_error("Install inverse_msgs/srv/Pick and Place from the provider, then rebuild "
-      "ur10_hardware_primitives; use enable_gripper:=false for move-only operation");
-#endif
+    position_ = gripper_position_for(*node_);
+    const auto endpoint = parameter<std::string>(*node_, "pick.service", "/motion_planner/pick");
+    client_ = node_->create_client<EnqueueTrigger>(endpoint);
   }
 
   void dispatch(const std::vector<std::string> & args) override
   {
-    select_target(args);
-    if (!task_->held_object.empty()) {throw std::runtime_error("Pick requires an empty gripper");}
-#if TIM_HAS_GRIPPER_SERVICES
-    send_request<inverse_msgs::srv::Pick>(client_, std::make_shared<inverse_msgs::srv::Pick::Request>());
-#endif
+    if (!args.empty()) {throw std::invalid_argument("pick takes no arguments");}
+    auto request = std::make_shared<EnqueueTrigger::Request>();
+    send_request<EnqueueTrigger>(client_, request);
   }
 
-  void record_completion() override
-  {
-    task_->held_object = object_;
-    task_->placements.erase(object_);
-  }
+  void record_completion() override {*position_ = GripperPosition::CLOSED;}
 
-#if TIM_HAS_GRIPPER_SERVICES
-  rclcpp::Client<inverse_msgs::srv::Pick>::SharedPtr client_;
-#endif
+  std::shared_ptr<GripperPosition> position_;
+  rclcpp::Client<EnqueueTrigger>::SharedPtr client_;
 };
 
-class PlaceServicePrimitive : public GripperServicePrimitive
+class PlaceServicePrimitive : public MotionServicePrimitive
 {
+public:
+  std::vector<primitive_manager::Observation> observe() const override
+  {
+    return {{"gripper.open", *position_ == GripperPosition::OPEN}};
+  }
+
 private:
   void configure() override
   {
-#if TIM_HAS_GRIPPER_SERVICES
-    const auto endpoint = parameter<std::string>(*node_, "place.service", "/place");
-    client_ = node_->create_client<inverse_msgs::srv::Place>(endpoint);
-#else
-    throw std::runtime_error("Install inverse_msgs/srv/Pick and Place from the provider, then rebuild "
-      "ur10_hardware_primitives; use enable_gripper:=false for move-only operation");
-#endif
+    position_ = gripper_position_for(*node_);
+    const auto endpoint = parameter<std::string>(*node_, "place.service", "/motion_planner/place");
+    client_ = node_->create_client<EnqueueTrigger>(endpoint);
   }
 
   void dispatch(const std::vector<std::string> & args) override
   {
-    select_target(args);
-    if (task_->held_object != object_) {
-      throw std::runtime_error("Place requires the requested object to be held");
-    }
-#if TIM_HAS_GRIPPER_SERVICES
-    send_request<inverse_msgs::srv::Place>(client_, std::make_shared<inverse_msgs::srv::Place::Request>());
-#endif
+    if (!args.empty()) {throw std::invalid_argument("place takes no arguments");}
+    auto request = std::make_shared<EnqueueTrigger::Request>();
+    send_request<EnqueueTrigger>(client_, request);
   }
 
-  void record_completion() override
-  {
-    task_->held_object.clear();
-    task_->placements[object_] = location_;
-  }
+  void record_completion() override {*position_ = GripperPosition::OPEN;}
 
-#if TIM_HAS_GRIPPER_SERVICES
-  rclcpp::Client<inverse_msgs::srv::Place>::SharedPtr client_;
-#endif
+  std::shared_ptr<GripperPosition> position_;
+  rclcpp::Client<EnqueueTrigger>::SharedPtr client_;
 };
 }  // namespace ur10_hardware_primitives::services
 

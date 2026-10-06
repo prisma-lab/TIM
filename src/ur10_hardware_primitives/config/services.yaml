@@ -6,29 +6,22 @@ ur10_service_manager:
     status_topic: /ur10/hardware/primitives/status
     seed_state_topic: /seed_ur10_services/state
     failure_fact: manipulation.failed
-    primitives: [move_a_b, pick, place]
+    primitives: [move, pick, place]
     services:
       start_topic: /motion_start
       end_topic: /motion_end
       response_timeout: 5.0
       execution_timeout: 180.0
-      # Supplied by the launch argument; must match the TCP of your targets.
-      tcp_frame: ""
-      objects: [workpiece]
-      locations: [pick_approach, pick, place_approach, place]
-    move_a_b:
+    move:
       plugin: ur10_hardware_primitives/MoveServicePrimitive
-      service: /point_to_point_motion
+      service: /motion_planner/reach_position
       max_velocity: 0.05  # m/s, forwarded as max_vel
       pose_timeout: 2.0
-      target_topics:
-        pick_approach: /ur10/hardware/targets/pick_approach
-        pick: /ur10/hardware/targets/pick
-        place_approach: /ur10/hardware/targets/place_approach
-        place: /ur10/hardware/targets/place
+      # One complete named pose set; each pose keeps its own header.frame_id.
+      target_topic: /target_poses
     pick:
       plugin: ur10_hardware_primitives/PickServicePrimitive
-      service: /pick
+      service: /motion_planner/pick  # inverse_msgs/srv/EnqueueTrigger
     place:
       plugin: ur10_hardware_primitives/PlaceServicePrimitive
-      service: /place
+      service: /motion_planner/place  # inverse_msgs/srv/EnqueueTrigger

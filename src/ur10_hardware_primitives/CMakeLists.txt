@@ -23,7 +23,7 @@ target_compile_features(ur10_service_plugins PUBLIC cxx_std_17)
 target_compile_options(ur10_service_plugins PRIVATE -Wall -Wextra -Wpedantic)
 target_include_directories(ur10_service_plugins PRIVATE include)
 ament_target_dependencies(ur10_service_plugins
-  primitive_manager pluginlib rclcpp inverse_msgs std_msgs geometry_msgs tf2_ros)
+  primitive_manager pluginlib rclcpp inverse_msgs std_msgs geometry_msgs)
 pluginlib_export_plugin_description_file(primitive_manager services_plugins.xml)
 install(TARGETS ur10_hardware_plugins ur10_service_plugins DESTINATION lib)
 install(DIRECTORY launch config urdf DESTINATION share/${PROJECT_NAME})

@@ -7,6 +7,8 @@ find_package(std_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
+    msg/TargetPoseArray.msg
+    srv/motion_planner/EnqueueTrigger.srv
     srv/motion_planner/HoldPosition.srv
     srv/motion_planner/MoveRelative.srv
     srv/motion_planner/PointToPointMotion.srv

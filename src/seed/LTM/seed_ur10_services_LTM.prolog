@@ -2,22 +2,22 @@
 :- multifile schema/4.
 :- ensure_loaded('seed_test_LTM.prolog').
 
-schema(move_a_b(Location), [
-    [rosAct(move_a_b(Location),ur10_services,ur10/hardware/primitives/command,0.25),0,[-manipulation.failed]]
+schema(move(Location), [
+    [rosAct(move(Location),ur10_services,ur10/hardware/primitives/command,0.25),0,[-manipulation.failed]]
 ], [arm.at(Location)], []).
 
-schema(pick(Object,Location), [
-    [rosAct(pick(Object,Location),ur10_services,ur10/hardware/primitives/command,0.25),0,[-manipulation.failed]]
-], [object.held(Object)], []).
+schema(pick, [
+    [rosAct(pick,ur10_services,ur10/hardware/primitives/command,0.25),0,[-manipulation.failed]]
+], [gripper.closed], []).
 
-schema(place(Object,Location), [
-    [rosAct(place(Object,Location),ur10_services,ur10/hardware/primitives/command,0.25),0,[-manipulation.failed]]
-], [object.placed(Object,Location)], []).
+schema(place, [
+    [rosAct(place,ur10_services,ur10/hardware/primitives/command,0.25),0,[-manipulation.failed]]
+], [gripper.open], []).
 
 hardware_service_steps([
-    move_a_b(pick_approach), move_a_b(pick), pick(workpiece,pick),
-    move_a_b(pick_approach), move_a_b(place_approach), move_a_b(place),
-    place(workpiece,place), move_a_b(place_approach)
+    move(pick_approach), move(pick), pick,
+    move(pick_approach), move(place_approach), move(place),
+    place, move(place_approach)
 ]).
 
 schema(hardware_pick_place_demo, [[hardSequence(Steps),0,["TRUE"]]],

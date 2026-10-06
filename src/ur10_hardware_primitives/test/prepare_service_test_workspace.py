@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Create an isolated source overlay containing test-only Pick/Place interfaces.
+"""Create an isolated source overlay using the production service interfaces.
 
 Usage: python3 prepare_service_test_workspace.py /tmp/tim_service_tests
-Build it after sourcing the normal workspace. Never source this overlay when
-connecting to a robot; the real provider must supply its production interfaces.
+Build it after sourcing the normal workspace. Test services use separate ROS
+domains and never contact the robot.
 """
 from pathlib import Path
 import shutil
@@ -18,17 +18,7 @@ def main():
     repository_source = Path(__file__).resolve().parents[2]
     interfaces = source / 'inverse_msgs'
     shutil.copytree(repository_source / 'inverse_msgs', interfaces)
-    cmake = interfaces / 'CMakeLists.txt'
-    text = cmake.read_text()
-    for name in ('Pick', 'Place'):
-        relative = f'srv/motion_planner/{name}.srv'
-        if not (interfaces / relative).exists():
-            shutil.copyfile(Path(__file__).parent / 'service_interfaces' / f'{name}.srv',
-                            interfaces / relative)
-        if relative not in text:
-            text = text.replace('    DEPENDENCIES', f'    {relative}\n    DEPENDENCIES')
-    cmake.write_text(text)
-    for package in ('primitive_manager', 'ur10_hardware_primitives'):
+    for package in ('primitive_manager', 'ur10_hardware_primitives', 'task_planner'):
         (source / package).symlink_to(repository_source / package, target_is_directory=True)
     print(f'Test workspace prepared at {workspace}')
 

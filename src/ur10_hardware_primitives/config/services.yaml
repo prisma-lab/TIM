@@ -17,9 +17,7 @@ ur10_service_manager:
       plugin: ur10_hardware_primitives/MoveServicePrimitive
       service: /reach_position
       max_velocity: 0.05  # m/s, forwarded as max_vel
-      pose_timeout: 2.0
-      # One complete named pose set; each pose keeps its own header.frame_id.
-      target_topic: /target_poses
+      # move(Frame) requests an identity pose in Frame, with a zero timestamp.
     pick:
       plugin: ur10_hardware_primitives/PickServicePrimitive
       service: /pick  # inverse_msgs/srv/EnqueueTrigger

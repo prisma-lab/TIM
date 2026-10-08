@@ -77,6 +77,11 @@ private:
     Command command;
     try {command = parse_command(text);}
     catch (const std::exception & error) {report(text, "rejected", error.what()); return;}
+
+    std::cout << "";
+    std::cout << "Received command: " << command.name << std::endl;
+    for (const auto & arg : command.args) {std::cout << "  Arg: " << arg << std::endl;}
+
     if (command.name == "cancel" || command.name == "stop") {
       if (!command.args.empty()) {report(command.text, "rejected", "This command takes no arguments"); return;}
       if (active_) {

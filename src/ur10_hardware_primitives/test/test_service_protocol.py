@@ -11,8 +11,6 @@ import threading
 import time
 
 from ament_index_python.packages import get_package_prefix, get_package_share_directory
-from geometry_msgs.msg import PoseStamped
-from inverse_msgs.msg import TargetPoseArray
 from inverse_msgs.srv import EnqueueTrigger, ReachPosition
 import pytest
 import rclpy
@@ -43,15 +41,6 @@ class Provider(Node):
         self.automatic = False
         self.hold_response = False
         self.release = threading.Event()
-        self.target_frame = 'base_link'
-        self.stamp_offset = 0
-        self.orientation_w = 1.
-        self.malformed_targets = None
-        self.targets = {
-            'pick_approach': [.4, .1, .3], 'pick': [.4, .1, .2],
-            'place_approach': [.5, .2, .3], 'place': [.5, .2, .2],
-        }
-        self.target_publisher = self.create_publisher(TargetPoseArray, '/service_test/target_poses', 1)
         self.start_pub = self.create_publisher(event_type, '/service_test/start', 100)
         self.end_pub = self.create_publisher(event_type, '/service_test/end', 100)
         callbacks = ReentrantCallbackGroup()
@@ -64,24 +53,6 @@ class Provider(Node):
                 EnqueueTrigger, '/service_test/' + name,
                 lambda request, response, name=name: self.call(name, request, response),
                 callback_group=callbacks))
-        self.create_timer(.02, self.publish)
-
-    def publish(self):
-        message = TargetPoseArray()
-        for name, position in list(self.targets.items()):
-            pose = PoseStamped()
-            pose.header.frame_id = self.target_frame
-            pose.header.stamp = self.get_clock().now().to_msg()
-            pose.header.stamp.sec += self.stamp_offset
-            pose.pose.position.x, pose.pose.position.y, pose.pose.position.z = position
-            pose.pose.orientation.w = self.orientation_w
-            message.names.append(name)
-            message.poses.append(pose)
-        if self.malformed_targets == 'length':
-            message.poses.pop()
-        elif self.malformed_targets == 'duplicate':
-            message.names[-1] = message.names[0]
-        self.target_publisher.publish(message)
 
     def call(self, operation, request, response):
         ids = self.response_ids
@@ -129,8 +100,6 @@ class Rig:
                                   execution_timeout=execution_timeout,
                                   event_message_type=event_message_type)
         config['move']['service'] = '/service_test/move'
-        config['move']['pose_timeout'] = .3
-        config['move']['target_topic'] = '/service_test/target_poses'
         config['pick']['service'] = '/service_test/pick'
         config['place']['service'] = '/service_test/place'
         self.temp = tempfile.TemporaryDirectory()
@@ -148,8 +117,7 @@ class Rig:
         try:
             wait_for(lambda: self.command.get_subscription_count() == 1)
             wait_for(lambda: self.provider.start_pub.get_subscription_count() == (3 if full else 1))
-            wait_for(lambda: 'arm.at(pick)' in self.facts)
-            time.sleep(.15)  # Populate target subscriptions; the provider publishes no TF.
+            wait_for(lambda: self.provider.end_pub.get_subscription_count() == (3 if full else 1))
         except AssertionError:
             self.log.seek(0)
             output = self.log.read()
@@ -199,30 +167,31 @@ def rig(request):
         rclpy.try_shutdown()
 
 
-@pytest.mark.parametrize('frame', ['base_link', 'world', 'camera_optical_frame'])
-def test_move_forwards_exact_target_without_tf_and_appends_to_queue(rig, frame):
-    rig.provider.target_frame = frame
-    time.sleep(.1)
-    rig.send('move(pick)')
+@pytest.mark.parametrize('frame', ['pick', 'via(bus_bar)', 'obs(bus_bar)'])
+def test_move_requests_frame_origin_without_target_publisher(rig, frame):
+    command = f'move({frame})'
+    fact = f'arm.at({frame})'
+    rig.send(command)
     wait_for(lambda: len(rig.provider.requests) == 1)
     _, request, ids = rig.provider.requests[0]
     assert request.desired_pos.header.frame_id == frame
     position = request.desired_pos.pose.position
-    assert [position.x, position.y, position.z] == [.4, .1, .2]  # No hidden approach offset.
-    assert request.desired_pos.pose.orientation.w == 1.
-    assert request.desired_pos.header.stamp.sec > 0
+    assert [position.x, position.y, position.z] == [0., 0., 0.]
+    orientation = request.desired_pos.pose.orientation
+    assert [orientation.x, orientation.y, orientation.z, orientation.w] == [0., 0., 0., 1.]
+    assert request.desired_pos.header.stamp.sec == 0
+    assert request.desired_pos.header.stamp.nanosec == 0
     assert request.max_vel == .05
     assert request.immediate_execution is False
-    rig.provider.targets['pick'] = [.8, .8, .8]
     rig.provider.start(ids[0])
     wait_for(lambda: any('Started at /motion_start ID' in item['detail'] for item in rig.statuses))
     rig.provider.end(ids[1])
     time.sleep(.1)
-    assert not rig.saw('move(pick)', 'succeeded')
-    assert rig.facts['arm.at(pick)'] is False
+    assert not rig.saw(command, 'succeeded')
+    assert rig.facts[fact] is False
     rig.provider.end(ids[-1])
-    wait_for(lambda: rig.facts.get('arm.at(pick)') is True)
-    assert rig.provider.requests[0][1].desired_pos.pose.position.z == .2
+    wait_for(lambda: rig.facts.get(fact) is True)
+    assert rig.observer.count_subscribers('/target_poses') == 0
 
 
 @pytest.mark.parametrize('ids', [None, [7]])
@@ -338,26 +307,10 @@ def test_cancel_reports_unsupported_stop_and_waits_for_remote_end(rig):
     assert not rig.saw('move(pick)', 'cancelled')
 
 
-@pytest.mark.parametrize('command', ['move', 'move(unknown)', 'move(pick,place)'])
+@pytest.mark.parametrize('command', ['move', 'move(pick,place)'])
 def test_invalid_arguments_are_rejected_before_service_call(rig, command):
     rig.send(command)
     wait_for(lambda: rig.saw(command, 'failed'))
-    assert not rig.provider.requests
-
-
-@pytest.mark.parametrize('bad_target', ['frame', 'stamp', 'nan', 'quaternion'])
-def test_bad_target_pose_cannot_start_motion(rig, bad_target):
-    if bad_target == 'frame':
-        rig.provider.target_frame = ''
-    elif bad_target == 'stamp':
-        rig.provider.stamp_offset = -10
-    elif bad_target == 'nan':
-        rig.provider.targets['pick'][0] = float('nan')
-    else:
-        rig.provider.orientation_w = 0.
-    time.sleep(.1)
-    rig.send('move(pick)')
-    wait_for(lambda: rig.saw('move(pick)', 'failed'))
     assert not rig.provider.requests
 
 
@@ -418,31 +371,20 @@ def test_gripper_rejects_unexpected_arguments(rig, command):
     assert not rig.provider.requests
 
 
-def test_new_location_needs_no_configuration_or_additional_subscriber(rig):
-    rig.provider.targets['inspection_station'] = [.6, .2, .5]
-    time.sleep(.1)
+def test_nested_frame_moves_update_exact_seed_facts(rig):
     rig.provider.automatic = True
-    rig.run('move(inspection_station)')
-    request = rig.provider.requests[-1][1]
-    assert request.desired_pos.pose.position.z == .5
-    assert rig.provider.target_publisher.get_subscription_count() == 1
-
-
-@pytest.mark.parametrize('malformed', ['length', 'duplicate'])
-def test_invalid_target_set_cannot_fall_back_to_previous_targets(rig, malformed):
-    rig.provider.malformed_targets = malformed
-    time.sleep(.1)
-    rig.send('move(pick)')
-    wait_for(lambda: rig.saw('move(pick)', 'failed'))
-    assert not rig.provider.requests
-
-
-def test_removed_target_cannot_be_reused(rig):
-    del rig.provider.targets['pick']
-    time.sleep(.1)
-    rig.send('move(pick)')
-    wait_for(lambda: rig.saw('move(pick)', 'failed'))
-    assert not rig.provider.requests
+    rig.run('move(via(bus_bar))')
+    wait_for(lambda: rig.facts.get('arm.at(via(bus_bar))') is True)
+    rig.provider.automatic = False
+    rig.send('move(obs(bus_bar))')
+    wait_for(lambda: len(rig.provider.requests) == 2)
+    wait_for(lambda: rig.facts.get('arm.at(via(bus_bar))') is False)
+    wait_for(lambda: rig.facts.get('arm.at(obs(bus_bar))') is False)
+    _, request, ids = rig.provider.requests[-1]
+    assert request.desired_pos.header.frame_id == 'obs(bus_bar)'
+    rig.provider.end(ids[-1])
+    wait_for(lambda: rig.facts.get('arm.at(obs(bus_bar))') is True)
+    assert rig.facts['arm.at(via(bus_bar))'] is False
 
 
 @pytest.mark.parametrize('rig', [{'full': True}], indirect=True)

@@ -1,5 +1,5 @@
 {
-  "timestamp": 1790603569,
+  "timestamp": 1791447816,
   "wm": [
     {
       "abstract": false,
@@ -97,10 +97,8 @@
       "abstract": true,
       "amplified": false,
       "background": false,
-      "contribution": {
-        "teleology": 1.0
-      },
-      "emphasis": 1.0,
+      "contribution": {},
+      "emphasis": 0.0,
       "expanded": true,
       "fading": 0.0,
       "father": "alive",
@@ -121,8 +119,8 @@
       "schema": "requestStream",
       "sequentialReleaser": false,
       "sons": [
-        "hardSequence([move_a_b(pick),pick,move_a_b(place),place])",
-        "gui"
+        "gui",
+        "inspect(bus_bar)"
       ],
       "teleological": false,
       "truth": false,
@@ -132,60 +130,17 @@
     },
     {
       "abstract": false,
-      "amplified": true,
-      "background": false,
-      "contribution": {
-        "teleology": 1.0
-      },
-      "emphasis": 0.0,
-      "expanded": true,
-      "fading": 0.0,
-      "father": "requestStream",
-      "goal": true,
-      "goalCount": 1.0,
-      "goal_formulae": [
-        "hardSequence([move_a_b(pick),pick,move_a_b(place),place]).done"
-      ],
-      "id": 4,
-      "in_sequence": false,
-      "is_awake": true,
-      "is_branch_released": false,
-      "is_sequential": false,
-      "is_working": false,
-      "name": "hardSequence([move_a_b(pick),pick,move_a_b(place),place])",
-      "releaser": true,
-      "releaser_formulae": [],
-      "schema": "hardSequence",
-      "sequentialReleaser": false,
-      "sons": [],
-      "teleological": true,
-      "truth": false,
-      "weights": {
-        "gripper_demo": 1.0,
-        "iiwaAttach": 1.0,
-        "iiwaDetach": 1.0,
-        "iiwapick": 1.0,
-        "iiwaput": 1.0,
-        "iiwastack": 1.0,
-        "iiwaunstack": 1.0,
-        "pick_place_demo": 1.0,
-        "requestStream": 1.0,
-        "teleology": 1.0
-      }
-    },
-    {
-      "abstract": false,
       "amplified": false,
       "background": false,
       "contribution": {},
-      "emphasis": 1.0,
+      "emphasis": 0.0,
       "expanded": true,
       "fading": 0.0,
       "father": "requestStream",
       "goal": false,
       "goalCount": 0.0,
       "goal_formulae": [],
-      "id": 11,
+      "id": 4,
       "in_sequence": false,
       "is_awake": true,
       "is_branch_released": true,
@@ -201,6 +156,226 @@
       "truth": false,
       "weights": {
         "requestStream": 1.0
+      }
+    },
+    {
+      "abstract": true,
+      "amplified": false,
+      "background": false,
+      "contribution": {},
+      "emphasis": 0.0,
+      "expanded": true,
+      "fading": 0.0,
+      "father": "requestStream",
+      "goal": false,
+      "goalCount": 0.0,
+      "goal_formulae": [
+        "inspected(bus_bar)"
+      ],
+      "id": 5,
+      "in_sequence": false,
+      "is_awake": false,
+      "is_branch_released": true,
+      "is_sequential": false,
+      "is_working": true,
+      "name": "inspect(bus_bar)",
+      "releaser": true,
+      "releaser_formulae": [],
+      "schema": "inspect",
+      "sequentialReleaser": false,
+      "sons": [
+        "hardSequence([move(via(bus_bar)),move(obs(bus_bar)),take_picture(bus_bar),move(via(bus_bar)),timer(inspected(bus_bar),true,0.1)])",
+        "stop"
+      ],
+      "teleological": true,
+      "truth": false,
+      "weights": {
+        "requestStream": 1.0
+      }
+    },
+    {
+      "abstract": false,
+      "amplified": false,
+      "background": false,
+      "contribution": {
+        "teleology": 1.0
+      },
+      "emphasis": 1.0,
+      "expanded": true,
+      "fading": 0.0,
+      "father": "inspect(bus_bar)",
+      "goal": false,
+      "goalCount": 0.0,
+      "goal_formulae": [
+        "hardSequence([move(via(bus_bar)),move(obs(bus_bar)),take_picture(bus_bar),move(via(bus_bar)),timer(inspected(bus_bar),true,0.1)]).done"
+      ],
+      "id": 6,
+      "in_sequence": false,
+      "is_awake": true,
+      "is_branch_released": true,
+      "is_sequential": false,
+      "is_working": true,
+      "name": "hardSequence([move(via(bus_bar)),move(obs(bus_bar)),take_picture(bus_bar),move(via(bus_bar)),timer(inspected(bus_bar),true,0.1)])",
+      "releaser": true,
+      "releaser_formulae": [
+        "bus_bar.free"
+      ],
+      "schema": "hardSequence",
+      "sequentialReleaser": false,
+      "sons": [
+        "move(obs(bus_bar))"
+      ],
+      "teleological": true,
+      "truth": false,
+      "weights": {
+        "gripper_demo": 1.0,
+        "iiwaAttach": 1.0,
+        "iiwaDetach": 1.0,
+        "iiwapick": 1.0,
+        "iiwaput": 1.0,
+        "iiwastack": 1.0,
+        "iiwaunstack": 1.0,
+        "inspect": 1.0,
+        "pick_place_demo": 1.0,
+        "requestStream": 1.0,
+        "teleology": 1.0,
+        "two_objects_demo": 1.0
+      }
+    },
+    {
+      "abstract": true,
+      "amplified": false,
+      "background": false,
+      "contribution": {},
+      "emphasis": 0.0,
+      "expanded": true,
+      "fading": 0.0,
+      "father": "hardSequence([move(via(bus_bar)),move(obs(bus_bar)),take_picture(bus_bar),move(via(bus_bar)),timer(inspected(bus_bar),true,0.1)])",
+      "goal": false,
+      "goalCount": 0.0,
+      "goal_formulae": [
+        "arm.at(obs(bus_bar))"
+      ],
+      "id": 11,
+      "in_sequence": false,
+      "is_awake": false,
+      "is_branch_released": true,
+      "is_sequential": false,
+      "is_working": false,
+      "name": "move(obs(bus_bar))",
+      "releaser": true,
+      "releaser_formulae": [],
+      "schema": "move",
+      "sequentialReleaser": false,
+      "sons": [
+        "rosAct(move(obs(bus_bar)),ur10_services,ur10/hardware/primitives/command,0.25)"
+      ],
+      "teleological": true,
+      "truth": false,
+      "weights": {}
+    },
+    {
+      "abstract": false,
+      "amplified": false,
+      "background": false,
+      "contribution": {},
+      "emphasis": 0.0,
+      "expanded": true,
+      "fading": 0.0,
+      "father": "move(obs(bus_bar))",
+      "goal": false,
+      "goalCount": 0.0,
+      "goal_formulae": [],
+      "id": 12,
+      "in_sequence": false,
+      "is_awake": true,
+      "is_branch_released": false,
+      "is_sequential": false,
+      "is_working": false,
+      "name": "rosAct(move(obs(bus_bar)),ur10_services,ur10/hardware/primitives/command,0.25)",
+      "releaser": false,
+      "releaser_formulae": [
+        "-manipulation.failed"
+      ],
+      "schema": "rosAct",
+      "sequentialReleaser": false,
+      "sons": [],
+      "teleological": false,
+      "truth": false,
+      "weights": {
+        "move": 1.0,
+        "stop": 1.0,
+        "take_picture": 1.0
+      }
+    },
+    {
+      "abstract": true,
+      "amplified": false,
+      "background": false,
+      "contribution": {},
+      "emphasis": 0.0,
+      "expanded": true,
+      "fading": 0.0,
+      "father": "inspect(bus_bar)",
+      "goal": false,
+      "goalCount": 0.0,
+      "goal_formulae": [
+        "gripper.open"
+      ],
+      "id": 9,
+      "in_sequence": false,
+      "is_awake": false,
+      "is_branch_released": false,
+      "is_sequential": false,
+      "is_working": false,
+      "name": "stop",
+      "releaser": false,
+      "releaser_formulae": [
+        "-bus_bar.free"
+      ],
+      "schema": "stop",
+      "sequentialReleaser": false,
+      "sons": [
+        "rosAct(stop,ur10_services,ur10/hardware/primitives/command,0.25)"
+      ],
+      "teleological": true,
+      "truth": false,
+      "weights": {
+        "inspect": 1.0
+      }
+    },
+    {
+      "abstract": false,
+      "amplified": false,
+      "background": false,
+      "contribution": {},
+      "emphasis": 0.0,
+      "expanded": true,
+      "fading": 0.0,
+      "father": "stop",
+      "goal": false,
+      "goalCount": 0.0,
+      "goal_formulae": [],
+      "id": 10,
+      "in_sequence": false,
+      "is_awake": true,
+      "is_branch_released": false,
+      "is_sequential": false,
+      "is_working": false,
+      "name": "rosAct(stop,ur10_services,ur10/hardware/primitives/command,0.25)",
+      "releaser": false,
+      "releaser_formulae": [
+        "-manipulation.failed"
+      ],
+      "schema": "rosAct",
+      "sequentialReleaser": false,
+      "sons": [],
+      "teleological": false,
+      "truth": false,
+      "weights": {
+        "move": 1.0,
+        "stop": 1.0,
+        "take_picture": 1.0
       }
     }
   ]

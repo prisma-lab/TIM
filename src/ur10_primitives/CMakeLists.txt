@@ -27,7 +27,7 @@ ament_target_dependencies(ur10_gripper_plugins moveit_msgs std_srvs std_msgs geo
 pluginlib_export_plugin_description_file(primitive_manager primitives_plugins.xml)
 install(TARGETS ur10_gripper_plugins DESTINATION lib)
 install(DIRECTORY launch config DESTINATION share/${PROJECT_NAME})
-install(PROGRAMS scripts/target_publisher.py scripts/hardware_target_publisher.py
+install(PROGRAMS scripts/target_publisher.py
   scripts/two_object_targets.py DESTINATION lib/${PROJECT_NAME})
 if(BUILD_TESTING)
   find_package(ament_cmake_pytest REQUIRED)

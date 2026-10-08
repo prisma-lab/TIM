@@ -12,7 +12,10 @@ def start(context):
     enable_gripper = LaunchConfiguration('enable_gripper').perform(context).lower()
     if enable_gripper not in ('true', 'false'):
         raise ValueError('enable_gripper must be true or false')
-    primitives = ['move', 'pick', 'place'] if enable_gripper == 'true' else ['move']
+    primitives = ['move']
+    if enable_gripper == 'true':
+        primitives.extend(['pick', 'place'])
+    primitives.append('safe_stop')
     return [Node(
         package='primitive_manager', executable='primitive_manager',
         name='ur10_service_manager', output='screen',

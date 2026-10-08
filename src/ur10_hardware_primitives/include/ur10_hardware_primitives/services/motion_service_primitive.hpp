@@ -32,6 +32,9 @@ public:
   void cancel() final;
   void reset() final;
   bool busy() const final {return active_;}
+  bool supports_pause() const final {return true;}
+  void prepare_pause() final;
+  void confirm_pause() final;
 
 protected:
   virtual void configure() = 0;
@@ -47,8 +50,13 @@ protected:
       throw std::runtime_error("Service unavailable: " + std::string(client->get_service_name()));
     }
     begin_request();
+    const auto generation = request_generation_;
     client->async_send_request(request,
-      [this](typename rclcpp::Client<Service>::SharedFuture future) {
+      [this, generation](typename rclcpp::Client<Service>::SharedFuture future) {
+        // A stopped request can reply after its replacement has started.
+        if (generation != request_generation_ || pause_requested_) {
+          return;
+        }
         try {
           const auto response = future.get();
           receive_response(response->success, response->motion_ids);
@@ -76,6 +84,8 @@ private:
   bool response_received_{false};
   bool ids_known_{false};
   bool faulted_{false};
+  bool pause_requested_{false};
+  std::uint64_t request_generation_{0};
   std::uint64_t first_id_{0}, last_id_{0};
   double response_timeout_{5.0}, execution_timeout_{180.0};
   Clock::time_point requested_at_{};

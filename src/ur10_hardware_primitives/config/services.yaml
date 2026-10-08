@@ -6,7 +6,8 @@ ur10_service_manager:
     status_topic: /ur10/hardware/primitives/status
     seed_state_topic: /seed_ur10_services/state
     failure_fact: manipulation.failed
-    primitives: [move, pick, place]
+    primitives: [move, pick, place, safe_stop]
+    pause_primitive: safe_stop
     services:
       start_topic: /motion_start
       end_topic: /motion_end
@@ -24,3 +25,7 @@ ur10_service_manager:
     place:
       plugin: ur10_hardware_primitives/PlaceServicePrimitive
       service: /place  # inverse_msgs/srv/EnqueueTrigger
+    safe_stop:
+      plugin: ur10_hardware_primitives/SafeStopPrimitive
+      service: /safe_stop  # std_srvs/srv/Trigger; success confirms stopped execution
+      response_timeout: 5.0

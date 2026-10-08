@@ -47,6 +47,9 @@ private:
     if (!args.empty()) {throw std::invalid_argument("pick takes no arguments");}
     auto request = std::make_shared<EnqueueTrigger::Request>();
     send_request<EnqueueTrigger>(client_, request);
+    // Until this request completes, an interrupted gripper motion must not
+    // restore the previous command's open/closed completion fact.
+    *position_ = GripperPosition::UNKNOWN;
   }
 
   void record_completion() override {*position_ = GripperPosition::CLOSED;}
@@ -76,6 +79,7 @@ private:
     if (!args.empty()) {throw std::invalid_argument("place takes no arguments");}
     auto request = std::make_shared<EnqueueTrigger::Request>();
     send_request<EnqueueTrigger>(client_, request);
+    *position_ = GripperPosition::UNKNOWN;
   }
 
   void record_completion() override {*position_ = GripperPosition::OPEN;}

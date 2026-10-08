@@ -70,6 +70,8 @@ void MotionServicePrimitive::begin_request()
   }
   starts_.clear();
   ends_.clear();
+  ++request_generation_;
+  pause_requested_ = false;
   active_ = true;
   response_received_ = ids_known_ = faulted_ = false;
   requested_at_ = Clock::now();
@@ -113,7 +115,7 @@ void MotionServicePrimitive::receive_string_event(const std::string & text, bool
 
 void MotionServicePrimitive::receive_event(std::uint64_t id, bool start)
 {
-  if (!active_) {return;}
+  if (!active_ || pause_requested_) {return;}
   if (ids_known_ && id != (start ? first_id_ : last_id_)) {return;}
 
   auto & events = start ? starts_ : ends_;
@@ -146,7 +148,7 @@ void MotionServicePrimitive::update_execution()
 
 void MotionServicePrimitive::tick()
 {
-  if (!active_ || faulted_) {return;}
+  if (!active_ || faulted_ || pause_requested_) {return;}
   const double elapsed = std::chrono::duration<double>(Clock::now() - requested_at_).count();
   if (!response_received_ && elapsed >= response_timeout_) {
     fail("Service response timed out; remote execution is unknown, awaiting response/end");
@@ -162,6 +164,32 @@ void MotionServicePrimitive::cancel()
   }
 }
 
+void MotionServicePrimitive::prepare_pause()
+{
+  if (!active_) {
+    return;
+  }
+  pause_requested_ = true;
+  status_ = Status::CANCELLING;
+  feedback_ = "Waiting for the safe-stop service to confirm cancellation";
+}
+
+void MotionServicePrimitive::confirm_pause()
+{
+  // The successful stop response confirms that all IDs of this unfinished
+  // request are cancelled. Do not call record_completion() for that request.
+  ++request_generation_;
+  active_ = false;
+  pause_requested_ = false;
+  response_received_ = false;
+  ids_known_ = false;
+  faulted_ = false;
+  starts_.clear();
+  ends_.clear();
+  status_ = Status::CANCELLED;
+  feedback_ = "Request cancelled by safe stop; the unfinished step can be requested again";
+}
+
 void MotionServicePrimitive::fail(const std::string & reason)
 {
   faulted_ = true;
@@ -175,6 +203,8 @@ void MotionServicePrimitive::reset()
   if (active_) {throw std::logic_error("Cannot reset before remote execution ends");}
   status_ = Status::IDLE;
   feedback_.clear();
+  ++request_generation_;
+  pause_requested_ = false;
   faulted_ = response_received_ = ids_known_ = false;
   starts_.clear();
   ends_.clear();

@@ -14,4 +14,9 @@
          base_class_type="primitive_manager::PrimitiveBase">
     <description>Hardware service adapter: open the gripper; no arm motion.</description>
   </class>
+  <class name="ur10_hardware_primitives/SafeStopPrimitive"
+         type="ur10_hardware_primitives::services::SafeStopPrimitive"
+         base_class_type="primitive_manager::PrimitiveBase">
+    <description>Confirm a safe stop through the Trigger service, without motion-ID tracking.</description>
+  </class>
 </library>

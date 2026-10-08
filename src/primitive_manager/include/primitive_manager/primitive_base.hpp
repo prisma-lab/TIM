@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <stdexcept>
 #include <vector>
 #include <rclcpp/rclcpp.hpp>
 
@@ -42,6 +43,19 @@ public:
   // manager must retain the active plugin while busy(), even if status=FAILED.
   virtual bool busy() const = 0;
   virtual std::vector<Observation> observe() const {return {};}
+
+  // A separate stop service can cancel the current remote request. These hooks
+  // suppress its completion while stopping, then retire only that request.
+  virtual bool supports_pause() const {return false;}
+  virtual void prepare_pause()
+  {
+    throw std::logic_error("This primitive does not support an external pause");
+  }
+  virtual void confirm_pause()
+  {
+    throw std::logic_error("This primitive does not support an external pause");
+  }
+
   Status status() const {return status_;}
   const std::string & feedback() const {return feedback_;}
 

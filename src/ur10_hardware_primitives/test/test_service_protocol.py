@@ -1,5 +1,6 @@
 """Actual C++ plugins with mock ROS services; no robot drivers or motion actions."""
 import copy
+from contextlib import contextmanager
 import json
 import os
 from pathlib import Path
@@ -18,6 +19,7 @@ from rclpy.callback_groups import ReentrantCallbackGroup
 from rclpy.executors import MultiThreadedExecutor
 from rclpy.node import Node
 from std_msgs.msg import Int64, String
+from std_srvs.srv import Trigger
 import yaml
 
 
@@ -41,6 +43,10 @@ class Provider(Node):
         self.automatic = False
         self.hold_response = False
         self.release = threading.Event()
+        self.stop_requests = []
+        self.stop_accept = True
+        self.hold_stop_response = False
+        self.stop_release = threading.Event()
         self.start_pub = self.create_publisher(event_type, '/service_test/start', 100)
         self.end_pub = self.create_publisher(event_type, '/service_test/end', 100)
         callbacks = ReentrantCallbackGroup()
@@ -53,6 +59,8 @@ class Provider(Node):
                 EnqueueTrigger, '/service_test/' + name,
                 lambda request, response, name=name: self.call(name, request, response),
                 callback_group=callbacks))
+        self.service_servers.append(self.create_service(
+            Trigger, '/service_test/safe_stop', self.safe_stop, callback_group=callbacks))
 
     def call(self, operation, request, response):
         ids = self.response_ids
@@ -63,10 +71,19 @@ class Provider(Node):
         if self.automatic and self.accept and ids:
             self.start(ids[0])
             self.end(ids[-1])  # Deliberately before the service response.
-        while self.hold_response and not self.release.wait(.01):
+        hold_response = self.hold_response
+        while hold_response and not self.release.wait(.01):
             pass
         response.success = self.accept
         response.motion_ids = ids
+        return response
+
+    def safe_stop(self, request, response):
+        self.stop_requests.append(copy.deepcopy(request))
+        while self.hold_stop_response and not self.stop_release.wait(.01):
+            pass
+        response.success = self.stop_accept
+        response.message = 'Stopped' if self.stop_accept else 'Stop rejected'
         return response
 
     def start(self, motion_id):
@@ -80,7 +97,7 @@ class Provider(Node):
 
 class Rig:
     def __init__(self, full=False, response_timeout=2., execution_timeout=4.,
-                 event_message_type='std_msgs/msg/String'):
+                 event_message_type='std_msgs/msg/String', pause=False, stop_timeout=2.):
         self.provider = Provider(Int64 if event_message_type == 'std_msgs/msg/Int64' else String)
         self.observer = Node('service_adapter_observer')
         self.statuses = []
@@ -95,6 +112,11 @@ class Rig:
         config = yaml.safe_load((package / 'config/services.yaml').read_text())['ur10_service_manager']['ros__parameters']
         config.update(command_topic='/service_test/command', status_topic='/service_test/status',
                       seed_state_topic='/service_test/state', primitives=['move', 'pick', 'place'] if full else ['move'])
+        config['pause_primitive'] = 'safe_stop' if pause else ''
+        if pause:
+            config['primitives'].append('safe_stop')
+        config['safe_stop']['service'] = '/service_test/safe_stop'
+        config['safe_stop']['response_timeout'] = stop_timeout
         config['services'].update(start_topic='/service_test/start',
                                   end_topic='/service_test/end', response_timeout=response_timeout,
                                   execution_timeout=execution_timeout,
@@ -139,6 +161,7 @@ class Rig:
 
     def close(self):
         self.provider.release.set()
+        self.provider.stop_release.set()
         self.process.send_signal(signal.SIGINT)
         try:
             self.process.wait(timeout=3)
@@ -165,6 +188,211 @@ def rig(request):
         if test is not None:
             test.close()
         rclpy.try_shutdown()
+
+
+@pytest.mark.parametrize('rig', [{'pause': True}], indirect=True)
+def test_safe_stop_cancels_only_current_request_and_allows_that_step_to_resume(rig):
+    rig.provider.automatic = True
+    rig.run('move(via(bus_bar))')
+    rig.provider.automatic = False
+    rig.send('move(obs(bus_bar))')
+    wait_for(lambda: len(rig.provider.requests) == 2)
+    cancelled_ids = rig.provider.requests[-1][2]
+
+    rig.provider.hold_stop_response = True
+    rig.send('safe_stop')
+    wait_for(lambda: len(rig.provider.stop_requests) == 1)
+    assert rig.provider.stop_requests[0].get_fields_and_field_types() == {}
+    rig.send('move(place)')
+    wait_for(lambda: rig.saw('move(place)', 'rejected'))
+    rig.provider.end(cancelled_ids[-1])
+    time.sleep(.1)
+    assert not rig.saw('move(obs(bus_bar))', 'succeeded')
+    assert rig.facts['arm.at(obs(bus_bar))'] is False
+
+    rig.provider.stop_release.set()
+    wait_for(lambda: rig.facts.get('succeeded(safe_stop)') is True)
+    wait_for(lambda: rig.facts.get('cancelled(move(obs(bus_bar)))') is True)
+    assert rig.facts['succeeded(move(via(bus_bar)))'] is True
+    assert rig.facts['manipulation.failed'] is False
+    for _ in range(3):
+        rig.send('safe_stop')
+    time.sleep(.1)
+    assert len(rig.provider.stop_requests) == 1
+
+    rig.send('move(obs(bus_bar))')
+    wait_for(lambda: len(rig.provider.requests) == 3)
+    wait_for(lambda: rig.facts.get('succeeded(safe_stop)') is False)
+    resumed_ids = rig.provider.requests[-1][2]
+    rig.provider.end(cancelled_ids[-1])
+    time.sleep(.1)
+    assert not rig.saw('move(obs(bus_bar))', 'succeeded')
+    rig.provider.end(resumed_ids[-1])
+    wait_for(lambda: rig.facts.get('arm.at(obs(bus_bar))') is True)
+
+    # Stopping while idle does not undo the move that already completed.
+    rig.send('safe_stop')
+    wait_for(lambda: len(rig.provider.stop_requests) == 2)
+    wait_for(lambda: rig.facts.get('succeeded(safe_stop)') is True)
+    assert rig.facts['arm.at(obs(bus_bar))'] is True
+    assert rig.facts['succeeded(move(obs(bus_bar)))'] is True
+
+
+@pytest.mark.parametrize('rig', [{'pause': True}], indirect=True)
+def test_safe_stop_discards_late_response_and_events_of_cancelled_request(rig):
+    rig.provider.hold_response = True
+    rig.send('move(obs(bus_bar))')
+    wait_for(lambda: len(rig.provider.requests) == 1)
+    cancelled_ids = rig.provider.requests[0][2]
+    rig.send('safe_stop')
+    wait_for(lambda: rig.facts.get('succeeded(safe_stop)') is True)
+
+    # The original callback is still waiting. Its replacement can respond first.
+    rig.provider.hold_response = False
+    rig.send('move(obs(bus_bar))')
+    wait_for(lambda: len(rig.provider.requests) == 2)
+    resumed_ids = rig.provider.requests[-1][2]
+    rig.provider.start(resumed_ids[0])
+    wait_for(lambda: any('Started at /motion_start ID ' + str(resumed_ids[0]) in item['detail']
+                        for item in rig.statuses))
+    rig.provider.release.set()
+    rig.provider.end(cancelled_ids[-1])
+    time.sleep(.1)
+    assert rig.facts['arm.at(obs(bus_bar))'] is False
+    assert not rig.saw('move(obs(bus_bar))', 'succeeded')
+    rig.provider.end(resumed_ids[-1])
+    wait_for(lambda: rig.facts.get('arm.at(obs(bus_bar))') is True)
+
+
+@pytest.mark.parametrize('rig', [{'pause': True}], indirect=True)
+def test_failed_safe_stop_requires_reset_before_retry_and_keeps_motion_held(rig):
+    rig.send('move(obs(bus_bar))')
+    wait_for(lambda: rig.provider.requests)
+    rig.provider.stop_accept = False
+    rig.send('safe_stop')
+    wait_for(lambda: rig.saw('safe_stop', 'failed'))
+    wait_for(lambda: rig.facts.get('manipulation.failed') is True)
+    rig.send('safe_stop')
+    rig.send('move(place)')
+    wait_for(lambda: rig.saw('move(place)', 'rejected'))
+    assert len(rig.provider.stop_requests) == 1
+    assert len(rig.provider.requests) == 1
+
+    rig.send('reset')
+    wait_for(lambda: rig.saw('reset', 'succeeded'))
+    rig.send('move(place)')
+    time.sleep(.1)
+    assert len(rig.provider.requests) == 1  # Reset alone did not confirm stopping.
+    rig.provider.stop_accept = True
+    rig.send('safe_stop')
+    wait_for(lambda: len(rig.provider.stop_requests) == 2)
+    wait_for(lambda: rig.facts.get('succeeded(safe_stop)') is True)
+    rig.provider.automatic = True
+    rig.run('move(obs(bus_bar))')
+
+
+@pytest.mark.parametrize('rig', [{'pause': True, 'execution_timeout': .25}], indirect=True)
+def test_safe_stop_can_run_after_manipulation_failure(rig):
+    rig.send('move(obs(bus_bar))')
+    wait_for(lambda: rig.facts.get('manipulation.failed') is True)
+    rig.send('safe_stop')
+    wait_for(lambda: rig.facts.get('succeeded(safe_stop)') is True)
+    assert rig.facts['cancelled(move(obs(bus_bar)))'] is True
+    assert rig.facts['manipulation.failed'] is True  # Stop does not hide the earlier fault.
+
+
+@pytest.mark.parametrize('rig', [{'pause': True, 'full': True}], indirect=True)
+def test_safe_stop_does_not_restore_gripper_state_from_before_interrupted_motion(rig):
+    rig.provider.automatic = True
+    rig.run('pick')
+    wait_for(lambda: rig.facts.get('gripper.closed') is True)
+    rig.provider.automatic = False
+    rig.send('place')
+    wait_for(lambda: len(rig.provider.requests) == 2)
+    rig.send('safe_stop')
+    wait_for(lambda: rig.facts.get('succeeded(safe_stop)') is True)
+    assert rig.facts['succeeded(pick)'] is True
+    assert rig.facts['cancelled(place)'] is True
+    assert rig.facts['gripper.closed'] is False
+    assert rig.facts['gripper.open'] is False
+
+
+@contextmanager
+def running_test_seed(rig):
+    """Run the original SEED executable with temporary configuration/log files."""
+    with tempfile.TemporaryDirectory(prefix='tim-pause-seed-') as temporary:
+        root = Path(temporary)
+        prefix = root / 'install/seed'
+        marker = prefix / 'share/ament_index/resource_index/packages'
+        marker.mkdir(parents=True)
+        (marker / 'seed').touch()
+        (prefix / 'share/seed').mkdir()
+        seed_source = (Path(get_package_share_directory('seed')) / '../../../../src/seed').resolve()
+        for folder in ('LTM', 'learning'):
+            shutil.copytree(seed_source / folder, root / 'src/seed' / folder)
+        (root / 'src/seed/log').mkdir()
+        ltm = root / 'src/seed/LTM/seed_ur10_services_LTM.prolog'
+        ltm.write_text(ltm.read_text().replace('ur10/hardware/primitives/command', 'service_test/command'))
+        env = dict(os.environ, AMENT_PREFIX_PATH=str(prefix) + ':' + os.environ['AMENT_PREFIX_PATH'])
+        executable = Path(get_package_prefix('seed')) / 'lib/seed/seed'
+        with (root / 'output.log').open('w+') as output:
+            seed = subprocess.Popen([str(executable), 'ur10_services', '--ros-args',
+                                     '-r', '/seed_ur10_services/state:=/service_test/state'],
+                                    stdin=subprocess.PIPE, stdout=output, stderr=subprocess.STDOUT,
+                                    env=env, text=True)
+            try:
+                state = rig.observer.create_publisher(String, '/service_test/state', 100)
+                stream = rig.observer.create_publisher(String, '/seed_ur10_services/stream', 10)
+                wait_for(lambda: state.get_subscription_count() == 2)
+                wait_for(lambda: stream.get_subscription_count() == 1)
+                yield state, stream, output
+            finally:
+                seed.send_signal(signal.SIGINT)
+                try:
+                    seed.wait(timeout=5)
+                except subprocess.TimeoutExpired:
+                    seed.kill()
+                    seed.wait()
+
+
+@pytest.mark.parametrize('rig', [{'pause': True, 'event_message_type': 'std_msgs/msg/Int64'}], indirect=True)
+def test_seed_inspection_resumes_only_interrupted_step_after_two_pauses(rig):
+    with running_test_seed(rig) as (state, stream, output):
+        state.publish(String(data='bus_bar.free'))
+        stream.publish(String(data='inspect(bus_bar)'))
+        wait_for(lambda: len(rig.provider.requests) == 1)
+        rig.provider.end(rig.provider.requests[0][2][-1])
+        wait_for(lambda: len(rig.provider.requests) == 2)
+        cancelled_ids = rig.provider.requests[1][2]
+        state.publish(String(data='-bus_bar.free'))
+        wait_for(lambda: rig.facts.get('succeeded(safe_stop)') is True)
+        assert len(rig.provider.stop_requests) == 1
+        time.sleep(.4)
+        assert len(rig.provider.requests) == 2
+
+        state.publish(String(data='bus_bar.free'))
+        wait_for(lambda: len(rig.provider.requests) == 3)
+        wait_for(lambda: rig.facts.get('succeeded(safe_stop)') is False)
+        rig.provider.end(cancelled_ids[-1])
+        time.sleep(.1)
+        assert len(rig.provider.requests) == 3
+        assert rig.facts['arm.at(obs(bus_bar))'] is False
+
+        state.publish(String(data='-bus_bar.free'))
+        wait_for(lambda: len(rig.provider.stop_requests) == 2)
+        wait_for(lambda: rig.facts.get('succeeded(safe_stop)') is True)
+        rig.provider.automatic = True
+        state.publish(String(data='bus_bar.free'))
+        wait_for(lambda: len(rig.provider.requests) == 5, timeout=10)
+        frames = [request.desired_pos.header.frame_id for _, request, _ in rig.provider.requests]
+        assert frames == ['via(bus_bar)', 'obs(bus_bar)', 'obs(bus_bar)',
+                          'obs(bus_bar)', 'via(bus_bar)']
+
+        def completed():
+            output.seek(0)
+            return 'inspect(bus_bar) success!' in output.read()
+
+        wait_for(completed)
 
 
 @pytest.mark.parametrize('frame', ['pick', 'via(bus_bar)', 'obs(bus_bar)'])
